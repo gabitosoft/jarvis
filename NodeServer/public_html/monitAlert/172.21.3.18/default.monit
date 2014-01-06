@@ -1,0 +1,18 @@
+# Memory monit
+check system 172.21.3.18
+if memory usage > 5% then 
+#exec "/bin/bash -c '/bin/touch /tmp/monittest--gabriel'"
+#exec "/bin/bash -c '/home/gabriel/works/dialogCheckbox.sh'"
+
+
+# Monit Server  settings:
+# ----------------------
+#check system 172.21.3.18
+#if loadavg (1min) > 5 then alert
+#if loadavg (5min) > 10 for then alert
+#if memory usage > 90% then alert
+#if cpu usage (user) > 70% for 3 cycles then alert
+#if cpu usage (system) > 30% for 3 cycles then alert
+#if cpu usage (wait) > 20% for 3 cycles then alert
+
+

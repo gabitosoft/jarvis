@@ -1,0 +1,6 @@
+
+# Memory monit
+check system 172.21.3.18
+if memory usage > 10% then 
+    curl -X POST -H "Content-Type: application/json" -d '{"id":"1234567","name":"memory"}' http://localhost:1337/alert
+
