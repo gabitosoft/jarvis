@@ -1,6 +1,6 @@
 
 # Memory monit
 check system 172.21.3.18
-if memory usage > 10% then 
-    curl -X POST -H "Content-Type: application/json" -d '{"id":"1234567","name":"memory"}' http://localhost:1337/alert
+if memory usage > 90% then 
+    exec "/bin/bash -c '/home/gabriel/works/jarvis/NodeServer/public_html/monitAlert/bashscripts/sendMessage.sh http://localhost:8080/memory' "    
 

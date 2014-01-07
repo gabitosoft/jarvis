@@ -1,0 +1,6 @@
+
+# Apache monit
+check process httpd
+        matching "httpd" 
+        if does not exist then 
+        exec "/bin/bash -c '/home/gabriel/works/jarvis/NodeServer/public_html/monitAlert/bashscripts/sendMessage.sh http://localhost:8080/httpd' "    

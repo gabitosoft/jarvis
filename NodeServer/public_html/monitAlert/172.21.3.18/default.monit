@@ -1,6 +1,6 @@
 # Memory monit
-check system 172.21.3.18
-if memory usage > 5% then 
+#check system 172.21.3.18
+#if memory usage > 5% then 
 #exec "/bin/bash -c '/bin/touch /tmp/monittest--gabriel'"
 #exec "/bin/bash -c '/home/gabriel/works/dialogCheckbox.sh'"
 
