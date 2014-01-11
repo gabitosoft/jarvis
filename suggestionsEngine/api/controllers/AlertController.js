@@ -16,7 +16,11 @@
  */
 
 module.exports = {
-    
+  notify: function (req, res) {
+      
+      console.log('Notification catched');
+      //console.log(req);
+  },
   subscribe: function (req, res) {
       
       Alert.find(function foundAlerts(err, alerts) {

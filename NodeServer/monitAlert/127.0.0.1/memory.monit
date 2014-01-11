@@ -1,0 +1,6 @@
+
+# Memory monit
+check system 127.0.0.1
+if memory usage > 5% then 
+    exec "/bin/bash -c '/opt/lampp/htdocs/jarvis/NodeServer/monitAlert/bashscripts/sendMessage.sh http://127.0.0.1:1337/alert/notify' "    
+
