@@ -3,18 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/opt/lampp/htdocs/JARVIS/suggestionsEngine/Gruntfile.js</file>
-            <file>file:/opt/lampp/htdocs/JARVIS/suggestionsEngine/assets/linker/js/app.js</file>
-            <file>file:/opt/lampp/htdocs/JARVIS/suggestionsEngine/config/policies.js</file>
-            <file>file:/opt/lampp/htdocs/JARVIS/suggestionsEngine/api/policies/userCanSeeProfile.js</file>
-            <file>file:/opt/lampp/htdocs/JARVIS/suggestionsEngine/api/controllers/UserController.js</file>
-            <file>file:/opt/lampp/htdocs/JARVIS/suggestionsEngine/api/models/User.js</file>
-            <file>file:/opt/lampp/htdocs/JARVIS/suggestionsEngine/views/layout.ejs</file>
-            <file>file:/opt/lampp/htdocs/JARVIS/suggestionsEngine/config/csrf.js</file>
-            <file>file:/opt/lampp/htdocs/JARVIS/suggestionsEngine/assets/linker/templates/addUser.ejs</file>
-            <file>file:/opt/lampp/htdocs/JARVIS/suggestionsEngine/api/controllers/SessionController.js</file>
-            <file>file:/opt/lampp/htdocs/JARVIS/suggestionsEngine/config/bootstrap.js</file>
-            <file>file:/opt/lampp/htdocs/JARVIS/suggestionsEngine/views/user/index.ejs</file>
+            <file>file:/opt/lampp/htdocs/jarvis/seconfig/views/status/index.ejs</file>
+            <file>file:/opt/lampp/htdocs/jarvis/seconfig/api/controllers/StatusController.js</file>
+            <file>file:/opt/lampp/htdocs/jarvis/seconfig/api/models/Status.js</file>
+            <file>file:/opt/lampp/htdocs/jarvis/suggestionsEngine/api/controllers/UserController.js</file>
+            <file>file:/opt/lampp/htdocs/jarvis/seconfig/views/status/new.ejs</file>
+            <file>file:/opt/lampp/htdocs/jarvis/seconfig/views/status/show.ejs</file>
         </group>
     </open-files>
 </project-private>

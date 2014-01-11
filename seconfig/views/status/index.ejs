@@ -1,0 +1,25 @@
+<div class="container">
+    <h3>Status</h3>
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+
+        <% _.each(status, function(st) {%>
+        <tr data-model="status">
+            <td><%= st.name %></td>
+            <td><%= st.description %></td>
+            <td><a href="/user/show/<%= user.name %>" class="btn btn-sm btn-primary">Show</a></td>
+            <td><a href="/user/edit/<%= user.name %>" class="btn btn-sm btn-warning">Edit</a></td>
+            <td>
+                <form action="/status/destroy/<%= status.name %>" method="POST">
+                    <input type="hidden" name="_method" value="delete"/>
+                    <input type="submit" class="btn btn-sm btn-danger" value="Delete"/>
+                    <input type="hidden" name="_csrf" value="<%= _csrf %>" /> 
+                </form>
+            </td>
+        </tr>
+        <% }) %>
+    </table>
+</div>

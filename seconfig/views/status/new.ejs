@@ -1,0 +1,19 @@
+<form action="/user/create" method="POST" id="sign-up-form" class="form-signin">
+    <h2 class="form-signin-heading">Create Status</h2>
+    <% if (flash && flash.err) {%>
+        <ul class="alert alert-success">
+    <% Object.keys(flash.err).forEach(function(error) { %>
+        <li><%= JSON.stringify(flash.err[error]) %></li>
+    <% });%>
+        </ul>
+    <%}%>
+
+    <div class="control-group">
+    <input type="text" class="form-control" placeholder="Status name" name="name">
+    <textarea placeholder="Description" name="description"></textarea>
+    <br />
+    </div>
+
+    <input type="submit" class="btn btn-lg btn-primary btn-block" value="Create Status"/>
+    <input type="hidden" name="_csrf" value="<%= _csrf %>">
+</form>

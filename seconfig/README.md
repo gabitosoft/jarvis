@@ -1,0 +1,2 @@
+# seconfig
+### a Sails application
