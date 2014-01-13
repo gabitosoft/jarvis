@@ -17,13 +17,11 @@
 
 module.exports = {
     
-  
+  'summary': function(req, res, next) {
+    return res.view();
+  },
 
 
-  /**
-   * Overrides for the settings in `config/controllers.js`
-   * (specific to UserController)
-   */
   _config: {}
 
   
