@@ -10,21 +10,26 @@ module.exports = {
 
   schema: true,
   attributes: {
-  	
+    
     name:{
         type: 'string',
         required: true
     },
     description:{
-        type: 'string'
+        type: 'string',
+        max: 1000
     },
-    id: {
-        type: 'integer',
-        required: true
+    type: {
+      type: 'string',
+      required: true
     },
     priority: {
-        type: 'integer',
-        required: true
+      type: 'integer',
+      required: true
+    },
+    idService: {
+      type: 'integer',
+      required: true
     }
   }
 };
