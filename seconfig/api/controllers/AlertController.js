@@ -43,51 +43,51 @@ module.exports = {
             };
 
             // If error redirect back to sign-up page
-            return res.redirect('/user/new');
+            return res.redirect('/alert/new');
         }
         
-        area.save(function(err, user) {
+        alert.save(function(err, alert) {
             if (err) return next(err);
             
-            res.redirect('/alert/show/' + area.name);
+            res.redirect('/alert/show/' + alert.id);
         });
     });
   },
   
   show: function (req, res, next) {
 
-    Area.findOne(req.param('name'), function foundArea (err, area){
+    alert.findOne(req.param('id'), function foundArea (err, alert){
         
         if (err) return next(err);
-        if (!area) return next();
+        if (!alert) return next();
         res.view({
-            area: area
+            alert: alert
         });
     });
   },
   
   index: function(req, res, next) {
       
-      // Get an array of all areas in the Area collection(e.g table)
-      Area.find(function foundArea (err, areas) {
+      // Get an array of all alerts in the Alert collection(e.g table)
+      Alert.find(function foundArea (err, alerts) {
           if (err) return next(err);
           // pass the array down to the /views/index.ejs page
           res.view({
-              areas: areas
+              alerts: alerts
           });
       });
   },
   
   edit: function (req, res, next) {
       
-      // Find the area from the name passed in via params
-      Area.findOne(req.param('name'), function foundArea (err, area) {
+      // Find the alert from the name passed in via params
+      Alert.findOne(req.param('id'), function foundAlert (err, alert) {
           
           if (err) return next(err);
-          if (!area) return next();
+          if (!alert) return next();
           
           res.view({
-              area: area
+              alert: alert
           });
       }); 
   },
@@ -95,26 +95,26 @@ module.exports = {
   // process the infor from edit view
   update: function (req, res, next) {
       
-      Area.update(req.param('name'), userObj, function areaUpdate(err) {
+      Alert.update(req.param('id'), alertObj, function alertUpdate(err) {
           if (err) {
-            return res.redirect('/area/edit/' + req.param('name'));
+            return res.redirect('/alert/edit/' + req.param('id'));
           }
           
-          res.redirect('/area/show/' + req.param('name'));
+          res.redirect('/alert/show/' + req.param('id'));
       });
   },
   
   destroy: function (req, res, next) {
       
-      Area.findOne(req.param('id'), function foundArea(err, area){
-          
-          if (err) return next(err);
-          if (!area) return next('Area doesn\'t exist');
-          
-          Area.destroy(req.param('name'), function areaDestroyed(err){
-              if (err) return next(err);
-          });
-          res.redirect('/area');
-      });
+    Alert.findOne(req.param('id'), function foundAlert(err, alert){
+        
+        if (err) return next(err);
+        if (!alert) return next('Alert doesn\'t exist');
+        
+        Alert.destroy(req.param('id'), function alertDestroyed(err){
+            if (err) return next(err);
+        });
+        res.redirect('/alert');
+    });
   }  
 };

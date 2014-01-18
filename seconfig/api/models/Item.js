@@ -12,16 +12,12 @@ module.exports = {
   attributes: {
   	
     name:{
-        type: 'string',
-        required: true
+      type: 'string',
+      required: true
     },
     itemStatus: {
-        type: 'string',
-        required: true
-    },
-    typeItem: {
-        type: 'string',
-        required: true
+      type: 'string',
+      required: true
     }
   }
 };

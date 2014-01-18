@@ -95,7 +95,7 @@ module.exports = {
   // process the infor from edit view
   update: function (req, res, next) {
       
-      Area.update(req.param('name'), userObj, function areaUpdate(err) {
+      Area.update(req.param('name'), areaObj, function areaUpdate(err) {
           if (err) {
             return res.redirect('/area/edit/' + req.param('name'));
           }

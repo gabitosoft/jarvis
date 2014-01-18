@@ -68,11 +68,45 @@ module.exports = {
   },
 
 
-  /**
-   * Overrides for the settings in `config/controllers.js`
-   * (specific to StatusController)
-   */
-  _config: {}
+  edit: function (req, res, next) {
+      
+      // Find the item from the name passed in via params
+      Status.findOne(req.param('name'), function foundStatus (err, status) {
+          
+          if (err) return next(err);
+          if (!alert) return next();
+          
+          res.view({
+              status: status
+          });
+      }); 
+  },
+  
+  // process the infor from edit view
+  update: function (req, res, next) {
+      
+      Status.update(req.param('name'), statusObj, function statusUpdate(err) {
+          if (err) {
+            return res.redirect('/status/edit/' + req.param('name'));
+          }
+          
+          res.redirect('/status/show/' + req.param('name'));
+      });
+  },
+  
+  destroy: function (req, res, next) {
+      
+    Item.findOne(req.param('name'), function foundStatus(err, item){
+        
+        if (err) return next(err);
+        if (!alert) return next('Status doesn\'t exist');
+        
+        Status.destroy(req.param('name'), function statusDestroyed(err){
+            if (err) return next(err);
+        });
+        res.redirect('/status');
+    });
+  }
 
   
 };

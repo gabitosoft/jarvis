@@ -8,12 +8,22 @@
 
 module.exports = {
 
+  schema: true,
   attributes: {
-  	
-  	/* e.g.
-  	nickname: 'string'
-  	*/
-    
+    order: {
+      type: 'string',
+      required: true
+    },
+    idAlert: {
+      type: 'integer',
+      required: true
+    },
+    idSuggestion: {
+      type: 'integer',
+      required: true
+    },
+    action: {
+      type: 'string'
+    }
   }
-
 };
