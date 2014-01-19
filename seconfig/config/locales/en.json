@@ -1,4 +1,51 @@
 {
-  "Welcome": "Welcome"
-  "title": "JARVIS"
+  "Welcome": "Welcome",
+  "title": "JARVIS",
+
+  "area": {
+    "name": "Area Name",
+    "description": "Description",
+    "submit": "Create Area",
+    "show": "Show",
+    "edit": "Edit",
+    "save": "Save",
+    "delete": "Delete",
+    "noExist": "Area doesn't exist",
+
+    "index": {
+      "title": "Area"
+    },
+
+    "create": {
+      "title": "Create Area"
+    },
+
+    "update": {
+      "title": "Editing an Area"
+    }
+  },
+
+  "status": {
+    "name": "Status Name",
+    "description": "Description",
+    "submit": "Create Status",
+    "show": "Show",
+    "edit": "Edit",
+    "save": "Save",
+    "delete": "Delete",
+    "noExist": "Status doesn't exist",
+
+    "index": {
+      "title": "Status"
+    },
+
+    "create": {
+      "title": "Create Status"
+    },
+
+    "update": {
+      "title": "Editing Status"
+    }
+  }
 }
+

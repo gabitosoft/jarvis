@@ -1,6 +1,6 @@
-<div>
+<div class="main">
     <h1><%= status.name %></h1>
     <h3><%= status.description%></h3>
     <hr/>
-    <a class="btn btn-medium btn-primary" href="/status/edit/ <%= user.id %>">Edit</a>
+    <a class="btn btn-medium btn-primary" href="/status/edit/ <%= status.id %>"><%= i18n('status').edit %></a>
 </div>

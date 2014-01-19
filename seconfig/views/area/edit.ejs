@@ -1,0 +1,8 @@
+<div class="main">
+    <form action="/area/update/<%= area.id %>" method="POST" class="form-signin" xmlns="http://www.w3.org/1999/html">
+        <h2> <%= i18n('area').update.title %> </h2>
+        <input value="<%= area.name %>" name="name" type="text" class="form-control"/>
+        <textarea name="description" class="form-control"> <%= area.description %> </textarea>
+        <input type="submit" value="<%= i18n('area').save %>" class="btn btn-lg btn-primary btn-block"/>
+    </form>
+</div>

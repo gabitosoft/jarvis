@@ -1,4 +1,50 @@
 {
-  "Welcome": "Bienvenido"
-  "title": "JARVIS"
+  "Welcome": "Bienvenido",
+  "title": "JARVIS",
+
+  "area": {
+    "name": "Nombre Area",
+    "description": "Descripcion",
+    "submit": "Crear Area",
+    "show": "Mostrar",
+    "edit": "Editar",
+    "save": "Guardar",
+    "delete": "Borrar",
+    "noExist": "Area no existe",
+
+    "index": {
+      "title": "Area"
+    },
+
+    "create": {
+      "title": "Crear Area"
+    },
+
+    "update": {
+      "title": "Editar Area"
+    }
+  },
+
+  "status": {
+    "name": "Nombre Estado",
+    "description": "Descripcion",
+    "submit": "Crear Estado",
+    "show": "Mostrar",
+    "edit": "Editar",
+    "save": "Guardar",
+    "delete": "Borrar",
+    "noExist": "Estado no existe",
+
+    "index": {
+      "title": "Estados"
+    },
+
+    "create": {
+      "title": "Crear Estado"
+    },
+
+    "update": {
+      "title": "Editar Estado"
+    }
+  }
 }

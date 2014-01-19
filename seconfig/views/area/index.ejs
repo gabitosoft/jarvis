@@ -1,0 +1,24 @@
+<div class="container main">
+    <h3><%= i18n('area').index.title %></h3>
+    <table class="table">
+        <tr>
+            <th><%= i18n('area').name %></th>
+            <th><%= i18n('area').description %></th>
+        </tr>
+
+        <% _.each(areas, function(area) { %>
+        <tr data-model="status">
+            <td><%= area.name %></td>
+            <td><%= area.description %></td>
+            <td><a href="/area/show/<%= area.id %>" class="btn btn-sm btn-primary"><%= i18n('area').show %></a></td>
+            <td><a href="/area/edit/<%= area.id %>" class="btn btn-sm btn-warning"><%= i18n('area').edit %></a></td>
+            <td>
+                <form action="/area/destroy/<%= area.id %>" method="POST">
+                    <input type="hidden" name="_method" value="delete"/>
+                    <input type="submit" class="btn btn-sm btn-danger" value="<%= i18n('area').delete %>"/>
+                </form>
+            </td>
+        </tr>
+        <% }); %>
+    </table>
+</div>

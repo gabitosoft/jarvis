@@ -26,10 +26,10 @@ module.exports = {
       
     var areaObj = {
       name: req.param('name'),
-      description: req.param('description'),
+      description: req.param('description')
     };
     
-    Area.create(areaObj, function areaCreated(err, user) {
+    Area.create(areaObj, function areaCreated(err, area) {
         
         // If there's an error
         if (err) {
@@ -40,15 +40,15 @@ module.exports = {
             };
 
             // If error redirect back to sign-up page
-            return res.redirect('/user/new');
+            return res.redirect('/area/new');
         }
         
-        area.save(function(err, user) {
+        area.save(function(err, area) {
             if (err) return next(err);
             
             // After successfully creating the user
             // redirect to the show action
-            res.redirect('/area/show/' + area.name);
+            res.redirect('/area/show/' + area.id);
         });
     });
   },
@@ -56,7 +56,7 @@ module.exports = {
   // render the area view (e.g. /views/show.ejs)
   show: function (req, res, next) {
 
-    Area.findOne(req.param('name'), function foundArea (err, area){
+    Area.findOne(req.param('id'), function foundArea (err, area){
         
         if (err) return next(err);
         if (!area) return next();
@@ -80,8 +80,8 @@ module.exports = {
   
   edit: function (req, res, next) {
       
-      // Find the area from the name passed in via params
-      Area.findOne(req.param('name'), function foundArea (err, area) {
+      // Find the area from the id passed in via params
+      Area.findOne(req.param('id'), function foundArea (err, area) {
           
           if (err) return next(err);
           if (!area) return next();
@@ -92,15 +92,20 @@ module.exports = {
       }); 
   },
   
-  // process the infor from edit view
+  // process the information from edit view
   update: function (req, res, next) {
-      
-      Area.update(req.param('name'), areaObj, function areaUpdate(err) {
+
+      var areaObj = {
+          name: req.param('name'),
+          description: req.param('description')
+      };
+
+      Area.update(req.param('id'), areaObj, function areaUpdate(err) {
           if (err) {
-            return res.redirect('/area/edit/' + req.param('name'));
+            return res.redirect('/area/edit/' + req.param('id'));
           }
           
-          res.redirect('/area/show/' + req.param('name'));
+          res.redirect('/area/show/' + req.param('id'));
       });
   },
   
@@ -109,9 +114,9 @@ module.exports = {
       Area.findOne(req.param('id'), function foundArea(err, area){
           
           if (err) return next(err);
-          if (!area) return next('Area doesn\'t exist');
+          if (!area) return next(res.i18n('area').noExist);
           
-          Area.destroy(req.param('name'), function areaDestroyed(err){
+          Area.destroy(req.param('id'), function areaDestroyed(err){
               if (err) return next(err);
           });
           res.redirect('/area');

@@ -1,0 +1,13 @@
+<div class="main">
+    <form action="/area/create" method="POST" id="sign-up-form" class="form-signin">
+        <h2 class="form-signin-heading"><%= i18n('area').create.title %></h2>
+
+        <div class="control-group">
+            <input type="text" class="form-control" placeholder="<%= i18n('area').name %>" name="name">
+            <textarea class="form-control" placeholder="<%= i18n('area').description %>" name="description"></textarea>
+        </div>
+
+        <input type="submit" class="btn btn-lg btn-primary btn-block" value="<%= i18n('area').submit %>"/>
+        <input type="hidden" name="_csrf" value="<%= _csrf %>">
+    </form>
+</div>

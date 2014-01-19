@@ -16,8 +16,8 @@ module.exports = {
       unique: true
     },
     description: {
-      type: 'string'
-      max: 1000;
+      type: 'string',
+      max: 1000
     }
     
   }

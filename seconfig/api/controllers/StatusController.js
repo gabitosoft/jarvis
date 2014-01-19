@@ -40,15 +40,15 @@ module.exports = {
               return res.redirect('/status/new');
           }
           
-          status.save(function (err, status){
+          status.save(function (err, status) {
               if (err) return next(err);
-              res.redirect('/status/show/' + status.name);
+              res.redirect('/status/show/' + status.id);
           });
       });
   },
   
   'show': function (req, res, next) {
-      Status.findOne(req.param('name'), function foundStatus(err, status){
+      Status.findOne(req.param('id'), function foundStatus(err, status){
           
           if (err) return next(err);
           if (!status) return next();
@@ -70,11 +70,11 @@ module.exports = {
 
   edit: function (req, res, next) {
       
-      // Find the item from the name passed in via params
-      Status.findOne(req.param('name'), function foundStatus (err, status) {
+      // Find the item from the id passed in via params
+      Status.findOne(req.param('id'), function foundStatus (err, status) {
           
           if (err) return next(err);
-          if (!alert) return next();
+          if (!status) return next();
           
           res.view({
               status: status
@@ -82,31 +82,34 @@ module.exports = {
       }); 
   },
   
-  // process the infor from edit view
+  // process the information from edit view
   update: function (req, res, next) {
-      
-      Status.update(req.param('name'), statusObj, function statusUpdate(err) {
+
+      var statusObj = {
+          name: req.param('name'),
+          description: req.param('description')
+      };
+
+      Status.update(req.param('id'), statusObj, function statusUpdate(err) {
           if (err) {
-            return res.redirect('/status/edit/' + req.param('name'));
+            return res.redirect('/status/edit/' + req.param('id'));
           }
           
-          res.redirect('/status/show/' + req.param('name'));
+          res.redirect('/status/show/' + req.param('id'));
       });
   },
   
   destroy: function (req, res, next) {
       
-    Item.findOne(req.param('name'), function foundStatus(err, item){
+    Status.findOne(req.param('id'), function foundStatus(err, status) {
         
         if (err) return next(err);
-        if (!alert) return next('Status doesn\'t exist');
+        if (!status) return next(res.i18n('status').noExist);
         
-        Status.destroy(req.param('name'), function statusDestroyed(err){
+        Status.destroy(req.param('id'), function statusDestroyed(err) {
             if (err) return next(err);
         });
         res.redirect('/status');
     });
   }
-
-  
 };

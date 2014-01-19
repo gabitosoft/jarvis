@@ -1,0 +1,8 @@
+<div class="main">
+    <form action="/status/update/<%= status.id %>" method="POST" class="form-signin" xmlns="http://www.w3.org/1999/html">
+        <h2> <%= i18n('status').update.title %></h2>
+        <input value="<%= status.name %>" name="name" type="text" class="form-control"/>
+        <textarea name="description" class="form-control"> <%= status.description %> </textarea>
+        <input type="submit" value="<%= i18n('status').save %>" class="btn btn-lg btn-primary btn-block"/>
+    </form>
+</div>
