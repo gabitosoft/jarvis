@@ -18,7 +18,13 @@
 module.exports = {
     
   'new' : function (req, res) {
-    res.view();
+
+    Status.find(function foundStatus(err, status){
+      if (err) return next(err);
+      res.view({
+        status: status
+      });
+    });
   },
   
   create: function (req, res, next) {
@@ -28,21 +34,20 @@ module.exports = {
       itemStatus: req.param('itemStatus')
     };
     
-    Item.create(alertObj, function itemCreated(err, item) {
+    Item.create(itemObj, function itemCreated(err, item) {
         
         // If there's an error
         if (err) {
-            
-            console.log(err);
-            req.session.flash = {
-                err: err
-            };
+          console.log(err);
+          req.session.flash = {
+              err: err
+          };
 
-            // If error redirect back to sign-up page
-            return res.redirect('/item/new');
+          // If error redirect back to sign-up page
+          return res.redirect('/item/new');
         }
         
-        Item.save(function(err, item) {
+        item.save(function(err, item) {
             if (err) return next(err);
             
             res.redirect('/item/show/' + item.id);
@@ -52,7 +57,7 @@ module.exports = {
   
   show: function (req, res, next) {
 
-    item.findOne(req.param('id'), function foundItem (err, item){
+    Item.findOne(req.param('id'), function foundItem (err, item){
         
         if (err) return next(err);
         if (!item) return next();
@@ -75,42 +80,54 @@ module.exports = {
   },
   
   edit: function (req, res, next) {
-      
-      // Find the item from the id passed in via params
-      Item.findOne(req.param('id'), function foundItem (err, item) {
-          
-          if (err) return next(err);
-          if (!item) return next();
-          
-          res.view({
-              item: item
-          });
-      }); 
+
+    var status;
+    Status.find(function foundStatus(err, st){
+      if (err) return next(err);
+      status = st;
+    });
+
+    // Find the item from the id passed in via params
+    Item.findOne(req.param('id'), function foundItem (err, item) {
+
+      if (err) return next(err);
+      if (!item) return next();
+
+      res.view({
+        item: item,
+        status: status
+      });
+    });
   },
   
-  // process the infor from edit view
+  // process the information from edit view
   update: function (req, res, next) {
-      
-      Item.update(req.param('id'), itemObj, function itemUpdate(err) {
-          if (err) {
-            return res.redirect('/item/edit/' + req.param('id'));
-          }
-          
-          res.redirect('/item/show/' + req.param('id'));
-      });
+
+    var itemObj = {
+      name: req.param('name'),
+      itemStatus: req.param('itemStatus')
+    };
+
+    Item.update(req.param('id'), itemObj, function itemUpdate(err) {
+      if (err) {
+        return res.redirect('/item/edit/' + req.param('id'));
+      }
+
+      res.redirect('/item/show/' + req.param('id'));
+    });
   },
   
   destroy: function (req, res, next) {
       
-    Item.findOne(req.param('id'), function foundItem(err, item){
+    Item.findOne(req.param('id'), function foundItem(err, item) {
         
+      if (err) return next(err);
+      if (!item) return next(res.i18n('item').noExist);
+
+      Item.destroy(req.param('id'), function itemDestroyed(err) {
         if (err) return next(err);
-        if (!item) return next('Item doesn\'t exist');
-        
-        Item.destroy(req.param('id'), function itemDestroyed(err){
-          if (err) return next(err);
-        });
-        res.redirect('/item');
+      });
+      res.redirect('/item');
     });
   }  
 };

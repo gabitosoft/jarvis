@@ -46,6 +46,29 @@
     "update": {
       "title": "Editing Status"
     }
+  },
+
+  "item": {
+    "name": "Item Name",
+    "status": "Status item",
+    "submit": "Create Status",
+    "show": "Show",
+    "edit": "Edit",
+    "save": "Save",
+    "delete": "Delete",
+    "noExist": "Item doesn't exist",
+
+    "index": {
+      "title": "Items"
+    },
+
+    "create": {
+      "title": "Create Item"
+    },
+
+    "update": {
+      "title": "Editing Item"
+    }
   }
 }
 

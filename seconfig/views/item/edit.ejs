@@ -1,0 +1,12 @@
+<div class="main">
+    <form action="/item/update/<%= item.id %>" method="POST" class="form-signin" xmlns="http://www.w3.org/1999/html">
+        <h2> <%= i18n('item').update.title %> </h2>
+        <input value="<%= item.name %>" name="name" type="text" class="form-control"/>
+        <select class="form-control"  name="itemStatus">
+            <% _.each(status, function(st) { %>
+            <option value="<%= st.name %>" <% if (st.name == item.itemStatus) {%> selected <% } %> > <%= st.name %> </option>
+            <% }); %>
+        </select>
+        <input type="submit" value="<%= i18n('item').save %>" class="btn btn-lg btn-primary btn-block"/>
+    </form>
+</div>

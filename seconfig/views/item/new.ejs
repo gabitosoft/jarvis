@@ -1,0 +1,17 @@
+<div class="main">
+    <form action="/item/create" method="POST" id="sign-up-form" class="form-signin">
+        <h2 class="form-signin-heading"><%= i18n('item').create.title %></h2>
+
+        <div class="control-group">
+            <input type="text" class="form-control" placeholder="<%= i18n('item').name %>" name="name">
+            <select class="form-control"  name="itemStatus">
+                <% _.each(status, function(st) { %>
+                <option value="<%= st.name %>"><%= st.name %></option>
+                <% }); %>
+            </select>
+        </div>
+
+        <input type="submit" class="btn btn-lg btn-primary btn-block" value="<%= i18n('item').submit %>"/>
+        <input type="hidden" name="_csrf" value="<%= _csrf %>">
+    </form>
+</div>

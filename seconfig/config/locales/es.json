@@ -46,5 +46,28 @@
     "update": {
       "title": "Editar Estado"
     }
+  },
+
+  "item": {
+    "name": "Nombre Item",
+    "status": "Estado item",
+    "submit": "Crear Item",
+    "show": "Mostrar",
+    "edit": "Editar",
+    "save": "Guardar",
+    "delete": "Borrar",
+    "noExist": "Item no existe",
+
+    "index": {
+      "title": "Items"
+    },
+
+    "create": {
+      "title": "Create Item"
+    },
+
+    "update": {
+      "title": "Editar Item"
+    }
   }
 }
