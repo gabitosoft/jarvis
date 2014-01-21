@@ -51,7 +51,7 @@
   "item": {
     "name": "Item Name",
     "status": "Status item",
-    "submit": "Create Status",
+    "submit": "Create Item",
     "show": "Show",
     "edit": "Edit",
     "save": "Save",

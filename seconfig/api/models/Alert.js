@@ -12,12 +12,12 @@ module.exports = {
   attributes: {
     
     name:{
-        type: 'string',
-        required: true
+      type: 'string',
+      required: true
     },
     description:{
-        type: 'string',
-        max: 1000
+      type: 'string',
+      max: 2000
     },
     type: {
       type: 'string',
