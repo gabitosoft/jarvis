@@ -18,39 +18,47 @@
 module.exports = {
     
   'new' : function (req, res) {
-    res.view();
+
+    var areas;
+    Area.find(function foundAreas(err, ar){
+      if (err) return next(err);
+      areas = ar;
+    });
+
+    res.view({
+      areas: areas,
+      priorities: [ 1, 2, 3, 4, 5 ]
+    });
   },
   
   create: function (req, res, next) {
       
     var alertObj = {
-      id: req.param('id'),
       name: req.param('name'),
-      description: req.param('description'),
+      rules: req.param('rules'),
       type: req.param('type'),
-      priority: req.param('priority'),
-      idService: req.param('idService')
+      priority: req.param('priority')
+      //idService: req.param('idService')
     };
     
     Alert.create(alertObj, function alertCreated(err, alert) {
         
-        // If there's an error
-        if (err) {
-            
-            console.log(err);
-            req.session.flash = {
-                err: err
-            };
+      // If there's an error
+      if (err) {
+          console.log(err);
+          req.session.flash = {
+              err: err
+          };
 
-            // If error redirect back to sign-up page
-            return res.redirect('/alert/new');
-        }
-        
-        alert.save(function(err, alert) {
-            if (err) return next(err);
-            
-            res.redirect('/alert/show/' + alert.id);
-        });
+          // If error redirect back to sign-up page
+          return res.redirect('/alert/new');
+      }
+
+      alert.save(function(err, alert) {
+          if (err) return next(err);
+
+          res.redirect('/alert/index');
+      });
     });
   },
   
@@ -92,7 +100,7 @@ module.exports = {
       }); 
   },
   
-  // process the infor from edit view
+  // process the information from edit view
   update: function (req, res, next) {
       
       Alert.update(req.param('id'), alertObj, function alertUpdate(err) {

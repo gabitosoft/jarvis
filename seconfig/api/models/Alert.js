@@ -15,9 +15,9 @@ module.exports = {
       type: 'string',
       required: true
     },
-    description:{
+    rules:{
       type: 'string',
-      max: 2000
+      max: 4000
     },
     type: {
       type: 'string',
@@ -26,10 +26,10 @@ module.exports = {
     priority: {
       type: 'integer',
       required: true
-    },
-    idService: {
-      type: 'integer',
-      required: true
     }
+//    idService: {
+//      type: 'integer',
+//      required: true
+//    }
   }
 };

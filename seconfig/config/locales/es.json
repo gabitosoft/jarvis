@@ -69,5 +69,28 @@
     "update": {
       "title": "Editar Item"
     }
+  },
+
+  "alert": {
+    "name": "Nombre Alerta",
+    "rules": "Reglas Alerta",
+    "submit": "Crear Alerta",
+    "show": "Mostrar",
+    "edit": "Editar",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "noExist": "Alerta no existe",
+
+    "index": {
+      "title": "Alertas"
+    },
+
+    "create": {
+      "title": "Crear Alerta"
+    },
+
+    "update": {
+      "title": "Editar Alerta"
+    }
   }
 }

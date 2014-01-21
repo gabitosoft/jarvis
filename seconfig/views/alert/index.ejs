@@ -1,0 +1,24 @@
+<div class="container main">
+    <h3><%= i18n('status').index.title %></h3>
+    <table class="table">
+        <tr>
+            <th><%= i18n('status').name %></th>
+            <th><%= i18n('status').description %></th>
+        </tr>
+
+        <% _.each(status, function(st) {%>
+        <tr data-model="status">
+            <td><%= st.name %></td>
+            <td><%= st.description %></td>
+            <td><a href="/status/show/<%= st.id %>" class="btn btn-sm btn-primary"><%= i18n('status').show %></a></td>
+            <td><a href="/status/edit/<%= st.id %>" class="btn btn-sm btn-warning"><%= i18n('status').edit %></a></td>
+            <td>
+                <form action="/status/destroy/<%= st.id %>" method="POST">
+                    <input type="hidden" name="_method" value="delete"/>
+                    <input type="submit" class="btn btn-sm btn-danger" value="<%= i18n('status').delete %>"/>
+                </form>
+            </td>
+        </tr>
+        <% }); %>
+    </table>
+</div>

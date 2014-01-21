@@ -1,0 +1,21 @@
+<div class="main">
+    <form action="/alert/create" method="POST" id="sign-up-form" class="form-signin">
+        <h2 class="form-signin-heading"><%= i18n('alert').create.title %></h2>
+        <div class="control-group">
+            <input type="text" class="form-control" placeholder="<%= i18n('alert').name %>" name="name">
+            <select name="type" class="form-control">
+                <% _.each(areas, function(area) { %>
+                <option value="<%= area.name %>"><%= area.name %></option>
+                <% }); %>
+            </select>
+            <select name="priority" class="form-control">
+                <% _.each(priorities, function(priority) { %>
+                <option value="<%= priority %>"><%= priority %></option>
+                <% }); %>
+            </select>
+            <textarea class="form-control" placeholder="<%= i18n('alert').rules %>" name="rules"></textarea>
+        </div>
+        <input type="submit" class="btn btn-lg btn-primary btn-block" value="<%= i18n('alert').submit %>"/>
+        <input type="hidden" name="_csrf" value="<%= _csrf %>">
+    </form>
+</div>
