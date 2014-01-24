@@ -92,6 +92,31 @@
     "update": {
       "title": "Editing Alert"
     }
+  },
+
+  "suggestion": {
+    "name": "Suggestion Name",
+    "type": "Alert Rules",
+    "text": "Suggestion",
+    "action": "Action",
+    "submit": "Create Alert",
+    "show": "Show",
+    "edit": "Edit",
+    "save": "Save",
+    "delete": "Delete",
+    "noExist": "Suggestion doesn't exist",
+
+    "index": {
+      "title": "Suggestions"
+    },
+
+    "create": {
+      "title": "Create Suggestion"
+    },
+
+    "update": {
+      "title": "Editing Suggestion"
+    }
   }
 }
 

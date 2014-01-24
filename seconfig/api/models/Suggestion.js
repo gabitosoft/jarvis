@@ -18,6 +18,12 @@ module.exports = {
     type: {
       type: 'string',
       required: true
+    },
+    text: {
+      type: 'string'
+    },
+    action: {
+      type: 'string'
     }
   }
 };

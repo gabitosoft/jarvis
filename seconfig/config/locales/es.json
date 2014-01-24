@@ -92,5 +92,30 @@
     "update": {
       "title": "Editar Alerta"
     }
+  },
+
+  "suggestion": {
+    "name": "Nombre Sugerencia",
+    "type": "Area sugerencia",
+    "text": "Sugerencia",
+    "action": "Accion",
+    "submit": "Crear Sugerencia",
+    "show": "Mostrar",
+    "edit": "Editar",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "noExist": "Sugerencia no existe",
+
+    "index": {
+      "title": "Sugerencias"
+    },
+
+    "create": {
+      "title": "Crear Sugerencia"
+    },
+
+    "update": {
+      "title": "Editar Sugerencia"
+    }
   }
 }

@@ -25,7 +25,9 @@ module.exports = {
       
     var suggestionObj = {
       name: req.param('name'),
-      type: req.param('type')
+      type: req.param('type'),
+      text: req.param('text'),
+      action: req.param('action')
     };
     
     Suggestion.create(suggestionObj, function suggestionCreated(err, suggestion) {
@@ -42,7 +44,7 @@ module.exports = {
           return res.redirect('/suggestion/new');
       }
       
-      Suggestion.save(function(err, suggestion) {
+      suggestion.save(function(err, suggestion) {
           if (err) return next(err);
           
           res.redirect('/suggestion/show/' + suggestion.id);
@@ -52,7 +54,7 @@ module.exports = {
   
   show: function (req, res, next) {
 
-    suggestion.findOne(req.param('id'), function foundSuggestion (err, suggestion){
+    Suggestion.findOne(req.param('id'), function foundSuggestion (err, suggestion){
         
         if (err) return next(err);
         if (!suggestion) return next();
@@ -65,7 +67,7 @@ module.exports = {
   index: function(req, res, next) {
       
     // Get an array of all suggestions in the Suggestion collection(e.g table)
-    Suggestion.find(function foundSuggestion (err, suggestion) {
+    Suggestion.find(function foundSuggestion (err, suggestions) {
         if (err) return next(err);
         // pass the array down to the /views/index.ejs page
         res.view({
@@ -90,6 +92,13 @@ module.exports = {
   
   // process the infor from edit view
   update: function (req, res, next) {
+
+    var suggestionObj = {
+      name: req.param('name'),
+      type: req.param('type'),
+      text: req.param('text'),
+      action: req.param('action')
+    };
       
     Suggestion.update(req.param('id'), suggestionObj, function suggestionUpdate(err) {
         if (err) {
@@ -105,7 +114,7 @@ module.exports = {
     Suggestion.findOne(req.param('id'), function foundSuggestion(err, suggestion){
         
         if (err) return next(err);
-        if (!suggestion) return next('Suggestion doesn\'t exist');
+        if (!suggestion) return next(res.i18n('suggestion').noExist);
         
         Suggestion.destroy(req.param('id'), function suggestionDestroyed(err){
             if (err) return next(err);
