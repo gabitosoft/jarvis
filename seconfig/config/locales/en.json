@@ -99,7 +99,7 @@
     "type": "Alert Rules",
     "text": "Suggestion",
     "action": "Action",
-    "submit": "Create Alert",
+    "submit": "Create Suggestion",
     "show": "Show",
     "edit": "Edit",
     "save": "Save",
