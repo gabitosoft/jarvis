@@ -22,14 +22,14 @@ module.exports = {
   },
   
   create: function (req, res, next) {
-      
+
     var suggestionObj = {
       name: req.param('name'),
       type: req.param('type'),
       text: req.param('text'),
       action: req.param('action')
     };
-    
+
     Suggestion.create(suggestionObj, function suggestionCreated(err, suggestion) {
         
       // If there's an error
@@ -41,13 +41,48 @@ module.exports = {
           };
 
           // If error redirect back to sign-up page
-          return res.redirect('/suggestion/new');
+          //return res.redirect('/suggestion/new');
+          //display the flash with error on create suggestion
       }
-      
+
       suggestion.save(function(err, suggestion) {
           if (err) return next(err);
           
-          res.redirect('/suggestion/show/' + suggestion.id);
+          //res.redirect('/suggestion/show/' + suggestion.id);
+          //display the flash with new suggestion created
+      });
+    });
+  },
+
+  createFromModal: function (req, res, next) {
+
+    var suggestionObj = {
+      name: req.param('name'),
+      type: req.param('type'),
+      text: req.param('text'),
+      action: req.param('action')
+    };
+
+    Suggestion.create(suggestionObj, function suggestionCreated(err, suggestion) {
+
+      // If there's an error
+      if (err) {
+
+          console.log(err);
+          req.session.flash = {
+              err: err
+          };
+
+          // If error redirect back to sign-up page
+          //return res.redirect('/suggestion/new');
+          //display the flash with error on create suggestion
+      }
+
+      suggestion.save(function(err, suggestion) {
+          if (err) return next(err);
+
+          res.redirect('/alert/new/');
+          //display the flash with new suggestion created
       });
     });
   },
@@ -61,7 +96,7 @@ module.exports = {
         res.view({
             suggestion: suggestion
         });
-    });
+      });
   },
   
   index: function(req, res, next) {

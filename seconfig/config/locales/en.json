@@ -80,6 +80,7 @@
     "save": "Save",
     "delete": "Delete",
     "noExist": "Alert doesn't exist",
+    "newSuggestion": "New Suggestion",
 
     "index": {
       "title": "Alerts"
@@ -91,12 +92,17 @@
 
     "update": {
       "title": "Editing Alert"
+    },
+    "modal": {
+      "title": "Create Suggestion",
+      "close": "Close",
+      "save": "Save"
     }
   },
 
   "suggestion": {
     "name": "Suggestion Name",
-    "type": "Alert Rules",
+    "type": "Suggestion Area",
     "text": "Suggestion",
     "action": "Action",
     "submit": "Create Suggestion",

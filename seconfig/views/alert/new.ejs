@@ -14,8 +14,22 @@
                 <% }); %>
             </select>
             <textarea class="form-control" placeholder="<%= i18n('alert').rules %>" name="rules"></textarea>
+            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                <%= i18n('alert').newSuggestion %>
+            </button>
+            <div class="list-group">
+                <% _.each(suggestions, function(suggestion) { %>
+                <a href="#" class="list-group-item" data-id="<%= suggestion.id %>" data-model="suggestion">
+                    <input type="checkbox" class="form-controls" value="<%= suggestion.id %>" />
+                    <label><%= suggestion.name %></label>
+                </a>
+                <% }); %>
+            </div>
         </div>
         <input type="submit" class="btn btn-lg btn-primary btn-block" value="<%= i18n('alert').submit %>"/>
         <input type="hidden" name="_csrf" value="<%= _csrf %>">
     </form>
+    <!-- Display new suggestion modal -->
+    <%- partial('../suggestion/partials/newSuggestion') %>
+    <!-- End new suggestion modal -->
 </div>

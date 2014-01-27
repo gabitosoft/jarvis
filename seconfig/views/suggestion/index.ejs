@@ -1,0 +1,28 @@
+<div class="container main">
+    <h3><%= i18n('suggestion').index.title %></h3>
+    <table class="table">
+        <tr>
+            <th><%= i18n('suggestion').name %></th>
+            <th><%= i18n('suggestion').type %></th>
+            <th><%= i18n('suggestion').text %></th>
+            <th><%= i18n('suggestion').action %></th>
+        </tr>
+
+        <% _.each(suggestions, function(suggestion) {%>
+        <tr data-model="suggestion">
+            <td><%= suggestion.name %></td>
+            <td><%= suggestion.type %></td>
+            <td><%= suggestion.text %></td>
+            <td><%= suggestion.action %></td>
+            <td><a href="/suggestion/show/<%= suggestion.id %>" class="btn btn-sm btn-primary"><%= i18n('suggestion').show %></a></td>
+            <td><a href="/suggestion/edit/<%= suggestion.id %>" class="btn btn-sm btn-warning"><%= i18n('suggestion').edit %></a></td>
+            <td>
+                <form action="/suggestion/destroy/<%= suggestion.id %>" method="POST">
+                    <input type="hidden" name="_method" value="delete"/>
+                    <input type="submit" class="btn btn-sm btn-danger" value="<%= i18n('suggestion').delete %>"/>
+                </form>
+            </td>
+        </tr>
+        <% }); %>
+    </table>
+</div>

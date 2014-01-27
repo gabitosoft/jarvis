@@ -1,0 +1,49 @@
+<div class="main">
+    <form action="/alert/create" method="POST" id="sign-up-form" class="form-signin">
+        <h2 class="form-signin-heading"><%= i18n('alert').create.title %></h2>
+        <div class="control-group">
+            <input type="text" class="form-control" placeholder="<%= i18n('alert').name %>" name="name">
+            <select name="type" class="form-control">
+                <% _.each(areas, function(area) { %>
+                <option value="<%= area.name %>"><%= area.name %></option>
+                <% }); %>
+            </select>
+            <select name="priority" class="form-control">
+                <% _.each(priorities, function(priority) { %>
+                <option value="<%= priority %>"><%= priority %></option>
+                <% }); %>
+            </select>
+            <textarea class="form-control" placeholder="<%= i18n('alert').rules %>" name="rules"></textarea>
+            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                <%= i18n('alert').newSuggestion %>
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel"><%= i18n('alert').modalSuggestionTitle %></h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-control">
+                                <%- partial('newSuggestion') %>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><%= i18n('alert').close %></button>
+                            <button type="button" class="btn btn-primary"><%= i18n('alert').save %></button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            <div class="list-group">
+                <% _.each(suggestions, function(suggestion) {
+                    JST['assets/linker/templates/suggestion/addSuggestion.ejs'](suggestion)
+                }); %>
+            </div>
+        </div>
+        <input type="submit" class="btn btn-lg btn-primary btn-block" value="<%= i18n('alert').submit %>"/>
+        <input type="hidden" name="_csrf" value="<%= _csrf %>">
+    </form>
+</div>

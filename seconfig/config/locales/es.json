@@ -80,6 +80,7 @@
     "save": "Guardar",
     "delete": "Eliminar",
     "noExist": "Alerta no existe",
+    "newSuggestion": "Nueva Sugerencia",
 
     "index": {
       "title": "Alertas"
@@ -91,6 +92,11 @@
 
     "update": {
       "title": "Editar Alerta"
+    },
+    "modal": {
+      "title": "Crear Sugerencia",
+      "close": "Cerrar",
+      "save": "Guardar"
     }
   },
 

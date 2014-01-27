@@ -20,14 +20,21 @@ module.exports = {
   'new' : function (req, res) {
 
     var areas;
+    var suggestions;
     Area.find(function foundAreas(err, ar){
       if (err) return next(err);
       areas = ar;
     });
 
+    Suggestion.findByType(areas[0].name).done(function foundSuggestions(err, sugg){
+      if (err) return next (err);
+      suggestions = sugg;
+    });
+
     res.view({
       areas: areas,
-      priorities: [ 1, 2, 3, 4, 5 ]
+      priorities: [ 1, 2, 3, 4, 5 ],
+      suggestions: suggestions
     });
   },
   
@@ -64,7 +71,7 @@ module.exports = {
   
   show: function (req, res, next) {
 
-    alert.findOne(req.param('id'), function foundArea (err, alert){
+    Alert.findOne(req.param('id'), function foundArea (err, alert){
         
         if (err) return next(err);
         if (!alert) return next();
