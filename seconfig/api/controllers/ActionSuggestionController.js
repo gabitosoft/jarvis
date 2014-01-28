@@ -16,15 +16,35 @@
  */
 
 module.exports = {
-    
-  
 
+  create: function (req, res, next) {
 
-  /**
-   * Overrides for the settings in `config/controllers.js`
-   * (specific to ActionSuggestionController)
-   */
-  _config: {}
+    var alertSuggObj = {
+      name: req.param('name'),
+      rules: req.param('rules'),
+      type: req.param('area'),
+      priority: req.param('priority')
+    };
 
-  
+    AlertSuggestion.create(alertSuggObj, function alertSuggCreated(err, alertSuggestion) {
+
+      // If there's an error
+      if (err) {
+        console.log(err);
+        req.session.flash = {
+          err: err
+        };
+
+        // If error redirect back to sign-up page
+        return res.redirect('/alert/new');
+      }
+
+      alertSuggestion.save(function(err, alertSugg) {
+        if (err) return next(err);
+
+        //res.redirect('/alert/index');
+      });
+    });
+  }
+
 };

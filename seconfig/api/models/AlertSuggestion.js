@@ -21,9 +21,6 @@ module.exports = {
     idSuggestion: {
       type: 'integer',
       required: true
-    },
-    action: {
-      type: 'string'
     }
   }
 };

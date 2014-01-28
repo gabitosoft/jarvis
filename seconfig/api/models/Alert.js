@@ -11,6 +11,10 @@ module.exports = {
   schema: true,
   attributes: {
     
+//    server: {
+//      type: 'string',
+//      required: true
+//    },
     name:{
       type: 'string',
       required: true
@@ -19,17 +23,16 @@ module.exports = {
       type: 'string',
       max: 4000
     },
-    type: {
+    area: {
       type: 'string',
       required: true
     },
     priority: {
       type: 'integer',
       required: true
+    },
+    suggestions: {
+      type: 'json'
     }
-//    idService: {
-//      type: 'integer',
-//      required: true
-//    }
   }
 };

@@ -26,9 +26,15 @@ module.exports = {
       areas = ar;
     });
 
-    Suggestion.findByType(areas[0].name).done(function foundSuggestions(err, sugg){
-      if (err) return next (err);
-      suggestions = sugg;
+//    Filter by type
+//    Suggestion.findByType(areas[0].name).done(function foundSuggestions(err, sugg){
+//      if (err) return next (err);
+//      suggestions = sugg;
+//    });
+
+    Suggestion.find(function foundSuggestions(err, sugg){
+        if (err) return next (err);
+        suggestions = sugg;
     });
 
     res.view({
@@ -43,11 +49,13 @@ module.exports = {
     var alertObj = {
       name: req.param('name'),
       rules: req.param('rules'),
-      type: req.param('type'),
-      priority: req.param('priority')
-      //idService: req.param('idService')
+      area: req.param('area'),
+      priority: req.param('priority'),
+      suggestions: req.param('suggestions')
     };
-    
+
+    console.log(req.param('suggestions'));
+
     Alert.create(alertObj, function alertCreated(err, alert) {
         
       // If there's an error
@@ -61,11 +69,11 @@ module.exports = {
           return res.redirect('/alert/new');
       }
 
-      alert.save(function(err, alert) {
-          if (err) return next(err);
-
-          res.redirect('/alert/index');
-      });
+//      alert.save(function(err, alert) {
+//        if (err) return next(err);
+//
+//        res.redirect('/alert/index');
+//      });
     });
   },
   

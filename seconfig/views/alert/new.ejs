@@ -3,7 +3,7 @@
         <h2 class="form-signin-heading"><%= i18n('alert').create.title %></h2>
         <div class="control-group">
             <input type="text" class="form-control" placeholder="<%= i18n('alert').name %>" name="name">
-            <select name="type" class="form-control">
+            <select name="area" class="form-control">
                 <% _.each(areas, function(area) { %>
                 <option value="<%= area.name %>"><%= area.name %></option>
                 <% }); %>
@@ -17,14 +17,14 @@
             <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
                 <%= i18n('alert').newSuggestion %>
             </button>
-            <div class="list-group">
+            <ol class="list-group">
                 <% _.each(suggestions, function(suggestion) { %>
-                <a href="#" class="list-group-item" data-id="<%= suggestion.id %>" data-model="suggestion">
-                    <input type="checkbox" class="form-controls" value="<%= suggestion.id %>" />
+                <li href="#" class="list-group-item" data-id="<%= suggestion.id %>" data-model="suggestion">
+                    <input type="checkbox" class="form-controls" name="suggestions[]" value="<%= suggestion.id %>" />
                     <label><%= suggestion.name %></label>
-                </a>
+                </li>
                 <% }); %>
-            </div>
+            </ol>
         </div>
         <input type="submit" class="btn btn-lg btn-primary btn-block" value="<%= i18n('alert').submit %>"/>
         <input type="hidden" name="_csrf" value="<%= _csrf %>">

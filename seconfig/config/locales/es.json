@@ -74,6 +74,8 @@
   "alert": {
     "name": "Nombre Alerta",
     "rules": "Reglas Alerta",
+    "area": "Area Alerta",
+    "priority": "Prioridad Alerta",
     "submit": "Crear Alerta",
     "show": "Mostrar",
     "edit": "Editar",
