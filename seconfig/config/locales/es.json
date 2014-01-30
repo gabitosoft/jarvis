@@ -1,6 +1,8 @@
 {
   "Welcome": "Bienvenido",
-  "title": "JARVIS",
+  "application": {
+    "name": "JARVIS"
+  },
 
   "area": {
     "name": "Nombre Area",

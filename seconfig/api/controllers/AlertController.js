@@ -17,14 +17,23 @@
 
 module.exports = {
     
-  'new' : function (req, res) {
+  'new' : function (req, res, next) {
 
     var areas;
     var suggestions;
-    Area.find(function foundAreas(err, ar){
-      if (err) return next(err);
-      areas = ar;
+//    Area.find(function foundAreas(err, ar ){
+//      if (err) return next(err);
+//      areas = ar;
+//      console.log('ar', ar);
+//      console.log('areas1', areas);
+//    });
+
+    var a = Area.find(function (){
+      return 'text';
     });
+
+    console.log('areas2', areas);
+    console.log('a', a);
 
 //    Filter by type
 //    Suggestion.findByType(areas[0].name).done(function foundSuggestions(err, sugg){
@@ -54,26 +63,25 @@ module.exports = {
       suggestions: req.param('suggestions')
     };
 
-    console.log(req.param('suggestions'));
-
+    console.log('alert', alertObj);
     Alert.create(alertObj, function alertCreated(err, alert) {
-        
+
       // If there's an error
       if (err) {
-          console.log(err);
-          req.session.flash = {
-              err: err
-          };
+        console.log(err);
+        req.session.flash = {
+            err: err
+        };
 
-          // If error redirect back to sign-up page
-          return res.redirect('/alert/new');
+        // If error redirect back to sign-up page
+        return res.redirect('/alert/new');
       }
 
-//      alert.save(function(err, alert) {
-//        if (err) return next(err);
-//
-//        res.redirect('/alert/index');
-//      });
+      alert.save(function (err, alert) {
+        if (err) return next(err);
+
+        res.redirect('/alert/index');
+      });
     });
   },
   

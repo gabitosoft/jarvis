@@ -1,6 +1,9 @@
 <div class="main">
-    <h1><%= status.name %></h1>
-    <h3><%= status.description%></h3>
+    <h3><%= alert.name %></h3>
+    <h3><%= alert.rules %></h3>
+    <h3><%= alert.area %></h3>
+    <h3><%= alert.suggestions %></h3>
+    <h3><%= alert.priority %></h3>
     <hr/>
-    <a class="btn btn-medium btn-primary" href="/status/edit/ <%= status.id %>"><%= i18n('status').edit %></a>
+    <a class="btn btn-medium btn-primary" href="/alert/edit/ <%= alert.id %>"><%= i18n('alert').edit %></a>
 </div>

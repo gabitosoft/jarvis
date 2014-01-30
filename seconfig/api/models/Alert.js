@@ -28,11 +28,11 @@ module.exports = {
       required: true
     },
     priority: {
-      type: 'integer',
+      type: 'string',
       required: true
     },
     suggestions: {
-      type: 'json'
+      type: 'array'
     }
   }
 };

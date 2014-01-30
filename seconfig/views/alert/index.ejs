@@ -12,6 +12,8 @@
         <tr data-model="alert">
             <td><%= alert.name %></td>
             <td><%= alert.area %></td>
+            <td><%= alert.rules %></td>
+            <td><%= alert.priority %></td>
             <td><a href="/alert/show/<%= alert.id %>" class="btn btn-sm btn-primary"><%= i18n('alert').show %></a></td>
             <td><a href="/alert/edit/<%= alert.id %>" class="btn btn-sm btn-warning"><%= i18n('alert').edit %></a></td>
             <td>
