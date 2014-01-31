@@ -16,24 +16,26 @@
  */
 
 module.exports = {
-    
+
   'new' : function (req, res, next) {
 
-    var areas;
     var suggestions;
 //    Area.find(function foundAreas(err, ar ){
 //      if (err) return next(err);
-//      areas = ar;
-//      console.log('ar', ar);
-//      console.log('areas1', areas);
-//    });
+//      res.view({
+//        areas: ar,
+//        priorities: [ 1, 2, 3, 4, 5 ],
+//        suggestions: [{id: 1, name: 'suggestion1'}, {id: 2, name: 'suggestion2'}, {id: 3, name: 'suggestion3'}]
+//      });
+//      console.log('not yet!');
+//    }).exec(function (){console.log('Data Updated')});
 
-    var a = Area.find(function (){
-      return 'text';
-    });
+    var data = [];
+    Area.find().done(function (err, areas){ data.push(areas); });
+    Suggestion.find().done(function (err, suggestions){ data.push(suggestions); });
+    data.push([ 1, 2, 3, 4, 5 ]);
 
-    console.log('areas2', areas);
-    console.log('a', a);
+    console.log(data);
 
 //    Filter by type
 //    Suggestion.findByType(areas[0].name).done(function foundSuggestions(err, sugg){
@@ -41,16 +43,16 @@ module.exports = {
 //      suggestions = sugg;
 //    });
 
-    Suggestion.find(function foundSuggestions(err, sugg){
-        if (err) return next (err);
-        suggestions = sugg;
-    });
+//    Suggestion.find(function foundSuggestions(err, sugg){
+//        if (err) return next (err);
+//        suggestions = sugg;
+//    });
 
-    res.view({
-      areas: areas,
-      priorities: [ 1, 2, 3, 4, 5 ],
-      suggestions: suggestions
-    });
+//    res.view({
+//      //areas: [{name: 'area1'}, {name: 'area2'}, {name: 'area3'}, {name: 'area4'}],
+//      priorities: [ 1, 2, 3, 4, 5 ],
+//      suggestions: [{id: 1, name: 'suggestion1'}, {id: 2, name: 'suggestion2'}, {id: 3, name: 'suggestion3'}]
+//    });
   },
   
   create: function (req, res, next) {
