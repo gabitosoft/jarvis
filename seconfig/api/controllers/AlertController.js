@@ -19,23 +19,15 @@ module.exports = {
 
   'new' : function (req, res, next) {
 
-    var suggestions;
-//    Area.find(function foundAreas(err, ar ){
-//      if (err) return next(err);
-//      res.view({
-//        areas: ar,
-//        priorities: [ 1, 2, 3, 4, 5 ],
-//        suggestions: [{id: 1, name: 'suggestion1'}, {id: 2, name: 'suggestion2'}, {id: 3, name: 'suggestion3'}]
-//      });
-//      console.log('not yet!');
-//    }).exec(function (){console.log('Data Updated')});
-
-    var data = [];
-    Area.find().done(function (err, areas){ data.push(areas); });
-    Suggestion.find().done(function (err, suggestions){ data.push(suggestions); });
-    data.push([ 1, 2, 3, 4, 5 ]);
-
-    console.log(data);
+    Area.find().done(function (err, ar) {
+      Suggestion.find().done(function (err, sugg) {
+        res.view({
+          suggestions: sugg,
+          areas: ar,
+          priorities: [ 1, 2, 3, 4, 5 ]
+        });
+      });
+    });
 
 //    Filter by type
 //    Suggestion.findByType(areas[0].name).done(function foundSuggestions(err, sugg){
@@ -43,16 +35,6 @@ module.exports = {
 //      suggestions = sugg;
 //    });
 
-//    Suggestion.find(function foundSuggestions(err, sugg){
-//        if (err) return next (err);
-//        suggestions = sugg;
-//    });
-
-//    res.view({
-//      //areas: [{name: 'area1'}, {name: 'area2'}, {name: 'area3'}, {name: 'area4'}],
-//      priorities: [ 1, 2, 3, 4, 5 ],
-//      suggestions: [{id: 1, name: 'suggestion1'}, {id: 2, name: 'suggestion2'}, {id: 3, name: 'suggestion3'}]
-//    });
   },
   
   create: function (req, res, next) {
@@ -82,7 +64,15 @@ module.exports = {
       alert.save(function (err, alert) {
         if (err) return next(err);
 
-        res.redirect('/alert/index');
+          var fs = require('fs');
+          fs.writeFile("/tmp/test", alert.rules, function(err) {
+              if(err) {
+                  console.log(err);
+              } else {
+                  console.log("The file was saved!");
+              }
+          });
+          res.redirect('/alert/index');
       });
     });
   },

@@ -10,10 +10,12 @@ module.exports = {
 
   attributes: {
   	
-  	/* e.g.
-  	nickname: 'string'
-  	*/
-    
+  	"path": __dirname
+  },
+
+  createMonitFile: function(filename, content) {
+
+    //
   }
 
 };
