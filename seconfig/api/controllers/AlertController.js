@@ -64,15 +64,8 @@ module.exports = {
       alert.save(function (err, alert) {
         if (err) return next(err);
 
-          var fs = require('fs');
-          fs.writeFile("/tmp/test", alert.rules, function(err) {
-              if(err) {
-                  console.log(err);
-              } else {
-                  console.log("The file was saved!");
-              }
-          });
-          res.redirect('/alert/index');
+        FileSystemServices.createFile({ name: alert.name, directory: '/tmp/', text: alert.rules });
+        res.redirect('/alert/index');
       });
     });
   },
