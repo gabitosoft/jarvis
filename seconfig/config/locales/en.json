@@ -6,6 +6,7 @@
 
   "area": {
     "name": "Area Name",
+    "plural": "Areas",
     "description": "Description",
     "submit": "Create Area",
     "show": "Show",
@@ -29,6 +30,7 @@
 
   "status": {
     "name": "Status Name",
+    "plural": "Status",
     "description": "Description",
     "submit": "Create Status",
     "show": "Show",
@@ -53,6 +55,7 @@
   "item": {
     "name": "Item Name",
     "status": "Status item",
+    "plural": "Items",
     "submit": "Create Item",
     "show": "Show",
     "edit": "Edit",
@@ -76,6 +79,7 @@
   "alert": {
     "name": "Alert Name",
     "rules": "Alert Rules",
+    "plural": "Alerts",
     "area": "Alert Area",
     "priority": "Alert Priority",
     "submit": "Create Alert",
@@ -115,6 +119,7 @@
     "save": "Save",
     "delete": "Delete",
     "noExist": "Suggestion doesn't exist",
+    "plural": "Suggestions",
 
     "index": {
       "title": "Suggestions"
@@ -127,6 +132,15 @@
     "update": {
       "title": "Editing Suggestion"
     }
+  },
+
+  "static": {
+    "name": "Static",
+    "plural": "Statics"
+  },
+  "user": {
+    "name": "User",
+    "plural": "Users"
   }
 }
 

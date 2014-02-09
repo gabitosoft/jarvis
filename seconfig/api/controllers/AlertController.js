@@ -125,7 +125,7 @@ module.exports = {
     Alert.findOne(req.param('id'), function foundAlert(err, alert){
         
         if (err) return next(err);
-        if (!alert) return next('Alert doesn\'t exist');
+        if (!alert) return next(res.i18n('alert').noExist);
         
         Alert.destroy(req.param('id'), function alertDestroyed(err){
             if (err) return next(err);

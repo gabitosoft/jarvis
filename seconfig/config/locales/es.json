@@ -6,6 +6,7 @@
 
   "area": {
     "name": "Nombre Area",
+    "plural": "Areas",
     "description": "Descripcion",
     "submit": "Crear Area",
     "show": "Mostrar",
@@ -29,6 +30,7 @@
 
   "status": {
     "name": "Nombre Estado",
+    "plural": "Estados",
     "description": "Descripcion",
     "submit": "Crear Estado",
     "show": "Mostrar",
@@ -52,6 +54,7 @@
 
   "item": {
     "name": "Nombre Item",
+    "plural": "Items",
     "status": "Estado item",
     "submit": "Crear Item",
     "show": "Mostrar",
@@ -75,6 +78,7 @@
 
   "alert": {
     "name": "Nombre Alerta",
+    "plural": "Alertas",
     "rules": "Reglas Alerta",
     "area": "Area Alerta",
     "priority": "Prioridad Alerta",
@@ -106,6 +110,7 @@
 
   "suggestion": {
     "name": "Nombre Sugerencia",
+    "plural": "Sugerencias",
     "type": "Area sugerencia",
     "text": "Sugerencia",
     "action": "Accion",
@@ -127,5 +132,14 @@
     "update": {
       "title": "Editar Sugerencia"
     }
+  },
+  
+  "static": {
+    "name": "Estadistica",
+    "plural": "Estadisticas",
+  },
+  "user": {
+    "name": "Usuario",
+    "plural": "Usuarios"
   }
 }
