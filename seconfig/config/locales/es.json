@@ -174,9 +174,9 @@
     "configuration": "Configuracion"
   },
   "login": {
-    "username": "Nombre Usuario",
-    "password": "Password",
-    "login": "Login",
-    "resetPassword": "Cambiar Password"
+    "username": "Correo Electronico",
+    "password": "Contrasena",
+    "login": "Entrar",
+    "resetPassword": "Cambiar Contrasena"
   }
 }

@@ -37,8 +37,11 @@ module.exports = {
         return res.redirect('user/new');
       }
 
+      // Review the next two lines maybe we want create user from admin page
+      req.session.authenticated = true;
+      req.session.User = user;
+
       res.redirect('/user');
-      req.session.flash = {};
     });
   },
 

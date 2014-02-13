@@ -177,7 +177,7 @@
     "configuration": "Configuration"
   },
   "login": {
-    "username": "Username",
+    "email": "Email",
     "password": "Password",
     "login": "Login",
     "resetPassword": "Reset Password"
