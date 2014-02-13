@@ -1,0 +1,27 @@
+<div class="container">
+    <h3><%= i18n('user').index.title %></h3>
+    <table class="table">
+        <tr>
+            <th><%= i18n('user').name %></th>
+            <th><%= i18n('user').email %></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        <% _.each(users, function(user) {%>
+        <tr data-model="suggestion">
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+            <td><a href="/user/show/<%= user.id %>" class="btn btn-sm btn-primary"><%= i18n('user').show %></a></td>
+            <td><a href="/user/edit/<%= user.id %>" class="btn btn-sm btn-warning"><%= i18n('user').edit %></a></td>
+            <td>
+                <form action="/user/destroy/<%= user.id %>" method="POST">
+                    <input type="hidden" name="_method" value="delete"/>
+                    <input type="submit" class="btn btn-sm btn-danger" value="<%= i18n('user').delete %>"/>
+                    <input type="hidden" name="_csrf" value="<%= _csrf %>">
+                </form>
+            </td>
+        </tr>
+        <% }); %>
+    </table>
+</div>

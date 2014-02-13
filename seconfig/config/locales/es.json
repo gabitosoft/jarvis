@@ -136,10 +136,47 @@
   
   "static": {
     "name": "Estadistica",
-    "plural": "Estadisticas",
+    "plural": "Estadisticas"
   },
+
+  "server": {
+    "name": "Servidor",
+    "add": "Agregar mas servidores",
+    "plural": "Servidores"
+  },
+
   "user": {
     "name": "Usuario",
-    "plural": "Usuarios"
+    "contact": "Contactar a: ",
+    "submit": "Crear Usuario",
+    "show": "Mostrar",
+    "edit": "Editar",
+    "save": "Guardar",
+    "delete": "Elminar",
+    "noExist": "Usuario no existe",
+    "plural": "Usuarios",
+
+    "index": {
+      "title": "Usuarios"
+    },
+
+    "create": {
+      "title": "Crear Usuario"
+    },
+
+    "update": {
+      "title": "Editar Usuario"
+    }
+  },
+
+  "summary": {
+    "recent": "Eventos recientes en el servidor",
+    "configuration": "Configuracion"
+  },
+  "login": {
+    "username": "Nombre Usuario",
+    "password": "Password",
+    "login": "Login",
+    "resetPassword": "Cambiar Password"
   }
 }

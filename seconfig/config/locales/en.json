@@ -138,9 +138,49 @@
     "name": "Static",
     "plural": "Statics"
   },
+
+  "server": {
+    "name": "Server",
+    "plural": "Servers",
+    "add": "Add more servers"
+  },
+
   "user": {
     "name": "User",
-    "plural": "Users"
+    "contact": "Contact to: ",
+    "email": "Email",
+    "password": "Password",
+    "confirmation": "Confirmation",
+    "submit": "Create User",
+    "show": "Show",
+    "edit": "Edit",
+    "save": "Save",
+    "delete": "Delete",
+    "noExist": "User doesn't exist",
+    "plural": "Users",
+
+    "index": {
+      "title": "Users"
+    },
+
+    "create": {
+      "title": "Create User"
+    },
+
+    "update": {
+      "title": "Editing User"
+    }
+  },
+
+  "summary": {
+    "recent": "Recent server events",
+    "configuration": "Configuration"
+  },
+  "login": {
+    "username": "Username",
+    "password": "Password",
+    "login": "Login",
+    "resetPassword": "Reset Password"
   }
 }
 

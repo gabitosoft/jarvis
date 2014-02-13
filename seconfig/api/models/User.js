@@ -12,40 +12,37 @@ module.exports = {
   attributes: {
   	
   	name:{
-            type: 'string',
-            required: true
-        },
-        title:{
-            type: 'string'
-        },
-        email:{
-            type:'string',
-            email: true,
-            required: true,
-            unique: true
-        },
-        admin: {
-            type: 'boolean',
-            defaultsTo: false
-        },
-        encryptedPassword:{
-            type:'string'
-        },
-        
-        online: {
-            type: 'boolean',
-            defaultsTo: false
-        },
-        
-        toJSON: function () {
-            
-            var obj = this.toObject();
-            delete obj.password;
-            delete obj.confirmation;
-            delete obj.encryptedPassword;
-            delete obj._csrf;
-            return obj;
-        }
+      type: 'string',
+      required: true
+    },
+    email:{
+      type:'string',
+      email: true,
+      required: true,
+      unique: true
+    },
+    admin: {
+      type: 'boolean',
+      defaultsTo: false
+    },
+    encryptedPassword:{
+      type:'string'
+    },
+
+    online: {
+        type: 'boolean',
+        defaultsTo: false
+    },
+
+    toJSON: function () {
+
+        var obj = this.toObject();
+        delete obj.password;
+        delete obj.confirmation;
+        delete obj.encryptedPassword;
+        delete obj._csrf;
+        return obj;
+    }
   },
   
   beforeValidation: function(values, next) {
