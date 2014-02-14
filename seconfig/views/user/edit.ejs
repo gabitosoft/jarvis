@@ -1,12 +1,14 @@
 <form action="/user/update/<%= user.id %>" method="post" id="sign-up-form" class="form-signin">
     <h2 class="form-signin-heading"><%= i18n('user').update.title %></h2>
-    <% if (flash && flash.err) { %>
-    <ul class="alert alert-success">
-        <% Object.keys(flash.err).forEach(function(error) {%>
-        <li><%= JSON.stringify(flash.err[error]) %></li>
-        <% }) %>
-    </ul>
-    <% }%>
+    <% if (session.authenticated && session.User.admin) { %>
+        <%  if (user.admin) { %>
+        <input type="hidden" name="admin" value="unchecked" />
+        <label class="checkbox"><input type="checkbox" name="admin" checked>Admin</label>
+        <% } else { %>
+            <input type="hidden" name="admin" value="unchecked" />
+            <label class="checkbox"><input type="checkbox" name="admin">Admin</label>
+        <% } %>
+    <% } %>
     <input type="text" class="form-control" value="<%= user.name %>" placeholder="<%= i18n('user').name %>" name="name">
     <input type="text" class="form-control" value="<%= user.email %>" placeholder="<%= i18n('user').email %>" name="email">
     <input type="submit" class="btn btn-lg btn-primary btn-block" value="<%= i18n('user').save %>" />

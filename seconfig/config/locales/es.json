@@ -177,6 +177,7 @@
     "username": "Correo Electronico",
     "password": "Contrasena",
     "login": "Entrar",
+    "logout": "Salir",
     "resetPassword": "Cambiar Contrasena"
   }
 }
