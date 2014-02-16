@@ -148,6 +148,9 @@
   "user": {
     "name": "Usuario",
     "contact": "Contactar a: ",
+    "email": "Email",
+    "password": "Password",
+    "confirmation": "Confirmation",
     "submit": "Crear Usuario",
     "show": "Mostrar",
     "edit": "Editar",
@@ -155,6 +158,7 @@
     "delete": "Elminar",
     "noExist": "Usuario no existe",
     "plural": "Usuarios",
+    "admin": "Administrador",
 
     "index": {
       "title": "Usuarios"
@@ -174,7 +178,7 @@
     "configuration": "Configuracion"
   },
   "login": {
-    "username": "Correo Electronico",
+    "email": "Correo Electronico",
     "password": "Contrasena",
     "login": "Entrar",
     "logout": "Salir",

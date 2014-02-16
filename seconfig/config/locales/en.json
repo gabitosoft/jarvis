@@ -158,6 +158,7 @@
     "delete": "Delete",
     "noExist": "User doesn't exist",
     "plural": "Users",
+    "admin": "Administrator",
 
     "index": {
       "title": "Users"

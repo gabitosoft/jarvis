@@ -1,4 +1,4 @@
-module.exports = function() {
+module.exports = function(req, res, ok) {
   if (req.session.User && req.session.User.admin) {
     return ok();
   } else {

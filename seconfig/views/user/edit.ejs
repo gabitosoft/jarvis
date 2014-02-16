@@ -3,10 +3,10 @@
     <% if (session.authenticated && session.User.admin) { %>
         <%  if (user.admin) { %>
         <input type="hidden" name="admin" value="unchecked" />
-        <label class="checkbox"><input type="checkbox" name="admin" checked>Admin</label>
+        <label class="checkbox"><input type="checkbox" name="admin" checked><%= i18n('user').admin %></label>
         <% } else { %>
             <input type="hidden" name="admin" value="unchecked" />
-            <label class="checkbox"><input type="checkbox" name="admin">Admin</label>
+            <label class="checkbox"><input type="checkbox" name="admin"><%= i18n('user').admin %></label>
         <% } %>
     <% } %>
     <input type="text" class="form-control" value="<%= user.name %>" placeholder="<%= i18n('user').name %>" name="name">
