@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+    <script src='//code.jquery.com/jquery-1.7.2.min.js'></script>
+    <script src='//localhost:1337/socket.io/test/socket.io.js'></script>
+    <script>
+        var socket = io.connect('//localhost:1337');
+
+        socket.on('message', function(data) {
+            $('#messages').append('<li>' + data.message + '</li>');
+            console.log('Wooot');
+            socket.emit('i am client', {data: 'foo!'});
+        });
+        socket.on('time', function(data) {
+            console.log(data);
+            $('#messages').append('<li>' + data.time + '</li>');
+        });
+        socket.on('error', function() { console.error(arguments) });
+        socket.on('message', function() { console.log(arguments) });
+    </script>
+</head>
+<body>
+<ul id='messages'></ul>
+</body>
+</html>
