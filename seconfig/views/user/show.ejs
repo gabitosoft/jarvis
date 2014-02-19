@@ -1,9 +1,9 @@
 <div class="container">
     <h1><%= user.name %></h1>
     <% if (user.admin) {%>
-    <td><img src="/images/admin.png"></td>
+    <td><img src="/images/engine-red.png"></td>
     <% } else { %>
-    <td><img src="/images/regular.png"></td>
+    <td><img src="/images/engine-gray.png"></td>
     <% } %>
     <hr>
     <h3><%= i18n('user').contact %> <%= user.email %></h3>

@@ -2,24 +2,51 @@
 <html>
 <head>
     <script src='//code.jquery.com/jquery-1.7.2.min.js'></script>
-    <script src='//localhost:1337/socket.io/test/socket.io.js'></script>
-    <script>
-        var socket = io.connect('//localhost:1337');
+    <script src='//localhost:8081/socket.io/socket.io.js'></script>
 
-        socket.on('message', function(data) {
-            $('#messages').append('<li>' + data.message + '</li>');
-            console.log('Wooot');
-            socket.emit('i am client', {data: 'foo!'});
-        });
-        socket.on('time', function(data) {
-            console.log(data);
-            $('#messages').append('<li>' + data.time + '</li>');
-        });
-        socket.on('error', function() { console.error(arguments) });
-        socket.on('message', function() { console.log(arguments) });
-    </script>
 </head>
 <body>
+<label id="text"></label>
 <ul id='messages'></ul>
 </body>
+<script>
+//    $(document).ready(function() {
+//        var socket = new io.Socket();
+//        var list = $('#messages');
+//        var text = $('#text');
+//
+//        socket.connect();
+//        socket.on('connect', function() {
+//            text.html('We are connected!');
+//        });
+//
+//        socket.on('message', function(msg){
+//            list.append('<li>' + msg + '</li>');
+//        });
+//
+//        socket.on('disconnect', function(){
+//            text.html('We are disconnected');
+//        });
+//    });
+
+    var list = $('#messages');
+    var text = $('#text');
+
+    var socket = io.connect('//172.21.3.18:8081', function socketConnected(err) {
+
+        text.html(err);
+    });
+
+    socket.on('connect', function() {
+        text.html('We are connected!');
+    });
+
+    socket.on('message', function(data){
+        list.append('<li>' + data.message + '</li>');
+    });
+
+    socket.on('disconnect', function(){
+        text.html('We are disconnected');
+    });
+</script>
 </html>
