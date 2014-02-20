@@ -18,7 +18,7 @@
 var express = require('express');
 var app = express.createServer();
 var socket = require('socket.io');
-app.configure(function(){
+app.configure(function() {
   app.use(express.static(__dirname + '/'));
   app.use(express.bodyParser());
 });
@@ -39,10 +39,10 @@ app.post('/api/alert', function(req, res) {
 //  console.log('name', req.param('name'));
 //  console.log('lastname', req.param('lastname'));
 
-    //curl -d '{"MyKey":"My Value"}' -H "Content-Type: application/json" http://localhost:8081/api/alert
-    console.log(req.body);
-    console.log('request =' + JSON.stringify(req.body));
+  //curl -d '{"key":"This is an alert test"}' -H "Content-Type: application/json" http://localhost:8081/api/alert
+  console.log(req.body);
+  console.log('request =' + JSON.stringify(req.body));
 
-    io.sockets.emit('message', { message: req.body });
-    res.send(200);
+  io.sockets.emit('message', { message: req.body.key });
+  res.send(200);
 });
