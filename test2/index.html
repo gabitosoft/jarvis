@@ -32,7 +32,7 @@
     var list = $('#messages');
     var text = $('#text');
 
-    var socket = io.connect('//172.21.3.18:8081', function socketConnected(err) {
+    var socket = io.connect('//localhost:8081', function socketConnected(err) {
 
         text.html(err);
     });
