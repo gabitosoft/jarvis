@@ -42,8 +42,10 @@ function main () {
 
   io.sockets.on('connection', function (socket) {
     console.log("connect");
-    app.connections[0] = socket;
-    socket.emit('message', { message: 'Welcome to JARVIS' });
+    socket.on('username', function(username) {
+      app.connections[username] = socket;
+      socket.emit('message', { message: 'Welcome ' + username + ' to JARVIS' });
+    });
     socket.on('disconnect', function (socket) {
       console.log("disconnect");
     });

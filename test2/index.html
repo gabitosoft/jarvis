@@ -6,7 +6,9 @@
 
 </head>
 <body>
-<label id="text"></label>
+<label id="text"></label><br/>
+<input type="text" id="username" name="username"/>
+<button id="conectar">Conectar</button><br/>
 <ul id='messages'></ul>
 </body>
 <script>
@@ -32,22 +34,25 @@
     var list = $('#messages');
     var text = $('#text');
 
-    var socket = io.connect('//localhost:3000', function socketConnected(err) {
+    $('#conectar').on('click', function (e){
+        var socket = io.connect('//localhost:3000', function socketConnected(err) {
 
-        text.html(err);
-    });
+            text.html(err);
+        });
 
-    socket.on('connect', function() {
-        text.html('We are connected!');
-    });
+        socket.on('connect', function() {
+            text.html('We are connected!');
+            console.log('socket', socket);
+        });
+        socket.emit('username', $('#username').val());
+        socket.on('message', function(data){
+            console.log(data);
+            list.append('<li>' + data.message + '</li>');
+        });
 
-    socket.on('message', function(data){
-        console.log(data);
-        list.append('<li>' + data.message + '</li>');
-    });
-
-    socket.on('disconnect', function(){
-        text.html('We are disconnected');
+        socket.on('disconnect', function(){
+            text.html('We are disconnected');
+        });
     });
 </script>
 </html>
