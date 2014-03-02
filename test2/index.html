@@ -2,7 +2,7 @@
 <html>
 <head>
     <script src='//code.jquery.com/jquery-1.7.2.min.js'></script>
-    <script src='//localhost:8081/socket.io/socket.io.js'></script>
+    <script src='//localhost:3000/socket.io/socket.io.js'></script>
 
 </head>
 <body>
@@ -32,7 +32,7 @@
     var list = $('#messages');
     var text = $('#text');
 
-    var socket = io.connect('//localhost:8081', function socketConnected(err) {
+    var socket = io.connect('//localhost:3000', function socketConnected(err) {
 
         text.html(err);
     });
