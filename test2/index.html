@@ -45,9 +45,9 @@
             console.log('socket', socket);
         });
         socket.emit('username', $('#username').val());
-        socket.on('message', function(data){
+        socket.on('alert', function(data){
             console.log(data);
-            list.append('<li>' + data.message + '</li>');
+            list.append('<li>' + JSON.stringify(data) + '</li>');
         });
 
         socket.on('disconnect', function(){

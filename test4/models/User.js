@@ -19,10 +19,10 @@
 var mongoose = require('mongoose');
 
 module.exports = mongoose.model('user', {
-  name: 'string',
-  email: 'string',
-  admin: 'boolean',
-  encryptedPassword: 'string',
-  online: 'boolean'
+  name: String,
+  email: String,
+  admin: Boolean,
+  encryptedPassword: String,
+  online: Boolean
 });
 

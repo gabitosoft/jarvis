@@ -9,6 +9,7 @@ var socket = require('socket.io');
 
 var app = express();
 module.exports = app;
+mongoose.connect('mongodb://'+config.db.server + ':' + config.db.port +'/' + config.db.name);
 
 function main () {
   var http = require('http');
@@ -59,5 +60,4 @@ function main () {
 //  main();
 //});
 
-//mongoose.connect('mongodb://localhost:27017/test4');
 main();
