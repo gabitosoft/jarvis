@@ -18,26 +18,29 @@ module.exports = function (app){
   });
 
 // POST create an User and return all of them after creation
-  app.post('/api/user/create', function(req, res) {
-    var encryptedPwd = req.body.password;
-    User.create({
-      name: req.body.name,
-      email: req.body.email,
-      admin: false,
-      online: false,
-      encryptedPassword: encryptedPwd
-    }, function(err, user) {
-      if (err) {
-        res.send(err);
-      }
+//  curl -d '{"name":"Gabriel Delgado", "email":"gabitosoft@gmail.com", "password": "mirmidon"}' -H "Content-Type: application/json" http://localhost:3000/api/user/create
 
-      user.find(function(err, users) {
+    app.post('/api/user/create', function(req, res) {
+    if (!req.body.password || req.body.password !== req.body.confirmation) {
+      res.send(500, 'Password is not matching');
+    }
+
+    bcrypt.hash(req.body.password, 10, function passwordEncrypted(err, encryptedPwd) {
+      if (err) return res.send(500, err);
+      User.create({
+        name: req.body.name,
+        email: req.body.email,
+        admin: false,
+        online: false,
+        encryptedPassword: encryptedPwd
+      }, function(err) {
         if (err) {
           res.send(err);
         }
-        res.json(users);
       });
     });
+
+    res.send(200);
   });
 
   // POST login user
@@ -74,9 +77,9 @@ module.exports = function (app){
           if (err) return;
 
           // Inform other sockets (e.g. connected sockets that are subscribed) that this user is now logged in
-          app.connections.forEach(function (socket) {
-            socket.emit('connected', user.id);
-          });
+          for (var username in app.connections) {
+            app.connections[username].emit('connected', user.id);
+          }
 
           // Redirect to their profile page (e.g. /views/user/show.ejs)
           res.send(200);
@@ -99,9 +102,10 @@ module.exports = function (app){
         }, function(err) {
           if (err) return res.send(500, err);
 
-          app.connections.forEach(function (socket) {
-            socket.emit('disconnected', user.id);
-          });
+          // Inform other sockets (e.g. connected sockets that are subscribed) that this user is now logged out
+          for (var username in app.connections) {
+            app.connections[username].emit('disconnected', user.id);
+          }
 
           // Wipe out the session (log out)
           req.session.destroy();

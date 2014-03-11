@@ -1,7 +1,6 @@
 'use strict';
 var config = require('./config');
 var database = require('./services/database');
-//var socket = require('./services/socket');
 
 var express = require('express');
 var mongoose = require('mongoose');
@@ -14,10 +13,20 @@ mongoose.connect('mongodb://'+config.db.server + ':' + config.db.port +'/' + con
 function main () {
   var http = require('http');
 
+  // //CORS middleware
+  // function csrfValue(req) {
+  //       return (req.body && req.body._csrf)
+  //           || (req.query && req.query._csrf)
+  //           || (req.headers['x-csrf-token'])
+  //           || (req.headers['x-xsrf-token'])
+  //           || (req.cookies['XSRF-TOKEN']);
+  // }
+
   //Configure the application
   app.configure(function() {
     app.use(express.static(__dirname + config.public));
     app.use(express.bodyParser());
+//    app.use(express.csrf({value: csrfValue}));
 //    app.use(express.json());
 //    app.use(express.urlencoded());
 //    app.use(express.multipart());
@@ -35,6 +44,7 @@ function main () {
 
   // Load all routes
   require('./routes')(app);
+  //require('./services/socket')(app);
 
   // Listen on http port
   server.listen(config.port);

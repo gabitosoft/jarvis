@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" ng-app>
+<html lang="en" ng-app="webApp">
 <head>
     <meta charset="utf-8">
-    <title>client</title>
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <script src='//localhost:3000/socket.io/socket.io.js'></script>
+    <script src='js/jquery-2.1.0.min.js'></script>
     <script src="js/angular.min.js"></script>
+    <script src="js/main.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <title> J.A.R.V.I.S. </title>
 </head>
 <body>
 <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
@@ -17,31 +21,31 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/user/summary"><%= i18n('application').name %></a>
+            <a class="navbar-brand" href="/user/index">JARVIS</a>
         </div>
         <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <% if (session.authenticated) { %>
-                <li class="active"><a href="/user/show/<%= session.User.id %>"> <%= session.User.name %> </a></li>
-                <% } %>
-            </ul>
+            <!--<ul class="nav navbar-nav">-->
+                <!--<% if (session.authenticated) { %>-->
+                <!--<li class="active"><a href="/user/show/{{ session.User.id }}"> {{ session.User.name }} </a></li>-->
+                <!--<% } %>-->
+            <!--</ul>-->
             <div class="navbar-right">
-                <% if (session.authenticated) { %>
-                <a class="btn btn-default navbar-btn navbar-right" href="/session/destroy"><%= i18n('login').logout %></a>
-                <% } %>
+                <!--<% if (session.authenticated) { %>-->
+                <!--<a class="btn btn-default navbar-btn navbar-right" href="/session/destroy">Logout</a>-->
+                <!--<% } %>-->
             </div>
-            <% if (!session.authenticated) { %>
-            <form class="navbar-form navbar-right" action="/session/create">
+            <!--<% if (!session.authenticated) { %>-->
+            <form class="navbar-form navbar-right" ng-controller="UserController" ng-submit="loginUser()" action="">
                 <div class="form-group">
-                    <input type="text" name="email" placeholder="<%= i18n('login').email %>" class="form-control" name="">
+                    <input type="text" ng-model="email" id="email" name="email" placeholder="Email" class="form-control">
                 </div>
                 <div class="form-group">
-                    <input type="password" name="password" placeholder="<%= i18n('login').password %>" class="form-control" name="">
+                    <input type="password" ng-model="password" id="password" name="password" placeholder="Password" class="form-control">
                 </div>
-                <button type="submit" class="btn btn-success"><%= i18n('login').login %></button>
-                <input type="hidden" name="_csrf" value="<%= _csrf %>">
+                <button type="submit" class="btn btn-success">Login</button>
+                <input type="hidden" name="_csrf" value="{{ _csrf }}">
             </form>
-            <% } %>
+            <!--<% } %>-->
         </div>
     </div>
 </div>
@@ -49,7 +53,7 @@
     <hr>
     <footer>
         <div class="col-xs-12 col-sm-9">
-            <h3> Powered by <a href="http://sailsjs.org">Sails</a> </h3>
+            <h3> Footer web application</a> </h3>
         </div>
     </footer>
 </div>
