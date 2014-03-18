@@ -11,6 +11,7 @@ module.exports = mongoose.model('alert', {
   server: String,
   date: Date,
   message: String,
-  read: Boolean
+  read: Boolean,
+  type: String
 });
 

@@ -16,6 +16,7 @@ module.exports = function (app) {
       server: req.body.server,
       date: req.body.date,
       message: req.body.message,
+      type: req.body.type,
       read: false
     }, function(err, alert) {
       if (err) {
@@ -23,7 +24,9 @@ module.exports = function (app) {
         res.send(500, err);
       }
 
-      //curl -d '{"server":"127.0.0.1", "date":"04-03-2014", "message": "Alert from console", "read": false}' -H "Content-Type: application/json" http://localhost:3000/api/alert
+      //curl -d '{"server":"127.0.0.1", "date":"04-03-2014", "message": "Alert from console", "read": false, "type": "list-group-item-danger"}' -H "Content-Type: application/json" http://localhost:3000/api/alert
+      //curl -d '{"server":"127.0.0.1", "date":"04-03-2014", "message": "Alert from console", "read": false, "type": "list-group-item-warning"}' -H "Content-Type: application/json" http://localhost:3000/api/alert
+      //curl -d '{"server":"127.0.0.1", "date":"04-03-2014", "message": "Alert from console", "read": false, "type": "list-group-item-info"}' -H "Content-Type: application/json" http://localhost:3000/api/alert
       // Send the alert to the client
       for (var username in app.connections) {
         app.connections[username].emit('alert', alert);
