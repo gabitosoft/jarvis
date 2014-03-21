@@ -86,8 +86,15 @@
         <h1>J.A.R.V.I.S.</h1>
     </div>
     <article data-role="content">
-        <div id="status"><a href="about.html" data-role="button" data-icon="delete" data-inline="true">Disconnected</a></div>
-        <div class="btn-group">
+        <span id="status"></span>
+        <div data-role="fieldcontain">
+            <label for="flip-2">Alerts:</label>
+            <select name="flip-2" id="flip-2" data-role="slider">
+                <option value="off">Off</option>
+                <option selected value="on">On</option>
+            </select>
+        </div>
+        <div data-role="controlgroup" data-type="horizontal" class="btn-group">
             <a data-role="button" class="ui-btn-inline">Date</a>
             <a data-role="button" class="ui-btn-inline">Priority</a>
             <a data-role="button" class="ui-btn-inline">Area</a>
@@ -95,7 +102,7 @@
         <div class="panel panel-primary">
             <div class="panel-heading">Alerts</div>
             <div class="panel-body">
-                <ul class="list-group" id="alertList">
+                <ul data-role="listview" class="list-group" id="alertList">
                     <!-- Alerts will be added here -->
                 </ul>
             </div>
@@ -123,7 +130,7 @@
 <!--</div>-->
 <!-- /Configuration -->
 
-<!-- Alert Description -->
+<!-- Description -->
 <!--<div data-role="page" id="description" data-title="Description">-->
     <!--<div data-role="header">-->
         <!--<h1>J.A.R.V.I.S.</h1>-->
@@ -136,7 +143,7 @@
         <!--gabitosoft - 2014-->
     <!--</div>-->
 <!--</div>-->
-<!-- /Configuration -->
+<!-- /Description-->
 
 <!--<div id="log">waiting...</div>-->
 
@@ -163,11 +170,10 @@
             //var socket = io.connect("http://10.0.0.11:3000");
             var socket = io.connect("http://10.31.48.50:3000");
 
-            document.getElementById('log').innerHTML = "connecting";
+            //document.getElementById('log').innerHTML = "connecting";
 
             socket.on('alert', function (data) {
-                document.getElementById('log').innerHTML = data.message;
-                alert('new alert');
+                //document.getElementById('log').innerHTML = data.message;
                 $('#alertList').append('<li class="list-group-item '+ data.type +'" ><a href="#description">' +
                         '<h3 class="list-group-item-heading">Database example</h3>' +
                         '<p class="list-group-item-text">' + data.message + '</p></a></li>');
@@ -175,27 +181,29 @@
             });
 
             socket.on('connect', function () {
-                document.getElementById('log').innerHTML = "connected";
-                $('#status').html('<a href="about.html" data-role="button" data-icon="check" data-inline="true">Connected</a>');
+                //document.getElementById('log').innerHTML = "connected";
+                $('#status').html('Connected');
                 socket.emit('username', 'Android Phone');
             });
 
             socket.on('reconnect', function () {
-                document.getElementById('log').innerHTML = "reconnected";
+                //document.getElementById('log').innerHTML = "reconnected";
+                $('#status').html('Reconnected');
             });
 
             socket.on('disconnect', function () {
-                $('#status').html('<a href="about.html" data-role="button" data-icon="delete" data-inline="true">Disconnected</a>');
-                document.getElementById('log').innerHTML = "disconnected";
+                //document.getElementById('log').innerHTML = "disconnected";
+                $('#status').html('Disconnected');
             });
 
             socket.on('reconnecting', function () {
-                $('#status').html('<a href="about.html" data-role="button" data-icon="refresh" data-inline="true">Reconnecting</a>');
-                document.getElementById('log').innerHTML = "reconnecting...";
+                //document.getElementById('log').innerHTML = "reconnecting...";
+                $('#status').html('Reconnecting...');
             });
 
             socket.on('error', function () {
-                document.getElementById('log').innerHTML = "error";
+                //document.getElementById('log').innerHTML = "error";
+                $('#status').html('Error');
             });
         });
     }

@@ -60,6 +60,10 @@ function main () {
     socket.on('disconnect', function (socket) {
       console.log("disconnect");
     });
+
+    socket.on('message', function (data) {
+      console.log("data from client", data);
+    });
   });
 }
 
