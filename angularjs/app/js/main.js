@@ -15,6 +15,14 @@ app.controller('UserController', function($scope, $http) {
     	method: 'POST',
     	url: 'http://localhost:3000/api/user/login',
     	data: $scope.user
+    }).
+    success(function (data, status, headers, config) {
+      console.log(data);
+      console.log('success');
+    }).
+    error(function (data, status, headers, config) {
+      console.log('error');
+      console.log(data);
     });
   }
 });

@@ -26,6 +26,12 @@ function main () {
   app.configure(function() {
     app.use(express.static(__dirname + config.public));
     app.use(express.bodyParser());
+
+    app.use(function(req, res, next) {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Headers", "X-Requested-With");
+      next();
+    });
 //    app.use(express.csrf({value: csrfValue}));
 //    app.use(express.json());
 //    app.use(express.urlencoded());
@@ -43,6 +49,12 @@ function main () {
   var server = http.createServer(app);
 
   // Load all routes
+  app.all('*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
+    next()
+  });
+
   require('./routes')(app);
   //require('./services/socket')(app);
 

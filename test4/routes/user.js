@@ -47,7 +47,7 @@ module.exports = function (app){
   app.post('/api/user/login', function(req, res) {
 
     if (!req.param('email') || !req.param('password')) {
-      res.send(200, 'Invalid parameters');
+      res.send(500, 'Invalid parameters');
       return;
     }
 
@@ -56,7 +56,7 @@ module.exports = function (app){
       // Compare password from the form params to the encrypted password of the user found.
       bcrypt.compare(req.param('password'), user.encryptedPassword, function(err, valid) {
         if (err) {
-          res.send(500, err);
+          res.send(500, 'encryptedPassword failed');
           return ;
         }
 
