@@ -74,7 +74,10 @@ module.exports = function (app){
 
         // Change status to online
         user.update(user.id, { online : true }, function(err) {
-          if (err) return;
+          if (err) {
+            res.send(500, err);
+            return;
+          };
 
           // Inform other sockets (e.g. connected sockets that are subscribed) that this user is now logged in
           for (var username in app.connections) {

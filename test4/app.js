@@ -26,6 +26,9 @@ function main () {
   app.configure(function() {
     app.use(express.static(__dirname + config.public));
     app.use(express.bodyParser());
+    // Session handler
+    app.use(express.cookieParser('S3CRE7'));
+    app.use(express.session());
 
     app.use(function(req, res, next) {
       res.header("Access-Control-Allow-Origin", "*");

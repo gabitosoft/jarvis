@@ -2,6 +2,8 @@
 /TestWebSocketClient/nbproject/private/
 /nbproject/private/
 node_modules
-Test5/platforms
-test6/platforms
+Test5/platforms/
+test6/platforms/
 
+/test7/nbproject/private/
+/test7/build/
