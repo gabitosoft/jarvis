@@ -1,0 +1,4 @@
+http://localhost:3000/api/alert
+gabitosoft@gmail.com
+[C@1e77dda
+1234TOKEN4321

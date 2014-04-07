@@ -27,12 +27,17 @@ module.exports = function (app) {
       //curl -d '{"server":"127.0.0.1", "date":"04-03-2014", "message": "Alert from console", "read": false, "type": "list-group-item-danger"}' -H "Content-Type: application/json" http://localhost:3000/api/alert
       //curl -d '{"server":"127.0.0.1", "date":"04-03-2014", "message": "Alert from console", "read": false, "type": "list-group-item-warning"}' -H "Content-Type: application/json" http://localhost:3000/api/alert
       //curl -d '{"server":"127.0.0.1", "date":"04-03-2014", "message": "Alert from console", "read": false, "type": "list-group-item-info"}' -H "Content-Type: application/json" http://localhost:3000/api/alert
+
+      //curl -i 'http://localhost:3000/api/alert' -X POST -H "Content-Type: application/json" -H "Accept: application/json" -d '{"auth": { "passwordCredentials": {"username": "adm", "password": "pwd"},"tenantName":"adm"}}'
+        //curl -d '{"server":"127.0.0.1", "date":"04-03-2014", "message": "Alert from console", "read": false, "type": "list-group-item-danger"}' -H "Content-Type: application/json" http://localhost:3000/api/alert
+        
       // Send the alert to the client
       for (var username in app.connections) {
         app.connections[username].emit('alert', alert);
       }
     });
-
+    
+    console.log('body', req.body);
     res.send(200);
   });
 };

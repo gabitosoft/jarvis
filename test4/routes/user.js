@@ -73,15 +73,13 @@ module.exports = function (app){
         req.session.User = user;
 
         // Change status to online
-        user.update(user.id, { online : true }, function(err) {
-          if (err) {
-            res.send(500, err);
-            return;
-          };
+        user.update({ email: user.email }, { online : true }, function(err) {
+          if (err) return res.send(500, 'login: fail on update');
 
           // Inform other sockets (e.g. connected sockets that are subscribed) that this user is now logged in
           for (var username in app.connections) {
-            app.connections[username].emit('connected', user.id);
+            app.connections[username].emit('connected', user.email);
+            app.connections[username].emit('alert', 'User: ' + user.email + 'now is connected');
           }
 
           // Redirect to their profile page (e.g. /views/user/show.ejs)
@@ -100,10 +98,8 @@ module.exports = function (app){
 
       if (user) {
         // The user is "logging out" (e.g. destroying the session) so change the online attribute to false.
-        User.update(userId, {
-          online: false
-        }, function(err) {
-          if (err) return res.send(500, err);
+        User.update({ email: user.email }, { online: false }, function(err) {
+          if (err) return res.send(500, 'logout: fail on update');
 
           // Inform other sockets (e.g. connected sockets that are subscribed) that this user is now logged out
           for (var username in app.connections) {
