@@ -15,6 +15,8 @@ package utils;
  * @author Gabriel Edgar Delgado Rocha
  */
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import net.sf.json.JSONObject;
 
@@ -28,9 +30,9 @@ public class Interpreter {
      */
     public JSONObject buildJSON(String[] arguments, JSONObject settings) {
 
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date currentDate = new Date();
-        settings.put("date", currentDate);
-        settings.put("time", currentDate.getTime());
+        settings.put("date", dateFormat.format(currentDate));
         settings.put("read", "false");
         
         for (int i = 0; i < arguments.length; i++) {
@@ -53,7 +55,7 @@ public class Interpreter {
                         System.out.println("-p\t\t Alert Type, just choose one of this [ alert, info, warning ]");
                         System.out.println("-d\t\t Alert Description, if the description has more than one word please to use \"\" around the word");
                         System.out.println("-t\t\t Alert Title, if the description has more than one word please to use \"\" around the word");
-                        System.out.println("Please to use: java -jar notifier.jar -p < alert | info | warning > -t \"title Alert\" -d \"Descriptio Alert\" ");
+                        System.out.println("Please to use: java -jar notifier.jar -p < danger | info | warning > -t \"title Alert\" -d \"Descriptio Alert\" ");
                         System.out.println("Settings content:");
                         System.out.println(settings.toString());
                         break;

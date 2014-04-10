@@ -46,12 +46,17 @@ module.exports = function (app){
   // POST login user
   app.post('/api/user/login', function(req, res) {
 
-    if (!req.param('email') || !req.param('password')) {
+    if (!req.param('username') || !req.param('password')) {
       res.send(500, 'Invalid parameters');
       return;
     }
 
-    User.findOne({ email: req.param('email') }, function(err, user) {
+    User.findOne({ email: req.param('username') }, function(err, user) {
+
+      if (err) {
+          res.send(500, 'User not found');
+          return ;
+      }
 
       // Compare password from the form params to the encrypted password of the user found.
       bcrypt.compare(req.param('password'), user.encryptedPassword, function(err, valid) {
@@ -83,7 +88,7 @@ module.exports = function (app){
           }
 
           // Redirect to their profile page (e.g. /views/user/show.ejs)
-          res.send(200);
+          res.send(200, { token: '1234567' });
         });
       });
     });

@@ -9,8 +9,10 @@ var mongoose = require('mongoose');
 
 module.exports = mongoose.model('alert', {
   server: String,
-  date: Date,
-  message: String,
+  date: String,
+  title: String,
+  token: String,
+  description: String,
   read: Boolean,
   type: String
 });

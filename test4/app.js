@@ -77,7 +77,7 @@ function main () {
     });
 
     socket.on('message', function (data) {
-      console.log("data from client", data);
+      console.log("client: ", data);
     });
   });
 }

@@ -1,0 +1,32 @@
+-- Notifier
+curl -d '{"server":"127.0.0.1", "date":"04-03-2014", "message": "Alert from console", "read": false, "type": "list-group-item-danger"}' -H "Content-Type: application/json" http://localhost:3000/api/alert
+
+curl -d '{"server":"127.0.0.1", "date":"04-03-2014", "message": "Alert from console", "read": false, "type": "list-group-item-warning"}' -H "Content-Type: application/json" http://localhost:3000/api/alert
+
+curl -d '{"server":"127.0.0.1", "date":"04-03-2014", "message": "Alert from console", "read": false, "type": "list-group-item-info"}' -H "Content-Type: application/json" http://localhost:3000/api/alert
+
+curl -i 'http://localhost:3000/api/alert' -X POST -H "Content-Type: application/json" -H "Accept: application/json" -d '{"auth": { "passwordCredentials": {"username": "adm", "password": "pwd"},"tenantName":"adm"}}'
+
+curl -d '{"server":"127.0.0.1", "date":"04-03-2014", "message": "Alert from console", "read": false, "type": "list-group-item-danger"}' -H "Content-Type: application/json" http://localhost:3000/api/alert
+
+java -jar test7.jar -p info -t "Memory" -d "The Memory is almost full"
+java -jar test7.jar -p warning -t "Database" -d "MySQL is not running"
+java -jar test7.jar -p danger -t "Processor" -d "The capacity of processor has exceeded the limit"
+
+-- Client Mobile
+// if an error related to Cannot find module 'shelljs' is displayed try
+cordova platform remove android
+cordova platform add android
+//
+cordova build
+cordova emulate
+
+// res/xml/config.xml
+<preference name=”load-url-timeout” value=”50000″ />
+
+-- Server
+npm install
+node app.js
+
+-- Database
+sudo genghisapp
