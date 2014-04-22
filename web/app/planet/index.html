@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="webApp">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+    <script src='//localhost:3000/socket.io/socket.io.js'></script>
+    <script src='../js/jquery-2.1.0.min.js'></script>
+    <script src="../js/angular.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <title>Life Without Limits</title>
+</head>
+<body>
+<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+    <div>
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../user/index.html">Life Without Limits</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <div class="navbar-right">
+            </div>
+            <form class="navbar-form navbar-right" ng-controller="UserController" ng-submit="logoutUser()" action="">
+                <button type="submit" class="btn btn-success">Logout</button>
+                <input type="hidden" name="_csrf" value="{{ _csrf }}">
+            </form>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <ul class="nav nav-pills">
+      <li><a href="../user/index.html">Alerts</a></li>
+      <li class="active"><a href="#">Planets</a></li>
+      <li><a href="../sensor/index.html">Sensors</a></li>
+    </ul>
+    <div class="panel panel-default" ng-controller="PlanetController">
+      <!-- Default panel contents -->
+      <div class="panel-heading">Planets</div>
+      <!-- Table -->
+      <table class="table" ng-init="loadPlanets()">
+      <tr>
+          <td>Name</td>
+          <td>Type</td>
+          <td>Temperature</td>
+          <td>Sky</td>
+          <td>Long Night</td>
+          <td>UV</td>
+      </tr>
+       <tr ng-repeat="planet in planets">
+            <td><a href="#" class="list-group-item">{{planet.name}}</a></td>
+            <td>{{planet.type}}</td>
+            <td>{{planet.temperature}}</td>
+            <td>{{planet.sky}}</td>
+            <td>{{planet.longNight}}</td>
+            <td>{{planet.UV}}</td>
+        </tr> 
+      </table>
+    </div>
+    <button ng-controller="PlanetController" type="button" ng-click="goNewPlanet()" class="btn btn-primary">New</button>
+    <hr>    
+    <footer>
+        <div class="col-xs-12 col-sm-9">
+            <h3> Footer web application</a> </h3>
+        </div>
+    </footer>
+</div>
+</body>
+</html>
