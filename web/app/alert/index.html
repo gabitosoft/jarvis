@@ -10,7 +10,7 @@
     <script src="../js/angular.min.js"></script>
     <script src="../js/main.js"></script>
     <script src="../js/bootstrap.min.js"></script>
-    <title>Life Without Limits</title>
+    <title>J.A.R.V.I.S.</title>
 </head>
 <body>
 <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
@@ -21,7 +21,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../user/index.html">Life Without Limits</a>
+            <a class="navbar-brand" href="#">J.A.R.V.I.S.</a>
         </div>
         <div class="navbar-collapse collapse">
             <div class="navbar-right">
@@ -34,21 +34,39 @@
     </div>
 </div>
 <div class="container">
-    <form  class="form-signin" ng-controller="PlanetController" ng-submit="newPlanet()">
-        <label>Name:</label>            
-        <input type="text" ng-model="name" required class="form-control" />
-        <label>Type:</label>            
-        <input type="text" ng-model="type" required class="form-control" />
-        <label>temperature:</label>
-        <input type="text" ng-model="temperature" class="form-control" />
-        <label>sky:</label>
-        <input type="text" ng-model="sky" class="form-control" />
-        <label>Long Night:</label>
-        <input type="text" ng-model="longNight" class="form-control" />
-        <label>UV:</label>
-        <input type="text" ng-model="uv" class="form-control" />
-        <input class="btn btn-lg btn-primary btn-block button-newPlanet" type="submit" value="Save" />
-    </form>
+    <ul class="nav nav-pills">
+      <li class="active"><a href="#">Alerts</a></li>
+      <li><a href="../planet/index.html">Planets</a></li>
+      <li><a href="../sensor/index.html">Sensors</a></li>
+    </ul>
+    <div class="panel panel-default" ng-controller="AlertController">
+      <!-- Default panel contents -->
+      <div class="panel-heading">Alerts</div>
+
+      <!-- Table -->
+      <table class="table" ng-init="loadAlerts()">
+      <tr>
+          <td>Title</td>
+          <td>Sensor</td>
+          <td>Date</td>
+          <td>Type</td>
+          <td>Planet</td>
+      </tr>
+       <tr ng-repeat="alert in alerts" >
+            <td><a href="#" class="list-group-item"> {{alert.title}} </a> </td>
+            <td>{{alert.sensor}}</td>
+            <td>{{alert.date}}</td>
+            <td>{{alert.type}}</td>
+            <td>{{alert.planetName}}</td>
+        </tr> 
+      </table>
+    </div>
+    <hr>    
+    <footer>
+        <div class="col-xs-12 col-sm-9">
+            <h3> Footer web application</a> </h3>
+        </div>
+    </footer>
 </div>
 </body>
 </html>

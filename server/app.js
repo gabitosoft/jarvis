@@ -20,8 +20,9 @@ function main () {
   app.use(express.static(__dirname + config.public));
   app.use(bodyParser());
   // Session handler
-  app.use(cookieParser('S3CRE7'));
-  app.use(session());
+  //app.use(cookieParser('S3CRE7'));
+  app.use(cookieParser());
+  app.use(session({ secret: 'S3CRE7', key: 'sid', cookie: { maxAge  : 24*60*60*1000 }  }));
 
   app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");

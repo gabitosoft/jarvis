@@ -5,8 +5,8 @@ var bcrypt = require('bcrypt');
 module.exports = function (app) {
 
   var User = require('../models/User');
-  // Paths to API
-  // GET for Users
+
+  // GET Users
   app.get('/api/user', function(req, res) {
     User.find(function(err, users){
       if (err) {
@@ -14,13 +14,11 @@ module.exports = function (app) {
       }
       res.json(users);
     });
-    res.send(200);
   });
 
-// POST create an User and return all of them after creation
-//  curl -d '{"name":"Gabriel Delgado", "email":"gabitosoft@gmail.com", "password": "mirmidon"}' -H "Content-Type: application/json" http://localhost:3000/api/user/create
 
-    app.post('/api/user/create', function(req, res) {
+  //POST create
+  app.post('/api/user/create', function(req, res) {
     if (!req.body.password || req.body.password !== req.body.confirmation) {
       res.send(500, 'Password is not matching');
     }
@@ -52,7 +50,8 @@ module.exports = function (app) {
     res.send(200);
   });
 
-  // POST login user
+
+  // POST login
   app.post('/api/user/login', function(req, res) {
 
     if (!req.param('username') || !req.param('password')) {
@@ -82,17 +81,16 @@ module.exports = function (app) {
           return;
         }
 
-        // Log user in
-        // req.session.authenticated = true;
-        // req.session.User = user;
-
-        req.session.regenerate(function () {
-          req.session.authenticated = true;
-          req.session.User = user;
+        req.session.regenerate(function (err) {
+          if (err) {
+            res.send(500, err);
+            return;
+          }
         });
-
-        console.log(req.session.authenticated);
-
+        
+        // Log user in
+        req.session.authenticated = true;
+        req.session.User = user;
 
         // Change status to online
         User.update({ email: user.email }, { online : true }, function(err) {
@@ -113,50 +111,50 @@ module.exports = function (app) {
     });
   });
 
-  // POST logout user
+  // POST logout
   app.post('/api/user/logout', function(req, res) {
-    console.log(req.session.authenticated);
-    User.findOne({ email : req.session.User.email}, function foundUser(err, user){
 
-      if (user) {
-        // The user is "logging out" (e.g. destroying the session) so change the online attribute to false.
-        User.update({ email: user.email }, { online: false }, function(err) {
+    if (req.session.User) {
+
+      User.findOne({ email : req.session.User.email}, function foundUser(err, user) {
+
           if (err) {
-            res.send(500, 'logout: fail on update');
+            res.send(500, err);
+          }
+          // The user is "logging out" (e.g. destroying the session) so change the online attribute to false.
+          User.update({ email: user.email }, { online: false }, function(err) {
+            if (err) {
+              res.send(500, 'logout: fail on update');
+              return;
+            }
+
+            // Inform other sockets (e.g. connected sockets that are subscribed) that this user is now logged out
+            for (var username in app.connections) {
+              app.connections[username].emit('disconnected', user.id);
+            }
+
+            // Wipe out the session (log out)
+            req.session.destroy();
+
+            // Redirect the browser to the sign-in screen
+            res.send(200, {'message': 'session closed'});
             return;
-          }
-
-          // Inform other sockets (e.g. connected sockets that are subscribed) that this user is now logged out
-          for (var username in app.connections) {
-            app.connections[username].emit('disconnected', user.id);
-          }
-
-          // Wipe out the session (log out)
-          req.session.destroy();
-
-          // Redirect the browser to the sign-in screen
-          res.send(200, {'message': 'session closed'});
-          return;
-        });
-      } else {
-        // Wipe out the session (log out)
-        req.session.destroy();
-
-        res.send(500, 'User not found');
-        return;
-      }
-    });
+          });
+      });
+    } else {
+      res.send(500, 'Session Expired');
+    }
   });
 
-  // DELETE an specific User and return all of them after delete it
-  app.delete('/api/users/:id', function(req, res){
+  //DELETE 
+  app.delete('/api/user/:id', function(req, res){
     User.remove({
       _id: req.params.id
     }, function(err, user){
       if (err) {
         res.send(err);
       }
-      user.find(function(err, users){
+      User.find(function(err, users){
         if (err) {
           res.send(err);
         }

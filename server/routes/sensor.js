@@ -4,17 +4,16 @@ var bcrypt = require('bcrypt');
 // Paths to API
 module.exports = function (app) {
 
-  var User = require('../models/Sensor');
+  var Sensor = require('../models/Sensor');
   // Paths to API
   // GET for Users
   app.get('/api/sensor', function(req, res) {
-    User.find(function(err, sensors){
+    Sensor.find(function(err, sensors){
       if (err) {
         res.send(err);
       }
       res.json(sensors);
     });
-    res.send(200);
   });
 
 // POST create an User and return all of them after creation

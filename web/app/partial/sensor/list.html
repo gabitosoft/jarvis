@@ -1,0 +1,39 @@
+<div ng-controller="SensorController">
+    <h2>Sensors</h2>
+    <!-- Table -->
+    <table class="table" ng-init="loadSensors()">
+        <thead>
+            <tr>
+                <th><a>All / None</a></th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="sensor in sensors">
+                <td>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="sensors[]"/>
+                        </label>
+                    </div>
+                </td>
+                <td> {{sensor.name}} </td>
+                <td> {{sensor.address}} </td>
+                <td> {{sensor.description}} </td>
+            </tr> 
+        </tbody>
+    </table>
+    <ul class="pagination">
+        <li><a href="#">&laquo;</a></li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li><a href="#">&raquo;</a></li>
+    </ul>
+</div>
+<button type="button" ng-click="deleteSensor($event)" class="btn btn-danger">Delete</button>
+<button type="button" ng-click="setRoute('newSensor', $event)" class="btn btn-primary">New</button>

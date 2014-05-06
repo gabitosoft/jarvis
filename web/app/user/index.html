@@ -3,70 +3,112 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
     <script src='//localhost:3000/socket.io/socket.io.js'></script>
     <script src='../js/jquery-2.1.0.min.js'></script>
+    <script src="../js/highcharts.js"></script>    
     <script src="../js/angular.min.js"></script>
     <script src="../js/main.js"></script>
     <script src="../js/bootstrap.min.js"></script>
-    <title>Life Without Limits</title>
+    <title>Notification System on Real Time</title>
 </head>
 <body>
-<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
-    <div>
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Life Without Limits</a>
+            <a class="navbar-brand" href="#">J.A.R.V.I.S.</a>
         </div>
         <div class="navbar-collapse collapse">
             <div class="navbar-right">
+              <form class="navbar-form navbar-right" ng-controller="UserController" ng-submit="logoutUser()" action="">
+                    <button type="submit" class="btn btn-success">Logout</button>
+                    <input type="hidden" name="_csrf" value="{{ _csrf }}">
+                </form>
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Gabriel Delgado</a></li>
+                <li><a href="#">Help</a></li>
+              </ul>
             </div>
-            <form class="navbar-form navbar-right" ng-controller="UserController" ng-submit="logoutUser()" action="">
-                <button type="submit" class="btn btn-success">Logout</button>
-                <input type="hidden" name="_csrf" value="{{ _csrf }}">
-            </form>
         </div>
     </div>
 </div>
-<div class="container">
-    <ul class="nav nav-pills">
-      <li class="active"><a href="#">Alerts</a></li>
-      <li><a href="../planet/index.html">Planets</a></li>
-      <li><a href="../sensor/index.html">Sensors</a></li>
-    </ul>
-    <div class="panel panel-default" ng-controller="AlertController">
-      <!-- Default panel contents -->
-      <div class="panel-heading">Alerts</div>
-
-      <!-- Table -->
-      <table class="table" ng-init="loadAlerts()">
-      <tr>
-          <td>Title</td>
-          <td>Sensor</td>
-          <td>Date</td>
-          <td>Type</td>
-          <td>Planet</td>
-      </tr>
-       <tr ng-repeat="alert in alerts" >
-            <td><a href="#" class="list-group-item"> {{alert.title}} </a> </td>
-            <td>{{alert.sensor}}</td>
-            <td>{{alert.date}}</td>
-            <td>{{alert.type}}</td>
-            <td>{{alert.planetName}}</td>
-        </tr> 
-      </table>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3 col-md-2 sidebar">
+      <ul class="nav nav-sidebar">
+        <li class="active"><a href="#">Dashboard</a></li>
+        <li><a href="../alert/index.html">Alerts</a></li>
+        <li><a href="../sensor/index.html">Sensors</a></li>
+        <li><a href="../user/index.html">Users</a></li>
+        <li><a href="../user/index.html">Settings</a></li>
+      </ul>
     </div>
-    <hr>    
-    <footer>
-        <div class="col-xs-12 col-sm-9">
-            <h3> Footer web application</a> </h3>
-        </div>
-    </footer>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+      <div class="row placeholders">
+        <!--<div class="col-xs-6 col-sm-3 placeholde">-->
+        <div id="chart-container" style="width:100%; height:400px;"></div>
+      </div>
+      <h2 class="sub-header">Recent Alerts</h2>
+      <div class="table-responsive" ng-controller="AlertController">
+        <table class="table table-striped" ng-init="loadAlerts()">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Source</th>
+              <th>Type</th>
+              <th>Title</th>
+              <th>Date</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="alert in alerts" >
+              <td>{{alert.__id}}</td>
+              <td>{{alert.source}}</td>
+              <td>{{alert.type}}</td>
+              <td>{{alert.title}}</td>
+              <td>{{alert.date}}</td>
+              <td>{{alert.description}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>    
 </div>
+<script type="text/javascript">
+  $(function () { 
+    $('#chart-container').highcharts({
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: 'Fruit Consumption'
+        },
+        xAxis: {
+            categories: ['Apples', 'Bananas', 'Oranges']
+        },
+        yAxis: {
+            title: {
+                text: 'Fruit eaten'
+            }
+        },
+        series: [{
+            name: 'Jane',
+            data: [1, 0, 4]
+        }, {
+            name: 'John',
+            data: [5, 7, 3]
+        }]
+    });
+  });
+</script>
 </body>
 </html>

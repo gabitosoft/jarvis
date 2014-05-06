@@ -28,5 +28,8 @@ cordova emulate
 npm install
 node app.js
 
+// POST create an User and return all of them after creation
+//  curl -d '{"name":"Gabriel Delgado", "email":"gabitosoft@gmail.com", "password": "mirmidon"}' -H "Content-Type: application/json" http://localhost:3000/api/user/create
+
 -- Database
 sudo genghisapp
