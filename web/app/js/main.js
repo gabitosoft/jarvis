@@ -30,89 +30,88 @@ app.controller('MainController', function($scope, $location, $http) {
 
    $scope.loadSummaryData = function() {
 
-    var alertsNoRead = 0;
-    $http.get('http://localhost:3000/api/alert/noread')
-        .then(function(result) {
-          console.log('result',result);
-          alertsNoRead = result.data;
-        });
-
-        console.log(alertsNoRead);
-
     var alertsbySensor = [];
     $http.get('http://localhost:3000/api/alert/querysensor')
         .then(function(result) {
           alertsbySensor = result.data;
+          console.log(alertsbySensor);
+
+          $('#chart-container-left').highcharts({
+              chart: {
+                type: 'bar'
+              },
+              title: {
+                text: 'Alerts by Sensor'
+              },
+              xAxis: {
+                categories: ['Unknow','Information', 'Warning', 'Danger']
+              },
+              yAxis: {
+                title: {
+                    text: 'Alerts'
+                }
+              },
+              series: alertsbySensor
+          });
         });
 
-        console.log(alertsbySensor);
+    $http.get('http://localhost:3000/api/alert')
+    .then(function(result) {
+      var alerts = 0;
+      alerts = result.data;
+      var danger = 0;
+      var information = 0;
+      var warning = 0;
+      var unknow = 0;
 
-    $('#chart-container-left').highcharts({
-        chart: {
-            type: 'bar'
-        },
-        title: {
-            text: 'Alerts by Sensor'
-        },
-        xAxis: {
-            categories: ['172.21.2.12', '10.0.0.11', '172.30.21.1']
-        },
-        yAxis: {
-            title: {
-                text: '1 Month'
-            }
-        },
-        series: [{
-            name: '172.21.2.12',
-            data: [1, 0, 4]
-        }, {
-            name: '10.0.0.11',
-            data: [5, 7, 3]
-        }]
-    });
+      alerts.forEach(function (item, index) {
 
-    $('#chart-container-right').highcharts({
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false
-        },
-        title: {
-            text: 'Alerts by type in the last 30 days'
-        },
-        tooltip: {
-          pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                    style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                    }
-                }
-            }
-        },
-        series: [{
-            type: 'pie',
-            name: 'Browser share',
-            data: [
-                ['Firefox',   45.0],
-                ['IE',       26.8],
-                {
-                    name: 'Chrome',
-                    y: 12.8,
-                    sliced: true,
-                    selected: true
-                },
-                ['Safari',    8.5],
-                ['Opera',     6.2],
-                ['Others',   0.7]
-            ]
-        }]
+        if (item.type == 'danger') danger++;
+        else
+          if (item.type == 'warning') warning++;
+          else
+            if (item.type == 'info') information++;
+            else
+              unknow++;
+      });
+
+      $('#chart-container-right').highcharts({
+          chart: {
+              plotBackgroundColor: null,
+              plotBorderWidth: null,
+              plotShadow: false
+          },
+          title: {
+              text: 'Alerts by type'
+          },
+          tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+          },
+          plotOptions: {
+              pie: {
+                  allowPointSelect: true,
+                  cursor: 'pointer',
+                  dataLabels: {
+                      enabled: true,
+                      format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                      style: {
+                          color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                      }
+                  },
+                  colors: ['#7CB5EC', '#EEEEEE', '#ed9c28', '#d43f3a']
+              }
+          },
+          series: [{
+              type: 'pie',
+              name: 'Alerts by Type',
+              data: [
+                  ['Information', information],
+                  ['Unknow',   unknow],
+                  ['Warning', warning],
+                  ['Danger', danger]
+              ]
+          }]
+      });
     });
   }
 });
@@ -198,6 +197,29 @@ app.controller('UserController', function($scope, $http, $window) {
 
 app.controller('AlertController', function($scope, $http) {
 
+  $scope.loadnoReadAlerts = function () {
+    $http.get('http://localhost:3000/api/alert/noread')
+    .then(function(result) {
+      var noReads = 0;
+      noReads = result.data;
+      $scope.danger = 0;
+      $scope.information = 0;
+      $scope.warning = 0;
+      $scope.unknow = 0;
+      $scope.done = 0;
+
+      noReads.forEach(function (item, index) {
+        if (item.type == 'danger') $scope.danger++;
+        else
+          if (item.type == 'warning') $scope.warning++;
+          else
+            if (item.type == 'info') $scope.information++;
+            else
+              $scope.unknow++;
+      });
+    });
+  }  
+
   $scope.alerts = [];
   $scope.loadAlerts = function() {
     $http.get('http://localhost:3000/api/alert')
@@ -207,61 +229,13 @@ app.controller('AlertController', function($scope, $http) {
   }
 });
 
-// app.controller('PlanetController', function($scope, $http) {
-
-//   $scope.newPlanet = function() {
-//     $scope.planet = {
-//       name: $scope.name,
-//       type: $scope.type,
-//       temperature: $scope.temperature,
-//       sky: $scope.sky,
-//       longNight: $scope.longNight,
-//       uv: $scope.uv
-//     }
-    
-//     $http({
-//       method: 'POST',
-//       url: 'http://localhost:3000/api/planet/create',
-//       data: $scope.planet
-//     }).
-//     success(function (data, status, headers, config) {
-//       console.log(data);
-//       console.log('success');
-//       alert('Planet Created');
-//       $scope.name = '';
-//       $scope.type = '';
-//       $scope.temperature = '';
-//       $scope.sky = '';
-//       $scope.longNight = '';
-//       $scope.uv = '';
-//     }).
-//     error(function (data, status, headers, config) {
-//       console.log('error');
-//       console.log(data);
-//     });
-//   }
-
-//   $scope.planets = [];
-//   $scope.loadPlanets = function() {
-//     $http.get('http://localhost:3000/api/planet')
-//      .then(function(result) {
-//        $scope.planets = result.data;
-//     });
-//   }
-
-//   $scope.goNewPlanet = function() {
-//     window.location = 'new.html';
-//   }
-
-// });
-
-
 app.controller('SensorController', function($scope, $http) {
 
   $scope.newSensor = function() {
     $scope.sensor = {
       name: $scope.name,
-      planet: $scope.planet
+      address: $scope.address,
+      description: $scope.description
     }
     
     $http({
@@ -287,7 +261,6 @@ app.controller('SensorController', function($scope, $http) {
   $scope.loadSensors = function() {
     $http.get('http://localhost:3000/api/sensor')
      .then(function(result) {
-      console.log('result', result);
        $scope.sensors = result.data;
     });
   }

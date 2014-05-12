@@ -10,7 +10,8 @@
     "cookie-parser": "*",
     "express-session": "*",
     "mongoose": "latest",
-    "bcrypt": "latest"
+    "bcrypt": "latest",
+    "async": "latest"
   },
   "author": "Gabriel Edgar Delgado Rocha"
 }

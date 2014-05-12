@@ -1,16 +1,13 @@
 <div ng-controller="AlertController" ng-init="loadnoReadAlerts()">
     <!-- Standard button -->
-    <button type="button" class="btn btn-default">Unknow {{ alerts.unknow }}</button>
+    <button type="button" class="btn btn-default new-alert">Unknow ({{ unknow }})</button>
 
     <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-    <button type="button" class="btn btn-primary">Information {{ alerts.information }}</button>
-
-    <!-- Indicates a successful or positive action -->
-    <button type="button" class="btn btn-success">Done {{ alerts.done }}</button>
+    <button type="button" class="btn btn-primary new-alert">Information ({{ information }})</button>
 
     <!-- Indicates caution should be taken with this action -->
-    <button type="button" class="btn btn-warning">Warning {{ alerts.warning }}</button>
+    <button type="button" class="btn btn-warning new-alert">Warning ({{ warning }})</button>
 
     <!-- Indicates a dangerous or potentially negative action -->
-    <button type="button" class="btn btn-danger">Danger {{ alerts.danger }}</button>
+    <button type="button" class="btn btn-danger new-alert">Danger ({{ danger }})</button>
 </div>
