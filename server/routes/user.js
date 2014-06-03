@@ -5,10 +5,11 @@ var bcrypt = require('bcrypt');
 module.exports = function (app) {
 
   var User = require('../models/User');
+  var Session = require('../models/Session');
 
   // GET Users
   app.get('/api/user', function(req, res) {
-    User.find(function(err, users){
+    User.find(function(err, users) {
       if (err) {
         res.send(err);
       }
@@ -20,7 +21,8 @@ module.exports = function (app) {
   //POST create
   app.post('/api/user/create', function(req, res) {
     if (!req.body.password || req.body.password !== req.body.confirmation) {
-      res.send(500, 'Password is not matching');
+      res.send(500, 'password-not-match');
+      return;
     }
 
     var userToken = 'default';
@@ -39,7 +41,20 @@ module.exports = function (app) {
         admin: false,
         online: false,
         encryptedPassword: encryptedPwd,
-        token: userToken
+        token: userToken,
+        settings: {
+          allAlerts: true,
+          unknowAlerts: true,
+          informationAlerts: true,
+          warningAlerts: true,
+          dangerAlerts: true,
+          chartSensor: true,
+          chartType: true,
+          language: 'English',
+          numAlerts: 30,
+          numSensors: 30,
+          numUsers: 30
+        }
       }, function(err) {
         if (err) {
           res.send(err);
@@ -55,21 +70,26 @@ module.exports = function (app) {
   app.post('/api/user/login', function(req, res) {
 
     if (!req.param('username') || !req.param('password')) {
-      res.send(500, 'Invalid parameters');
+      res.send(500, 'invalid-parameters');
       return;
     }
 
     User.findOne({ email: req.param('username') }, function(err, user) {
 
       if (err) {
-          res.send(500, 'User not found');
+          res.send(500, 'problems-findOne');
           return ;
+      }
+
+      if (!user) {
+        res.send(500, 'user-not-found');
+        return ;
       }
 
       // Compare password from the form params to the encrypted password of the user found.
       bcrypt.compare(req.param('password'), user.encryptedPassword, function(err, valid) {
         if (err) {
-          res.send(500, 'encryptedPassword failed');
+          res.send(500, 'encryptedPassword-failed');
           return ;
         }
 
@@ -77,26 +97,15 @@ module.exports = function (app) {
         if (!valid) {
           var usernamePasswordMismatchError = [{name: 'usernamePasswordMismatch', message: 'Invalid username and password combination.'}];
 
-          res.send(500, usernamePasswordMismatchError);
+          res.send(500, 'username-password-mismatch');
           return;
         }
 
-        req.session.regenerate(function (err) {
-          if (err) {
-            res.send(500, err);
-            return;
-          }
-        });
-        
-        // Log user in
-        req.session.authenticated = true;
-        req.session.User = user;
-
         // Change status to online
-        User.update({ email: user.email }, { online : true }, function(err) {
+        var token = req.session.id;
+        User.update({ email: user.email }, { online : true, token: token }, function(err) {
           if (err) {
-
-            res.send(500, 'login: fail on update');
+            res.send(500, 'login-fail-update');
           }
 
           // Inform other sockets (e.g. connected sockets that are subscribed) that this user is now logged in
@@ -105,7 +114,17 @@ module.exports = function (app) {
             app.connections[username].emit('alert', 'User: ' + user.email + 'now is connected');
           }
 
-          res.send(200,  {'message': 'Access granted'});
+          // Log user in
+          Session.create({
+              id: token,
+              username: req.param('username')
+            }, function(err) {
+              if (err) {
+                res.send(err);
+              }
+          });
+
+          res.send(200, { message: 'access-granted', token: user.token });
         });
       });
     });
@@ -114,17 +133,32 @@ module.exports = function (app) {
   // POST logout
   app.post('/api/user/logout', function(req, res) {
 
-    if (req.session.User) {
+    console.log('id', req.body.token);
+    console.log('username', req.body.username);
+    Session.findOne({ id: req.body.token, username: req.body.username }, function(err, session) {
 
-      User.findOne({ email : req.session.User.email}, function foundUser(err, user) {
+      if (!session) {
+        res.send(500, 'session-expired');
+        return;
+      }
+
+      User.findOne({ email : req.body.username }, function foundUser(err, user) {
 
           if (err) {
-            res.send(500, err);
+            res.send(500, 'logout-error-findOne');
+            return;
           }
+
+          if (!user) {
+            res.send(500, 'logout-fail-usernotfound');
+            return;
+          }
+
+          var token = user.token;
           // The user is "logging out" (e.g. destroying the session) so change the online attribute to false.
-          User.update({ email: user.email }, { online: false }, function(err) {
+          User.update({ email: user.email }, { online: false, token: null }, function(err) {
             if (err) {
-              res.send(500, 'logout: fail on update');
+              res.send(500, 'logout-fail-update');
               return;
             }
 
@@ -134,32 +168,48 @@ module.exports = function (app) {
             }
 
             // Wipe out the session (log out)
-            req.session.destroy();
-
-            // Redirect the browser to the sign-in screen
-            res.send(200, {'message': 'session closed'});
-            return;
+            Session.remove({
+              id: token
+            }, function (err, session){
+              if (err) {
+                res.send(500, 'session-fail-delete');
+              }
+              res.send(200, 'session-deleted');
+            });
           });
       });
-    } else {
-      res.send(500, 'Session Expired');
-    }
+    });
+  });
+
+  app.get('/api/user/:id', function(req, res) {
+    User.findOne({ email: req.params.id }, function(err, user) {
+      if (err) {
+        res.send(err);
+      }
+      res.json(user);
+    });
   });
 
   //DELETE 
   app.delete('/api/user/:id', function(req, res){
     User.remove({
-      _id: req.params.id
+      id: req.params.id
     }, function(err, user){
       if (err) {
-        res.send(err);
+        res.send(500, 'user-fail-delete');
       }
-      User.find(function(err, users){
-        if (err) {
-          res.send(err);
-        }
-        res.json(users);
-      });
+      res.send(200, 'user-deleted');
+    });
+  });
+
+  app.delete('/api/session/:id', function(req, res) {
+    Session.remove({
+      id: req.params.id
+    }, function (err, session){
+      if (err) {
+        res.send(500, 'session-fail-delete');
+      }
+      res.send(200, 'session-deleted');
     });
   });
 };

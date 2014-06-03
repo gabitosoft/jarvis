@@ -24,6 +24,14 @@ function init() {
                         '</a></li>'
                 );
                 socket.emit('message', { message: 'Client was notified' });
+
+                window.plugin.notification.local.add({
+                    id:      data._id,
+                    title:   data.title,
+                    message: data.description,
+                    autoCancel: true,
+                    sound: 'android.resource://sounds-767-arpeggio'
+                });
             });
 
             socket.on('connect', function () {

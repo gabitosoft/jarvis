@@ -1,14 +1,12 @@
 'use strict';
 var config = require('./config');
 var database = require('./services/database');
-
 var express = require('express');
 var mongoose = require('mongoose');
 var socket = require('socket.io');
-
 var app = express();
 module.exports = app;
-mongoose.connect('mongodb://'+config.db.server + ':' + config.db.port +'/' + config.db.name);
+mongoose.connect('mongodb://'+config.db.host + ':' + config.db.port +'/' + config.db.name);
 
 function main () {
   var http = require('http');
@@ -20,23 +18,16 @@ function main () {
   app.use(express.static(__dirname + config.public));
   app.use(bodyParser());
   // Session handler
-  //app.use(cookieParser('S3CRE7'));
   app.use(cookieParser());
-  app.use(session({ secret: 'S3CRE7', key: 'sid', cookie: { maxAge  : 24*60*60*1000 }  }));
+  app.use(session({ secret: 'S3CRE7', cookie: { secure: true } } ));
 
   app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
     next();
   });
 
   var server = http.createServer(app);
-
-  app.all('*', function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
-    next()
-  });
 
   // Load all routes
   require('./routes')(app);

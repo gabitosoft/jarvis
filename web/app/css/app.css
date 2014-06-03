@@ -28,3 +28,7 @@ footer {
 .btn-sign-in {
     width: 140px;
 }
+
+.gridStyle {
+    border: 1px solid rgb(212, 212, 212);
+}

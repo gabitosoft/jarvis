@@ -1,1 +1,91 @@
-<h1>Page under construction</h1>
+<form class="form-signin" ng-controller="SettingsController" ng-submit="saveSettings()">
+    <h1>Settings</h1>
+    <!-- Alerts -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Alerts</h3>
+      </div>
+      <div class="panel-body">
+        <div class="checkbox-inline">
+            <label>
+                <input type="checkbox" name="alerts" checked /> Enable Alerts
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" name="alerts-unknow" checked /> Receive Unknow alerts
+            </label>
+        </div>
+        <div class="checkbox bg-info" >
+            <label>
+                <input type="checkbox" name="alerts-information" checked /> Receive Information alerts
+            </label>
+        </div>
+        <div class="checkbox bg-warning">
+            <label>
+                <input type="checkbox" name="alerts-warning" checked /> Receive Warning alerts
+            </label>
+        </div>
+        <div class="checkbox bg-danger">
+            <label>
+                <input type="checkbox" name="alerts-danger" checked /> Receive Danger alerts
+            </label>
+        </div>
+      </div>
+    </div>
+    <!-- Charts -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Charts</h3>
+      </div>
+      <div class="panel-body">
+        <div class="checkbox-inline">
+            <label>
+                <input type="checkbox" name="alerts-by-sensor" checked /> Display Alerts by Sensor
+            </label>
+        </div>
+        <div class="checkbox-inline">
+            <label>
+                <input type="checkbox" name="alerts-by-type" checked /> Display Alerts by Type
+            </label>
+        </div>
+      </div>
+    </div>
+    <!-- Language -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Language</h3>
+      </div>
+      <div class="panel-body">
+        <label>Choose Language</label>
+        <div class="btn-group">
+          <button type="button" class="btn btn-default">English</button>
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            <span class="caret"></span>
+            <span class="sr-only">Toggle Dropdown</span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Spanish</a></li>
+            <li><a href="#">English</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Pagination -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Pagination</h3>
+      </div>
+      <div class="panel-body">
+        <label>Alerts by Page</label>
+        <input type="text" class="form-control" value="30">
+        <label>Sensors by Page</label>
+        <input type="text" class="form-control" value="30">
+        <label>Users by Page</label>
+        <input type="text" class="form-control" value="30">
+      </div>
+    </div>
+
+    <button type="reset" ng-click="deleteSensor($event)" class="btn btn-lg btn-danger">Cancel</button>
+    <button type="submit" ng-click="setRoute('newSensor', $event)" class="btn btn-lg btn-primary">Save</button>
+</form>

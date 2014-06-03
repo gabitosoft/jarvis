@@ -47,7 +47,7 @@
 <!-- Alerts -->
 <div data-role="page" id="alerts" >
     <div data-role="header">
-        <h1>J.A.R.V.I.S.</h1>
+        <h1>Alerts</h1>
     </div>
     <article data-role="content">
         <span id="status"></span>
@@ -80,17 +80,43 @@
 <!-- Settings -->
 <div data-role="page" id="settings" data-title="Settings">
     <div data-role="header">
-        <h1>J.A.R.V.I.S.</h1>
+        <h1>Settings</h1>
     </div>
     <article data-role="content">
-        <span>This page is under construction</span>
+        <span>Display Alerts</span>
         <div data-role="fieldcontain">
-            <label for="flip-2">Alerts:</label>
+            <label for="flip-2">Unknow:</label>
             <select name="flip-2" id="flip-2" data-role="slider">
                 <option value="off">Off</option>
                 <option selected value="on">On</option>
             </select>
         </div>
+        <div data-role="fieldcontain">
+            <label for="flip-2">Information:</label>
+            <select name="flip-2" id="flip-2" data-role="slider">
+                <option value="off">Off</option>
+                <option selected value="on">On</option>
+            </select>
+        </div>
+        <div data-role="fieldcontain">
+            <label for="flip-2">Warning:</label>
+            <select name="flip-2" id="flip-2" data-role="slider">
+                <option value="off">Off</option>
+                <option selected value="on">On</option>
+            </select>
+        </div>
+        <div data-role="fieldcontain">
+            <label for="flip-2">Danger:</label>
+            <select name="flip-2" id="flip-2" data-role="slider">
+                <option value="off">Off</option>
+                <option selected value="on">On</option>
+            </select>
+        </div>
+        <label for="select-choice-0" class="select">Language:</label>
+        <select name="select-choice-0" id="select-choice-0">
+           <option value="english">English</option>
+           <option value="Spanish">Spanish</option>
+        </select>
     </article>
     <footer data-role="footer" data-fullscreen="true" data-position="fixed">
         <div data-role="navbar" data-iconpos="top">
@@ -107,10 +133,10 @@
 <!-- Servers -->
 <div data-role="page" id="servers" data-title="Servers">
     <div data-role="header">
-        <h1>J.A.R.V.I.S.</h1>
+        <h1>Sensors</h1>
     </div>
     <article data-role="content">
-        <span data-role="fieldcontain" >This page is under construction</span>
+        <span data-role="fieldcontain" >Sensors connected</span>
         <ul data-role="listview">
             <li><label><input name="servers[]" type="checkbox" />10.0.0.11</label></li>
             <li><label><input name="servers[]" type="checkbox" />Server2</label></li>
@@ -142,7 +168,6 @@
 
     $('#login').on('click', login);
     //document.addEventListener("deviceready", setup, false);
-
 </script>
 </body>
 </html>

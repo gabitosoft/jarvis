@@ -1,3 +1,4 @@
+//var app = angular.module('webApp', ['ngRoute', 'ngGrid', 'pascalprecht.translate']);
 var app = angular.module('webApp', ['ngRoute']);
 
 app.config(function($routeProvider) {
@@ -9,13 +10,15 @@ app.config(function($routeProvider) {
       when('/setting', { templateUrl: '../setting/index.html'}).
       when('/user', { templateUrl: '../user/list.html'}).
       when('/newUser', { templateUrl: '../user/new.html'}).
+      when('/profile', { templateUrl: '../user/profile.html'}).
+      when('/help', { templateUrl: '../user/help.html'}).
       otherwise({ redirectTo: '/', templateUrl: '../alert/summary.html' });
 });
 
-// app.factory('socket', function () {
-//   var socket = io.connect('http://localhost:3000');
-//   return socket;
-// });
+app.factory('socket', function () {
+  var socket = io.connect('http://localhost:3000');
+  return socket;
+});
 
 app.controller('MainController', function($scope, $location, $http) {
     $scope.setRoute = function(route, $event) {
@@ -119,6 +122,8 @@ app.controller('MainController', function($scope, $location, $http) {
 app.controller('UserController', function($scope, $http, $window) {
 
   $scope.users = [];
+  $scope.user = null;
+
   $scope.loadUsers = function() {
     $http.get('http://localhost:3000/api/user')
      .then(function(result) {
@@ -139,32 +144,49 @@ app.controller('UserController', function($scope, $http, $window) {
     }).
     success(function (data, status, headers, config) {
       console.log(data);
-      console.log('login success');
       $window.location.href = 'partial/user/index.html';
     }).
     error(function (data, status, headers, config) {
-      console.log('error');
-      console.log(data);
+      if (status === 500) {
+
+        if (data === 'user-not-found' || data === 'username-password-mismatch') {
+          
+          $('#login-error').addClass('hidden');
+          $('#login-error').removeClass('show');
+
+          $('#login-failed').removeClass('hidden');
+          $('#login-failed').addClass('show');
+
+          return;
+        }
+      }
+
+      $('#login-failed').addClass('hidden');
+      $('#login-failed').removeClass('show');
+
+      $('#login-error').removeClass('hidden');
+      $('#login-error').addClass('show');
     });
   }
 
   $scope.logoutUser = function() {
     $scope.user = {
-      username: $scope.username,
-      password: $scope.password
+      username: $scope.user.email,
+      token: $scope.user.token
     }
+
+    console.log('scope', $scope);
     
     $http({
       method: 'POST',
       url: 'http://localhost:3000/api/user/logout',
-      data: $scope.UserController
+      data: $scope.user
     }).
     success(function (data, status, headers, config) {
       console.log(data);
-      console.log('success');
+      $window.location.href = '../../index.html';
     }).
     error(function (data, status, headers, config) {
-      console.log('error');
       console.log(data);
     });
   }
@@ -190,6 +212,13 @@ app.controller('UserController', function($scope, $http, $window) {
     error(function (data, status, headers, config) {
       console.log('error');
       console.log(data);
+    });
+  }
+
+  $scope.loadUserInformation = function() {
+    $http.get('http://localhost:3000/api/user/gabitosoft@gmail.com')
+    .then(function(result) {
+      $scope.user = result.data;
     });
   }
 });
@@ -264,5 +293,57 @@ app.controller('SensorController', function($scope, $http) {
        $scope.sensors = result.data;
     });
   }
+});
 
+app.controller('PaginationController', function($scope, $http) {
+
+  $scope.filterOptions = {
+    filterText: '',
+    useExternalFilter: true
+  };
+
+  $scope.setPagingData = function(data, page, pageSize) {
+    var pageData = data.slice((page - 1) * pageSize, page * pageSize);
+    $scope.myData = pagedData;
+    $scope.totalServerItems = data.length;
+    if (!$scope.$$phase) {
+      $scope.$apply();
+    }
+  };
+
+  $scope.getPagedDataAsync = function(pageSize, page, searchText) {
+    setTimeout(function() {
+      var data;
+      if (searchText) {
+        var ft = searchText.toLowerCase();
+        $http.get('http://localhost:3000/api/alert').success(function (largeLoad){
+          data = largeLoad.filter(function(item){
+            return JSON.stringify(item).toLowerCase().indexOf(ft) != -1;
+          });
+          $scope.setPagingData(data, page, pageSize);
+        });
+      } else {
+        $http.get('http://localhost:3000/api/alert').success(function (largeLoad) {
+          $scope.setPagingData(largeLoad, page, pageSize);
+        });
+      }
+    }, 100);
+  };
+
+  $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage);
+
+  $scope.$watch('pagingOptions', function(newVal, oldVal) {
+    if (newVal !== oldVal && newVal.currentPage !== oldVal.currentPage) {
+      $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
+    }
+  }, true);
+
+  $scope.gridOptions = {
+    data: 'myData',
+    enablePaging: true,
+    showFooter: true,
+    totalServerItems: 'totalServerItems',
+    pagingOptions: $scope.pagingOptions,
+    filterOptions: $scope.filterOptions
+  };
 });

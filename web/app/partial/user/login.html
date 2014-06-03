@@ -24,17 +24,8 @@
             <a class="navbar-brand" href="/user/index">J.A.R.V.I.S.</a>
         </div>
         <div class="navbar-collapse collapse">
-            <!--<ul class="nav navbar-nav">-->
-                <!--<% if (session.authenticated) { %>-->
-                <!--<li class="active"><a href="/user/show/{{ session.User.id }}"> {{ session.User.name }} </a></li>-->
-                <!--<% } %>-->
-            <!--</ul>-->
             <div class="navbar-right">
-                <!--<% if (session.authenticated) { %>-->
-                <!--<a class="btn btn-default navbar-btn navbar-right" href="/session/destroy">Logout</a>-->
-                <!--<% } %>-->
             </div>
-            <!--<% if (!session.authenticated) { %>-->
             <form class="navbar-form navbar-right" ng-controller="UserController" ng-submit="loginUser()" action="">
                 <div class="form-group">
                     <input type="text" ng-model="username" id="username" name="username" placeholder="Email" class="form-control">
@@ -46,7 +37,6 @@
                 <button type="button" ng-click="signinPage()" class="btn btn-primary">Sig-in</button>
                 <input type="hidden" name="_csrf" value="{{ _csrf }}">
             </form>
-            <!--<% } %>-->
         </div>
     </div>
 </div>

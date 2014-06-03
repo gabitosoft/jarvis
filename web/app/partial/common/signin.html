@@ -1,5 +1,11 @@
 <div class="col-xs-12 col-md-8">
     <h2>JARVIS</h2>
+    <div id ="login-failed" class="alert alert-warning hidden">
+        Invalid Username or password
+    </div>
+    <div id ="login-error" class="alert alert-danger hidden">
+        An error occurred while attempting connect to the server. 
+    </div>
     <p>Just a rather very intelligent system</p>
     <div>
         <p>
@@ -37,7 +43,7 @@
         <p>
             Create a JARVIS account is fast, easy and free
         </p>
-        <button type="button" ng-click="signinPage()" class="btn btn-primary btn-sign-in">
+        <button type="button" ng-click="setRoute('alert', $event)" class="btn btn-primary btn-sign-in">
             Create an account
         </button> 
     </div>

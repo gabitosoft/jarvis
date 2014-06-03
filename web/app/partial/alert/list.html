@@ -1,43 +1,44 @@
 <h2>Alerts</h2>
-<div class="table-responsive" ng-controller="AlertController">
-    <table class="table table-striped" ng-init="loadAlerts()">
-        <thead>
-            <tr>
-              <th><a>All / None</a></th>
-              <th>Id</th>
-              <th>Source</th>
-              <th>Type</th>
-              <th>Title</th>
-              <th>Date</th>
-              <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="alert in alerts" >
-              <td>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" name="alerts[]"/>
-                  </label>
-                </div>
-              </td>
-              <td> {{alert._id}} </td>
-              <td> {{alert.source}} </td>
-              <td> {{alert.type}} </td>
-              <td> {{alert.title}} </td>
-              <td> {{alert.date}} </td>
-              <td> {{alert.description}} </td>
-            </tr>
-        </tbody>
-    </table>
-    <ul class="pagination">
-      <li><a href="#">&laquo;</a></li>
-      <li><a href="#">1</a></li>
-      <li><a href="#">2</a></li>
-      <li><a href="#">3</a></li>
-      <li><a href="#">4</a></li>
-      <li><a href="#">5</a></li>
-      <li><a href="#">&raquo;</a></li>
-    </ul>
+<div ng-controller="AlertController">
+  <!--<div class="gridStyle" ng-grid="gridOptions"></div>-->
+  <table class="table table-striped" ng-init="loadAlerts()">
+      <thead>
+          <tr>
+            <th><input type="checkbox" name="selectall"/></th>
+            <th>Id</th>
+            <th>Source</th>
+            <th>Type</th>
+            <th>Title</th>
+            <th>Date</th>
+            <th>Description</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr ng-repeat="alert in alerts" >
+            <td>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="alerts[]"/>
+                </label>
+              </div>
+            </td>
+            <td> {{alert._id}} </td>
+            <td> {{alert.source}} </td>
+            <td> {{alert.type}} </td>
+            <td> {{alert.title}} </td>
+            <td> {{alert.date}} </td>
+            <td> {{alert.description}} </td>
+          </tr>
+      </tbody>
+  </table>
+  <ul class="pagination">
+    <li><a href="#">&laquo;</a></li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li><a href="#">&raquo;</a></li>
+  </ul>
 </div>
 <button type="button" ng-click="deleteAlert($event)" class="btn btn-danger">Delete</button>
