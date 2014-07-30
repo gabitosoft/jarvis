@@ -3,22 +3,22 @@ footer {
 }
 
 .container {
-	margin-top: 70px;
+    margin-top: 70px;
 }
 
 .button-newUser {
 
-	margin-top: 38px;
+    margin-top: 38px;
 }
 
 .button-newPlanet {
 
-	margin-top: 38px;
+    margin-top: 38px;
 }
 
 .button-newSensor {
 
-	margin-top: 38px;
+    margin-top: 38px;
 }
 
 .sign-in-form {
@@ -31,4 +31,8 @@ footer {
 
 .gridStyle {
     border: 1px solid rgb(212, 212, 212);
+}
+
+.text-capitalize {
+    text-transform: capitalize;
 }

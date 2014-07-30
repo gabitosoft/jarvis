@@ -23,10 +23,7 @@ module.exports = mongoose.model('user', {
     dangerAlerts: Boolean,
     chartSensor: Boolean,
     chartType: Boolean,
-    language: String,
-    numAlerts: Number,
-    numSensors: Number,
-    numUsers: Number
+    language: String
   }
 });
 

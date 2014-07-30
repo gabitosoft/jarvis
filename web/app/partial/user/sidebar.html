@@ -1,27 +1,27 @@
 <ul class="nav nav-sidebar">
     <li class="active">
         <a ng-click="setRoute('dashboard', $event)">
-            <span class="glyphicon glyphicon-stats"></span>&nbsp;Dashboard
+            <span class="glyphicon glyphicon-stats"></span>&nbsp;{{resourceBundle.leftMenu.dashboard}}
         </a>
     </li>
     <li>
         <a ng-click="setRoute('alert', $event)">
-            <span class="glyphicon glyphicon-warning-sign"></span>&nbsp;Alerts
+            <span class="glyphicon glyphicon-warning-sign"></span>&nbsp;{{resourceBundle.leftMenu.alerts}}
         </a>
     </li>
     <li>
         <a ng-click="setRoute('sensor', $event)">
-        <span class="glyphicon glyphicon-hdd"></span>&nbsp;Sensors
+        <span class="glyphicon glyphicon-hdd"></span>&nbsp;{{resourceBundle.leftMenu.sensors}}
         </a>
     </li>
     <li>
         <a ng-click="setRoute('user', $event)">
-        <span class="glyphicon glyphicon-user"></span>&nbsp;Users
+        <span class="glyphicon glyphicon-user"></span>&nbsp;{{resourceBundle.leftMenu.users}}
         </a>
     </li>
     <li>
         <a ng-click="setRoute('setting', $event)">
-            <span class="glyphicon glyphicon-cog"></span>&nbsp;Settings
+            <span class="glyphicon glyphicon-cog"></span>&nbsp;{{resourceBundle.leftMenu.settings}}
         </a>
     </li>
 </ul>

@@ -1,34 +1,40 @@
-<form class="form-signin" ng-controller="SettingsController" ng-submit="saveSettings()">
-    <h1>Settings</h1>
+<form class="form-signin" ng-init="loadUserSettings()" ng-controller="SettingsController" ng-submit="saveSettings()">
+    <h1>{{resourceBundle.settings.title}}</h1>
+    <div id ="settings-error" class="alert alert-danger hidden">
+        {{resourceBundle.settings.messages.danger}}
+    </div>
+    <div id ="settings-saved" class="alert alert-success hidden">
+        {{resourceBundle.settings.messages.success}}
+    </div>
     <!-- Alerts -->
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Alerts</h3>
+        <h3 class="panel-title">{{resourceBundle.alerts.title}}</h3>
       </div>
       <div class="panel-body">
         <div class="checkbox-inline">
             <label>
-                <input type="checkbox" name="alerts" checked /> Enable Alerts
+                <input ng-model="settings.allAlerts" type="checkbox" /> {{resourceBundle.settings.enableAlerts}}
             </label>
         </div>
         <div class="checkbox">
             <label>
-                <input type="checkbox" name="alerts-unknow" checked /> Receive Unknow alerts
+                <input type="checkbox" ng-model="settings.unknowAlerts" name="alerts-unknow" /> {{resourceBundle.settings.unknowAlerts}}
             </label>
         </div>
         <div class="checkbox bg-info" >
             <label>
-                <input type="checkbox" name="alerts-information" checked /> Receive Information alerts
+                <input type="checkbox" ng-model="settings.informationAlerts" name="alerts-information" /> {{resourceBundle.settings.informationAlerts}}
             </label>
         </div>
         <div class="checkbox bg-warning">
             <label>
-                <input type="checkbox" name="alerts-warning" checked /> Receive Warning alerts
+                <input type="checkbox" ng-model="settings.warningAlerts" name="alerts-warning" /> {{resourceBundle.settings.warningAlerts}}
             </label>
         </div>
         <div class="checkbox bg-danger">
             <label>
-                <input type="checkbox" name="alerts-danger" checked /> Receive Danger alerts
+                <input type="checkbox" ng-model="settings.dangerAlerts" name="alerts-danger" /> {{resourceBundle.settings.dangerAlerts}}
             </label>
         </div>
       </div>
@@ -36,17 +42,17 @@
     <!-- Charts -->
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Charts</h3>
+        <h3 class="panel-title">{{resourceBundle.settings.charts}}</h3>
       </div>
       <div class="panel-body">
         <div class="checkbox-inline">
             <label>
-                <input type="checkbox" name="alerts-by-sensor" checked /> Display Alerts by Sensor
+                <input type="checkbox" ng-model="settings.chartSensor" name="alerts-by-sensor"/> {{resourceBundle.settings.alertsBySensor}}
             </label>
         </div>
         <div class="checkbox-inline">
             <label>
-                <input type="checkbox" name="alerts-by-type" checked /> Display Alerts by Type
+                <input type="checkbox" ng-model="settings.chartType" name="alerts-by-type"/> {{resourceBundle.settings.alertsByType}}
             </label>
         </div>
       </div>
@@ -54,38 +60,22 @@
     <!-- Language -->
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Language</h3>
+        <h3 class="panel-title">{{resourceBundle.settings.language}}</h3>
       </div>
       <div class="panel-body">
-        <label>Choose Language</label>
+        <label>{{resourceBundle.settings.chooseLanguage}}</label>
         <div class="btn-group">
-          <button type="button" class="btn btn-default">English</button>
+          <button type="button" class="btn btn-default">{{ settings.language }}</button>
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
             <span class="caret"></span>
             <span class="sr-only">Toggle Dropdown</span>
           </button>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Spanish</a></li>
-            <li><a href="#">English</a></li>
+          <ul class="dropdown-menu" role="menu" ng-model="i18n.language" id="switchLanguage">
+              <li class="text-capitalize" ng-click="switchLanguage($event)" ng-repeat="language in languages">{{language.locale}}</li>
           </ul>
         </div>
       </div>
     </div>
-    <!-- Pagination -->
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Pagination</h3>
-      </div>
-      <div class="panel-body">
-        <label>Alerts by Page</label>
-        <input type="text" class="form-control" value="30">
-        <label>Sensors by Page</label>
-        <input type="text" class="form-control" value="30">
-        <label>Users by Page</label>
-        <input type="text" class="form-control" value="30">
-      </div>
-    </div>
-
-    <button type="reset" ng-click="deleteSensor($event)" class="btn btn-lg btn-danger">Cancel</button>
-    <button type="submit" ng-click="setRoute('newSensor', $event)" class="btn btn-lg btn-primary">Save</button>
+    <button type="reset" class="btn btn-lg btn-danger">{{resourceBundle.buttons.cancel}}</button>
+    <button type="submit" class="btn btn-lg btn-primary">{{resourceBundle.buttons.save}}</button>
 </form>

@@ -1,44 +1,64 @@
-<h2>Alerts</h2>
+<h2>{{resourceBundle.alerts.title}}</h2>
 <div ng-controller="AlertController">
-  <!--<div class="gridStyle" ng-grid="gridOptions"></div>-->
-  <table class="table table-striped" ng-init="loadAlerts()">
-      <thead>
-          <tr>
-            <th><input type="checkbox" name="selectall"/></th>
-            <th>Id</th>
-            <th>Source</th>
-            <th>Type</th>
-            <th>Title</th>
-            <th>Date</th>
-            <th>Description</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr ng-repeat="alert in alerts" >
-            <td>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" name="alerts[]"/>
-                </label>
-              </div>
-            </td>
-            <td> {{alert._id}} </td>
-            <td> {{alert.source}} </td>
-            <td> {{alert.type}} </td>
-            <td> {{alert.title}} </td>
-            <td> {{alert.date}} </td>
-            <td> {{alert.description}} </td>
-          </tr>
-      </tbody>
-  </table>
-  <ul class="pagination">
-    <li><a href="#">&laquo;</a></li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li><a href="#">&raquo;</a></li>
-  </ul>
+    <div class="btn-group">
+        <button type="button" class="btn btn-default">{{ resourceBundle.alerts.type.unknow}}</button>
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+          <span class="caret"></span>
+          <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu" role="menu" ng-model="typeAlert" id="switchLanguage">
+            <li class="text-capitalize" ng-click="switchLanguage($event)" ng-repeat="language in languages">{{language.locale}}</li>
+        </ul>
+    </div>
+    <div ng-controller="PaginationController">
+<!--    <table class="table table-striped" ng-init="loadAlerts()">-->
+    <table class="table table-striped">
+        <thead>
+            <tr>
+              <th><input type="checkbox" id="selectall" ng-click="selectAll($event)"/></th>
+              <th>{{resourceBundle.alerts.id}}</th>
+              <th>{{resourceBundle.alerts.source}}</th>
+              <th>{{resourceBundle.alerts.typeList}}</th>
+              <th>{{resourceBundle.alerts.titleList}}</th>
+              <th>{{resourceBundle.alerts.date}}</th>
+              <th>{{resourceBundle.alerts.description}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="alert in alerts | filter:typeAlert">
+              <td>
+                <div class="checkbox">
+                  <label>
+                    <input id="{{alert._id}}" type="checkbox"/>
+                  </label>
+                </div>
+              </td>
+              <td> {{alert._id}} </td>
+              <td> {{alert.source}} </td>
+              <td> {{alert.type}} </td>
+              <td> {{alert.title}} </td>
+              <td> {{alert.date}} </td>
+              <td> {{alert.description}} </td>
+            </tr>
+        </tbody>
+    </table>
+    <ul class="pagination">
+        <li data-ng-class="{disabled: isPrevDisabled}">
+            <a data-ng-click="prev()">&laquo;</a>
+        </li>
+        <li data-ng-repeat="page in pages" ng-class="{active: current===page}">
+            <a data-ng-click="goto(page)">{{page}}</a>
+        </li>
+        <li data-ng-class="{disabled: isNextDisabled}">
+            <a data-ng-click="next()">&raquo;</a>
+        </li>
+    </ul>  
+  </div>
+    <button type="button" ng-click="deleteAlert($event)" class="btn btn-danger">{{resourceBundle.buttons.delete}}</button>
+    <div id ="alert-error" class="alert alert-danger hidden">
+        {{resourceBundle.alerts.messages.delete.fail}}
+    </div>
+    <div id ="alert-deleted" class="alert alert-success hidden">
+        {{resourceBundle.alerts.messages.delete.successOne}}
+    </div>
 </div>
-<button type="button" ng-click="deleteAlert($event)" class="btn btn-danger">Delete</button>

@@ -1,13 +1,13 @@
-<h2>Users</h2>
+<h2>{{resourceBundle.user.title}}</h2>
 <div class="table-responsive" ng-controller="UserController">
     <table class="table table-striped" ng-init="loadUsers()">
         <thead>
             <tr>
-              <th><a>All / None</a></th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Admin</th>
-              <th>Online</th>
+              <th><input type="checkbox" name="selectall" ng-click="selectAll($event)"/></th>
+              <th>{{resourceBundle.user.name}}</th>
+              <th>{{resourceBundle.user.email}}</th>
+              <th>{{resourceBundle.user.admin}}</th>
+              <th>{{resourceBundle.user.online}}</th>
             </tr>
         </thead>
         <tbody>
@@ -15,7 +15,7 @@
               <td>
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox" name="users[]"/>
+                    <input id="{{user._id}}" type="checkbox"/>
                   </label>
                 </div>
               </td>
@@ -35,6 +35,12 @@
       <li><a href="#">5</a></li>
       <li><a href="#">&raquo;</a></li>
     </ul>
+    <button type="button" ng-click="deleteUser($event)" class="btn btn-danger">{{resourceBundle.buttons.delete}}</button>
+    <button type="button" ng-click="setRoute('newUser', $event)" class="btn btn-primary">{{resourceBundle.buttons.new}}</button>
+    <div id ="user-error" class="alert alert-danger hidden">
+            {{resourceBundle.users.messages.delete.fail}}
+    </div>
+    <div id ="user-deleted" class="alert alert-success hidden">
+        {{resourceBundle.users.messages.delete.successOne}}
+    </div>
 </div>
-<button type="button" ng-click="deleteUser($event)" class="btn btn-danger">Delete</button>
-<button type="button" ng-click="setRoute('newUser', $event)" class="btn btn-primary">New</button>

@@ -1,0 +1,84 @@
+{
+    "projectName": "J.A.R.V.I.S.",
+    "title": "Notification System on Real Time",
+    "user": {
+        "title": "Users",
+        "name": "Name",
+        "email": "Email",
+        "password": "Password",
+        "confirmation": "Confirmation",
+        "admin": "Admin",
+        "online": "Online"
+    },
+    "buttons": {
+        "new": "New",
+        "delete": "Delete",
+        "cancel": "Cancel",
+        "save": "Save",
+        "signin": "Sign-In",
+        "logout": "Logout",
+        "help": "Help"
+    },
+    "leftMenu": {
+        "dashboard": "Dashboard",
+        "alerts": "Alerts",
+        "sensors": "Sensors",
+        "users": "Users",
+        "settings": "Settings"
+    },
+    "alerts": {
+        "title": "Alerts",
+        "type": {
+            "unknow": "Unknow",
+            "information": "Information",
+            "warning": "Warning",
+            "danger": "Danger"
+        },
+        "id": "Id",
+        "source": "Source",
+        "typeList": "Type",
+        "titleList": "Title",
+        "date": "Date",
+        "description": "Description",
+        "messages": {
+            "delete": {
+                "successOne": "The Alert was deleted successfully",
+                "successMany": "The Alerts were deleted successfully",
+                "fail": "Was not possible to delete the Alert, please try again or consult to your administrator"
+            }
+        }
+    },
+    "sensors": {
+        "title": "Sensors",
+        "name": "Name",
+        "address": "Address",
+        "description": "Description",
+        "messages": {
+            "delete": {
+                "successOne": "The Sensor was deleted successfully",
+                "successMany": "The Sensors were deleted successfully",
+                "fail": "Was not possible to delete the sensor, please try again or consult to your administrator"
+            }
+        }
+    },
+    "settings": {
+        "title": "Settings",
+        "enableAlerts": "Enable Alerts",
+        "unknowAlerts": "Receive Unknow alerts",
+        "informationAlerts": "Receive Information alerts",
+        "warningAlerts": "Receive Warning alerts",
+        "dangerAlerts": "Receive Danger alerts",
+        "charts": "Charts",
+        "alertsBySensor": "Display Alerts by Sensor",
+        "alertsByType": "Display Alerts by Type",
+        "language": "Language",
+        "chooseLanguage": "Choose Language",
+        "spanish": "Spanish",
+        "english": "English",
+        "messages": {
+            "danger": "There was an error when save settings",
+            "success": "Settings were changed successfully"
+        }
+    }
+}
+

@@ -1,6 +1,4 @@
 
-var bcrypt = require('bcrypt');
-
 // Paths to API
 module.exports = function (app) {
 
@@ -16,8 +14,7 @@ module.exports = function (app) {
     });
   });
 
-// POST create an User and return all of them after creation
-//  curl -d '{"name":"Gabriel Delgado", "email":"gabitosoft@gmail.com", "password": "mirmidon"}' -H "Content-Type: application/json" http://localhost:3000/api/user/create
+// POST create an Sensor
 
   app.post('/api/sensor/create', function(req, res) {
 
@@ -34,20 +31,15 @@ module.exports = function (app) {
     res.send(200);
   });
 
-  // DELETE an specific User and return all of them after delete it
-  app.delete('/api/users/:id', function(req, res){
-    User.remove({
+  // DELETE a Sensor
+  app.delete('/api/sensor/:id', function(req, res) {
+    Sensor.remove({
       _id: req.params.id
-    }, function(err, user){
-      if (err) {
-        res.send(err);
+    }, function(err, sensor){
+      if (err){ 
+        res.send(500, 'error-delete-sensor' + err);
       }
-      user.find(function(err, users){
-        if (err) {
-          res.send(err);
-        }
-        res.json(users);
-      });
+      res.send(200, 'sensor-deleted');
     });
   });
 };

@@ -1,5 +1,4 @@
-//var app = angular.module('webApp', ['ngRoute', 'ngGrid', 'pascalprecht.translate']);
-var app = angular.module('webApp', ['ngRoute']);
+var app = angular.module('webApp', ['ngRoute', 'ngI18n']);
 
 app.config(function($routeProvider) {
     $routeProvider.
@@ -15,12 +14,49 @@ app.config(function($routeProvider) {
       otherwise({ redirectTo: '/', templateUrl: '../alert/summary.html' });
 });
 
+app.value('ngI18nConfig', {
+  defaultLocale: 'english',
+  supportedLocales: ['english', 'spanish'],
+  basePath: '../../i18n',
+  cache: true
+});
+
 app.factory('socket', function () {
   var socket = io.connect('http://localhost:3000');
   return socket;
 });
 
-app.controller('MainController', function($scope, $location, $http) {
+app.factory('ItemService', [
+  function () {
+    var _total = 15;
+    return {
+      get: function (start, limit, data) {
+        var _i, _items = new Array();
+
+        for (_i = start; _i < start + limit; _i += 1) {
+          _items.push(data[_i]);
+        }
+
+        return {
+          items: _items,
+          start: start,
+          limit: limit,
+          total: _total
+        };
+      },
+      initalValues: function () {
+        return {
+          start: 1,
+          limit: 5,
+          total: _total
+        };
+      }
+    };
+  }
+]);
+
+app.controller('MainController', ['$scope', 
+  'ngI18nResourceBundle', '$location', '$http', function($scope, ngI18nResourceBundle, $location, $http) {
     $scope.setRoute = function(route, $event) {
       $location.path(route);
 
@@ -29,15 +65,33 @@ app.controller('MainController', function($scope, $location, $http) {
         item.siblings().removeClass('active');
         item.addClass('active');
       }
-   }
+   };
 
-   $scope.loadSummaryData = function() {
+   $scope.languages = [
+        { locale: "english" },
+        { locale: "spanish" }
+    ];
+    
+    $scope.i18n = { language: $scope.languages[0] };
+    
+    $scope.$watch('i18n.language', function(language) {
+        ngI18nResourceBundle.get({locale: language.locale}).success(function (resourceBundle){
+            $scope.resourceBundle = resourceBundle;
+        });
+    });
+    
+    $scope.switchLanguage = function(language) {
+      ngI18nResourceBundle.get({ locale: language.currentTarget.innerText }).success(function (resourceBundle){
+        $scope.resourceBundle = resourceBundle;
+      });
+    };
+
+   $scope.loadSummaryData = function(resourceBundle) {
 
     var alertsbySensor = [];
     $http.get('http://localhost:3000/api/alert/querysensor')
         .then(function(result) {
           alertsbySensor = result.data;
-          console.log(alertsbySensor);
 
           $('#chart-container-left').highcharts({
               chart: {
@@ -69,11 +123,11 @@ app.controller('MainController', function($scope, $location, $http) {
 
       alerts.forEach(function (item, index) {
 
-        if (item.type == 'danger') danger++;
+        if (item.type === 'danger') danger++;
         else
-          if (item.type == 'warning') warning++;
+          if (item.type === 'warning') warning++;
           else
-            if (item.type == 'info') information++;
+            if (item.type === 'info') information++;
             else
               unknow++;
       });
@@ -116,8 +170,8 @@ app.controller('MainController', function($scope, $location, $http) {
           }]
       });
     });
-  }
-});
+  };
+}]);
 
 app.controller('UserController', function($scope, $http, $window) {
 
@@ -129,13 +183,13 @@ app.controller('UserController', function($scope, $http, $window) {
      .then(function(result) {
        $scope.users = result.data;
     });
-  }
+  };
 
   $scope.loginUser = function() {
     $scope.user = {
       username: $scope.username,
       password: $scope.password
-    }
+    };
     
     $http({
     	method: 'POST',
@@ -143,7 +197,6 @@ app.controller('UserController', function($scope, $http, $window) {
     	data: $scope.user
     }).
     success(function (data, status, headers, config) {
-      console.log(data);
       $window.location.href = 'partial/user/index.html';
     }).
     error(function (data, status, headers, config) {
@@ -167,16 +220,14 @@ app.controller('UserController', function($scope, $http, $window) {
       $('#login-error').removeClass('hidden');
       $('#login-error').addClass('show');
     });
-  }
+  };
 
   $scope.logoutUser = function() {
     $scope.user = {
       username: $scope.user.email,
       token: $scope.user.token
-    }
+    };
 
-    console.log('scope', $scope);
-    
     $http({
       method: 'POST',
       url: 'http://localhost:3000/api/user/logout',
@@ -189,7 +240,7 @@ app.controller('UserController', function($scope, $http, $window) {
     error(function (data, status, headers, config) {
       console.log(data);
     });
-  }
+  };
 
   $scope.newUser = function() {
     $scope.user = {
@@ -197,7 +248,7 @@ app.controller('UserController', function($scope, $http, $window) {
       email: $scope.email,
       password: $scope.password,
       confirmation: $scope.confirmation
-    }
+    };
     
     $http({
       method: 'POST',
@@ -213,21 +264,60 @@ app.controller('UserController', function($scope, $http, $window) {
       console.log('error');
       console.log(data);
     });
-  }
+  };
 
   $scope.loadUserInformation = function() {
-    $http.get('http://localhost:3000/api/user/gabitosoft@gmail.com')
+    var email = $('#useremail').val();
+    $http.get('http://localhost:3000/api/user/'+email)
     .then(function(result) {
       $scope.user = result.data;
     });
-  }
+  };
+  
+  $scope.selectAll = function(event) {
+    var items = $('[type=checkbox]');
+    if (event.target.checked) {
+      
+      items.prop("checked", true);
+    } else {
+      items.prop("checked", false);
+    }
+  };
+  
+  $scope.deleteUser = function() {
+    var items = $('input:checked').not('#selectall');
+    items.each(function (index, item){
+      $http.delete('http://localhost:3000/api/user/' + item.id).
+      success(function (data, status, headers, config) {
+        if (status === 200) {
+          $('#user-deleted').addClass('show');
+          $('#user-deleted').removeClass('hidden');
+
+          $('#user-error').addClass('hidden');
+          $('#user-error').removeClass('show');
+
+          return;
+        }
+      }).
+      error(function (data, status, headers, config) {
+        if (status === 500) {
+            $('#user-error').addClass('show');
+            $('#user-error').removeClass('hidden');
+
+            $('#user-deleted').addClass('hidden');
+            $('#user-deleted').removeClass('show');
+            return;
+        }
+      });
+    }); 
+  };
 });
 
 
 app.controller('AlertController', function($scope, $http) {
 
   $scope.loadnoReadAlerts = function () {
-    $http.get('http://localhost:3000/api/alert/noread')
+    $http.get('http://localhost:3000/api/alert/status/false')
     .then(function(result) {
       var noReads = 0;
       noReads = result.data;
@@ -238,24 +328,61 @@ app.controller('AlertController', function($scope, $http) {
       $scope.done = 0;
 
       noReads.forEach(function (item, index) {
-        if (item.type == 'danger') $scope.danger++;
+        if (item.type === 'danger') $scope.danger++;
         else
-          if (item.type == 'warning') $scope.warning++;
+          if (item.type === 'warning') $scope.warning++;
           else
-            if (item.type == 'info') $scope.information++;
+            if (item.type === 'info') $scope.information++;
             else
               $scope.unknow++;
       });
     });
-  }  
+  };  
 
-  $scope.alerts = [];
   $scope.loadAlerts = function() {
     $http.get('http://localhost:3000/api/alert')
      .then(function(result) {
        $scope.alerts = result.data;
     });
-  }
+  };
+  
+  $scope.selectAll = function(event) {
+    var items = $('[type=checkbox]');
+    if (event.target.checked) {
+      
+      items.prop("checked", true);
+    } else {
+      items.prop("checked", false);
+    }
+  };
+  
+  $scope.deleteAlert = function() {
+    var items = $('input:checked').not('#selectall');
+    items.each(function (index, item){
+      $http.delete('http://localhost:3000/api/alert/' + item.id).
+      success(function (data, status, headers, config) {
+        if (status === 200) {
+          $('#alert-deleted').addClass('show');
+          $('#alert-deleted').removeClass('hidden');
+
+          $('#alert-error').addClass('hidden');
+          $('#alert-error').removeClass('show');
+
+          return;
+        }
+      }).
+      error(function (data, status, headers, config) {
+        if (status === 500) {
+            $('#alert-error').addClass('show');
+            $('#alert-error').removeClass('hidden');
+
+            $('#alert-deleted').addClass('hidden');
+            $('#alert-deleted').removeClass('show');
+            return;
+        }
+      });
+    }); 
+  };
 });
 
 app.controller('SensorController', function($scope, $http) {
@@ -265,7 +392,7 @@ app.controller('SensorController', function($scope, $http) {
       name: $scope.name,
       address: $scope.address,
       description: $scope.description
-    }
+    };
     
     $http({
       method: 'POST',
@@ -284,7 +411,7 @@ app.controller('SensorController', function($scope, $http) {
       console.log('error');
       console.log(data);
     });
-  }
+  };
 
   $scope.sensors = [];
   $scope.loadSensors = function() {
@@ -292,58 +419,154 @@ app.controller('SensorController', function($scope, $http) {
      .then(function(result) {
        $scope.sensors = result.data;
     });
-  }
-});
-
-app.controller('PaginationController', function($scope, $http) {
-
-  $scope.filterOptions = {
-    filterText: '',
-    useExternalFilter: true
   };
-
-  $scope.setPagingData = function(data, page, pageSize) {
-    var pageData = data.slice((page - 1) * pageSize, page * pageSize);
-    $scope.myData = pagedData;
-    $scope.totalServerItems = data.length;
-    if (!$scope.$$phase) {
-      $scope.$apply();
+  
+  $scope.selectAll = function(event) {
+    var items = $('[type=checkbox]');
+    if (event.target.checked) {
+      
+      items.prop("checked", true);
+    } else {
+      items.prop("checked", false);
     }
   };
+  
+  $scope.deleteSensor = function() {
+    var items = $('input:checked').not('#selectall');
+    console.log(items);
+    items.each(function (index, item){
+      $http.delete('http://localhost:3000/api/sensor/' + item.id).
+      success(function (data, status, headers, config) {
+        if (status === 200) {
+          $('#sensor-deleted').addClass('show');
+          $('#sensor-deleted').removeClass('hidden');
 
-  $scope.getPagedDataAsync = function(pageSize, page, searchText) {
-    setTimeout(function() {
-      var data;
-      if (searchText) {
-        var ft = searchText.toLowerCase();
-        $http.get('http://localhost:3000/api/alert').success(function (largeLoad){
-          data = largeLoad.filter(function(item){
-            return JSON.stringify(item).toLowerCase().indexOf(ft) != -1;
-          });
-          $scope.setPagingData(data, page, pageSize);
-        });
-      } else {
-        $http.get('http://localhost:3000/api/alert').success(function (largeLoad) {
-          $scope.setPagingData(largeLoad, page, pageSize);
-        });
+          $('#sensor-error').addClass('hidden');
+          $('#sensor-error').removeClass('show');
+
+          return;
+        }
+      }).
+      error(function (data, status, headers, config) {
+        if (status === 500) {
+            $('#sensor-error').addClass('show');
+            $('#sensor-error').removeClass('hidden');
+
+            $('#sensor-deleted').addClass('hidden');
+            $('#sensor-deleted').removeClass('show');
+            return;
+        }
+      });
+    }); 
+  };
+});
+
+app.controller('SettingsController', function($scope, $http){
+
+  $scope.loadUserSettings = function() {
+    $http.get('http://localhost:3000/api/user/gabitosoft@gmail.com')
+    .then(function(result) {
+      $scope.settings = result.data.settings;
+    });
+  };
+
+  $scope.saveSettings = function() {
+    settings = {
+      email: 'gabitosoft@gmail.com',
+      allAlerts: $scope.settings.allAlerts,
+      unknowAlerts: $scope.settings.unknowAlerts,
+      informationAlerts: $scope.settings.informationAlerts,
+      warningAlerts: $scope.settings.warningAlerts,
+      dangerAlerts: $scope.settings.dangerAlerts,
+      chartSensor: $scope.settings.chartSensor,
+      chartType: $scope.settings.chartType,
+      language: $scope.settings.language
+    };
+
+    $http({
+      method: 'POST',
+      url: 'http://localhost:3000/api/user/settings',
+      data: settings
+    }).
+    success(function (data, status, headers, config) {
+      if (status === 200) {
+        $('#settings-saved').addClass('show');
+        $('#settings-saved').removeClass('hidden');
+
+        $('#settings-error').addClass('hidden');
+        $('#settings-error').removeClass('show');
+        return;
       }
-    }, 100);
-  };
+    }).
+    error(function (data, status, headers, config) {
+      if (status === 500) {
+          $('#settings-error').addClass('show');
+          $('#settings-error').removeClass('hidden');
 
-  $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage);
-
-  $scope.$watch('pagingOptions', function(newVal, oldVal) {
-    if (newVal !== oldVal && newVal.currentPage !== oldVal.currentPage) {
-      $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
-    }
-  }, true);
-
-  $scope.gridOptions = {
-    data: 'myData',
-    enablePaging: true,
-    showFooter: true,
-    totalServerItems: 'totalServerItems',
-    pagingOptions: $scope.pagingOptions,
-    filterOptions: $scope.filterOptions
+          $('#settings-saved').addClass('hidden');
+          $('#settings-saved').removeClass('show');
+          return;
+      }
+    });
   };
 });
+
+app.controller('PaginationController', ['$scope', 'ItemService', '$http', function ($scope, itemService, $http) {
+  
+    var _initalValues = itemService.initalValues(),
+  _lastPage = Math.ceil(_initalValues.total / _initalValues.limit),
+  _pagesArray = function (maxPages) {
+    var _arr = new Array(),
+    _i;
+
+    for (_i = 1; _i <= maxPages; _i += 1) {
+      _arr.push(_i);
+    }
+    return _arr;
+  },
+  _updateItems = function () {
+    $http.get('http://localhost:3000/api/alert')
+     .then(function(result) {
+        $scope.alerts = angular.copy(itemService.get($scope.current, _initalValues.limit, result.data).items);
+    });
+  },
+
+  _updateNextPrev = function () {
+    $scope.isNextDisabled = false;
+    $scope.isPrevDisabled = false;
+    if ($scope.current === 1) {
+        $scope.isPrevDisabled = true;
+    }
+    if ($scope.current === _lastPage) {
+        $scope.isNextDisabled = true;
+    }
+  };
+
+  // initialize
+  $scope.pages = _pagesArray(_lastPage);
+  $scope.current = _initalValues.start;
+
+  $scope.prev = function () {
+    if (!$scope.isPrevDisabled) {
+      $scope.current -= 1;
+      _updateNextPrev();
+      _updateItems();
+    }
+  };
+
+  $scope.next = function () {
+    if (!$scope.isNextDisabled) {
+      $scope.current += 1;
+      _updateNextPrev();
+      _updateItems();
+    }
+  };
+
+  $scope.goto = function (page) {
+    $scope.current = page;
+    _updateNextPrev();
+    _updateItems();
+  };
+  _updateNextPrev();
+  _updateItems();  
+}]);

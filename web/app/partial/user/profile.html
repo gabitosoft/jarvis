@@ -1,12 +1,12 @@
 <form  class="form-signin" ng-controller="UserController" ng-submit="updateUser()">
     <h1>Gabriel Delgado</h1>
-    <label>Name:</label>            
+    <label>{{resourceBundle.user.name}}:</label>            
     <input type="text" ng-model="name" required class="form-control" />
-    <label>Email:</label>            
+    <label>{{resourceBundle.user.email}}:</label>            
     <input type="text" ng-model="email" required class="form-control" />
-    <label>Password:</label>
+    <label>{{resourceBundle.user.password}}:</label>
     <input type="password" ng-model="password" min="6" max="14" class="form-control" />
-    <label>Confirmation:</label>
+    <label>{{resourceBundle.user.confirmation}}:</label>
     <input type="password" ng-model="confirmation" min="6" max="14" class="form-control" />
     <input class="btn btn-lg btn-primary btn-block button-newUser" type="submit" value="Save" />
 </form>

@@ -1,39 +1,49 @@
+<h2>{{resourceBundle.sensors.title}}</h2>
 <div ng-controller="SensorController">
-    <h2>Sensors</h2>
-    <!-- Table -->
-    <table class="table" ng-init="loadSensors()">
-        <thead>
-            <tr>
-                <th><a>All / None</a></th>
-                <th>Name</th>
-                <th>Address</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="sensor in sensors">
-                <td>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" name="sensors[]"/>
-                        </label>
-                    </div>
-                </td>
-                <td> {{sensor.name}} </td>
-                <td> {{sensor.address}} </td>
-                <td> {{sensor.description}} </td>
-            </tr> 
-        </tbody>
-    </table>
-    <ul class="pagination">
-        <li><a href="#">&laquo;</a></li>
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li><a href="#">&raquo;</a></li>
-    </ul>
+    <div ng-controller="PaginationController">
+        <!-- Table -->
+        <table class="table table-striped" ng-init="loadSensors()">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" name="selectall" ng-click="selectAll($event)"/></th>
+                    <th>{{resourceBundle.sensors.name}}</th>
+                    <th>{{resourceBundle.sensors.address}}</th>
+                    <th>{{resourceBundle.sensors.description}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="sensor in sensors">
+                    <td>
+                        <div class="checkbox">
+                            <label>
+                                <input id="{{sensor._id}}" type="checkbox"/>
+                            </label>
+                        </div>
+                    </td>
+                    <td> {{sensor.name}} </td>
+                    <td> {{sensor.address}} </td>
+                    <td> {{sensor.description}} </td>
+                </tr> 
+            </tbody>
+        </table>
+        <ul class="pagination">
+            <li data-ng-class="{disabled: isPrevDisabled}">
+                <a data-ng-click="prev()">&laquo;</a>
+            </li>
+            <li data-ng-repeat="page in pages" ng-class="{active: current===page}">
+                <a data-ng-click="goto(page)">{{page}}</a>
+            </li>
+            <li data-ng-class="{disabled: isNextDisabled}">
+                <a data-ng-click="next()">&raquo;</a>
+            </li>
+        </ul>
+    </div>
+    <button type="button" ng-click="deleteSensor($event)" class="btn btn-danger">{{resourceBundle.buttons.delete}}</button>
+    <button type="button" ng-click="setRoute('newSensor', $event)" class="btn btn-primary">{{resourceBundle.buttons.new}}</button>
+    <div id ="sensor-error" class="alert alert-danger hidden">
+            {{resourceBundle.sensors.messages.delete.fail}}
+    </div>
+    <div id ="sensor-deleted" class="alert alert-success hidden">
+        {{resourceBundle.sensors.messages.delete.successOne}}
+    </div>
 </div>
-<button type="button" ng-click="deleteSensor($event)" class="btn btn-danger">Delete</button>
-<button type="button" ng-click="setRoute('newSensor', $event)" class="btn btn-primary">New</button>

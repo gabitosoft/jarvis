@@ -1,0 +1,84 @@
+{
+    "projectName": "J.A.R.V.I.S.",
+    "title": "Sistema de Notificaciones en Tiempo Real",
+    "user": {
+        "title": "Usuarios",
+        "name": "Nombre",
+        "email": "Email",
+        "password": "Contrasena",
+        "confirmation": "Confirmacion",
+        "admin": "Administrador",
+        "online": "Conectado"
+    },
+    "buttons": {
+        "new": "Nuevo",
+        "delete": "Eliminar",
+        "cancel": "Cancelar",
+        "save": "Guardar",
+        "signin": "Ingresar",
+        "logout": "Salir",
+        "help": "Ayuda"
+    },
+    "leftMenu": {
+        "dashboard": "Tablero",
+        "alerts": "Alertas",
+        "sensors": "Sensores",
+        "users": "Usuarios",
+        "settings": "Configuraciones"
+    },
+    "alerts": {
+        "title": "Alertas",
+        "type": {
+            "unknow": "Desconocido",
+            "information": "Informacion",
+            "warning": "Advertencia",
+            "danger": "Peligro"
+        },
+        "id": "Id",
+        "source": "Origen",
+        "typeList": "Tipo",
+        "titleList": "Titulo",
+        "date": "Fecha",
+        "description": "Descripcion",
+        "messages": {
+            "delete": {
+                "successOne": "La alerta fue eliminada satisfactoriamente",
+                "successMany": "Las alertas fueron eliminadas satisfactoriamente",
+                "fail": "No fue posible eliminar la alert, por favor intente nuevamente o consulte a su administrador"
+            }
+        }
+    },
+    "sensors": {
+        "title": "Sensores",
+        "name": "Nombre",
+        "address": "Direccion",
+        "description": "Descripcion",
+        "messages": {
+            "delete": {
+                "successOne": "El Sensor fue eliminada satisfactoriamente",
+                "successMany": "Los Sensores fueron eliminadas satisfactoriamente",
+                "fail": "No fue posible eliminar el Sensor, por favor intente nuevamente o consulte a su administrador"
+            }
+        }
+    },
+    "settings": {
+        "title": "Configuraciones",
+        "enableAlerts": "Habilitar Alertas",
+        "unknowAlerts": "Recibir Alertas Desconocidas",
+        "informationAlerts": "Recibir Alertas de Informacion ",
+        "warningAlerts": "Recibir Alertas de Advertencia",
+        "dangerAlerts": "Recibir Alertas de Peligro",
+        "charts": "Graficas",
+        "alertsBySensor": "Mostrar Alertas por Sensor",
+        "alertsByType": "Mostrar Alertas por Tipo",
+        "language": "Lenguaje",
+        "chooseLanguage": "Escojer Lenguaje",
+        "spanish": "Espanol",
+        "english": "Ingles",
+        "messages": {
+            "danger": "Ocurrio un error al guardar las configuraciones",
+            "success": "Las configuraciones fueron guardadas satisfactoriamente"
+        }
+    }
+}
+

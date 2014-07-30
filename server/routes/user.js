@@ -11,7 +11,7 @@ module.exports = function (app) {
   app.get('/api/user', function(req, res) {
     User.find(function(err, users) {
       if (err) {
-        res.send(err);
+        res.send(500, err);
       }
       res.json(users);
     });
@@ -181,27 +181,62 @@ module.exports = function (app) {
     });
   });
 
+
+  // GET User
   app.get('/api/user/:id', function(req, res) {
     User.findOne({ email: req.params.id }, function(err, user) {
       if (err) {
-        res.send(err);
+        res.send(500, 'error-get-user' + err);
       }
       res.json(user);
     });
   });
 
-  //DELETE 
+  // POST User settings
+  app.post('/api/user/settings', function(req, res) {
+
+      var data = req.body;
+      var email = req.body.email;
+
+      if (!data && !email) {
+        res.send(500, 'user-settings-failed');
+      }
+
+      User.update({ email: email }, 
+        { 
+          settings: {
+            allAlerts: data.allAlerts,
+            unknowAlerts: data.unknowAlerts,
+            informationAlerts: data.informationAlerts,
+            warningAlerts: data.warningAlerts,
+            dangerAlerts: data.dangerAlerts,
+            chartSensor: data.chartSensor,
+            chartType: data.chartType,
+            language: data.language
+          }
+        }, 
+        function(err) {
+          if (err) {
+            res.send(500, 'user-settings-failed');
+          }
+          res.send(200);
+        }
+      );
+  });
+
+  //DELETE User
   app.delete('/api/user/:id', function(req, res){
     User.remove({
       id: req.params.id
     }, function(err, user){
       if (err) {
-        res.send(500, 'user-fail-delete');
+        res.send(500, 'user-error-delete' + err);
       }
       res.send(200, 'user-deleted');
     });
   });
 
+  //DELETE Session
   app.delete('/api/session/:id', function(req, res) {
     Session.remove({
       id: req.params.id

@@ -1,11 +1,11 @@
 <div class="navbar-right" ng-controller="UserController">
     <form class="navbar-form navbar-right" ng-init="loadUserInformation()" ng-submit="logoutUser()" action="">
-        <button type="submit" class="btn btn-success">Logout</button>
-        <!--<input type="hidden" name="_csrf" value="{{ _csrf }}">-->
+        <button type="submit" class="btn btn-success">{{resourceBundle.buttons.logout}}</button>
         <input type="hidden" name="token" value="{{ user.token }}"/>
+        <input type="hidden" ng-model="emailuser" value="{{ user.email }}" /> 
     </form>
     <ul class="nav navbar-nav navbar-right">
         <li><a ng-click="setRoute('profile', $event)">{{ user.name }}</a></li>
-        <li><a ng-click="setRoute('help', $event)">Help</a></li>
+        <li><a ng-click="setRoute('help', $event)">{{resourceBundle.buttons.help}}</a></li>
     </ul>
 </div>
