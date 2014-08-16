@@ -172,4 +172,26 @@ module.exports = function (app) {
       res.send(200, 'alert-deleted');
     });
   });
+  
+  //UPDATE Alert
+  app.put('/api/alert/:id', function(req, res) {
+    if (!req.body._id) {
+      res.send(500, 'error-update-alert: key not found');
+    }
+    
+    Alert.update({ _id: req.body._id }, {
+      source: req.body.source,
+      date: req.body.date,
+      type: req.body.type,
+      title: req.body.title,
+      description: req.body.description,
+      read: req.body.read
+    },function (error) {
+      if (error) {
+        res.send(500, 'error-update-alert' + error);
+      }
+      
+      res.send(200, 'alert-updated');
+    });
+  });
 };

@@ -44,7 +44,11 @@ app.factory('ItemService', [
           total: _total
         };
       },
-      initalValues: function () {
+      initalValues: function (totalItems) {
+        
+        if (totalItems)
+          _total = totalItems;
+        
         return {
           start: 1,
           limit: 5,
@@ -83,6 +87,7 @@ app.controller('MainController', ['$scope',
     $scope.switchLanguage = function(language) {
       ngI18nResourceBundle.get({ locale: language.currentTarget.innerText }).success(function (resourceBundle){
         $scope.resourceBundle = resourceBundle;
+        $('#language-setting-button').html(language.currentTarget.innerText);
       });
     };
 
@@ -314,7 +319,7 @@ app.controller('UserController', function($scope, $http, $window) {
 });
 
 
-app.controller('AlertController', function($scope, $http) {
+app.controller('AlertController', function($scope, $http, $location) {
 
   $scope.loadnoReadAlerts = function () {
     $http.get('http://localhost:3000/api/alert/status/false')
@@ -383,6 +388,44 @@ app.controller('AlertController', function($scope, $http) {
       });
     }); 
   };
+  
+  $scope.updateAlert = function() {
+
+    $http({
+      method: 'PUT',
+      url: 'http://localhost:3000/api/alert/' + $scope.alert._id,
+      data: $scope.alert
+    }).
+    success(function (data, status, headers, config) {
+      console.log(data);
+      console.log('alert updated');
+    }).
+    error(function (data, status, headers, config) {
+      console.log('error updating alert');
+      console.log(data);
+    });
+  };
+  
+  $scope.displayAlert = function(event, alert) {
+    $scope.alert = alert;
+    
+    if ($scope.alert.read === false) {
+
+      $scope.alert.read = true;
+      $scope.updateAlert();
+    }
+
+    $('#alertModal').modal('show');
+  };
+  
+  $scope.filterAlerts = function(event) {
+    var type = event.target.innerText;
+    var value = $(event.target).attr('ng-value');
+    
+    $('#button-filter-alert').html(type);
+    $('#type-alert-hide').val(value);
+    $('#type-alert-hide').change();
+  };
 });
 
 app.controller('SensorController', function($scope, $http) {
@@ -400,8 +443,6 @@ app.controller('SensorController', function($scope, $http) {
       data: $scope.sensor
     }).
     success(function (data, status, headers, config) {
-      console.log(data);
-      console.log('success');
       alert('Sensor Created');
       $scope.name = '';
       $scope.address = '';
@@ -458,6 +499,12 @@ app.controller('SensorController', function($scope, $http) {
         }
       });
     }); 
+  };
+  
+  $scope.displaySensor = function(event, sensor) {
+    $scope.sensor = sensor;
+
+    $('#sensorModal').modal('show');
   };
 });
 

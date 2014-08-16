@@ -1,0 +1,39 @@
+<div ng-controller="AlertController">
+    <form role="form" ng-init="displayAlert($event)">
+        <div class="form-group">
+            <label for="alert-id">ID</label>
+            <input type="text" class="form-control" id="alert-id" value="{{$scope.alert.id}}" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="alert-id">Source</label>
+            <input type="text" class="form-control" id="alert-source" value="{{alert.source}}" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="alert-id">Type</label>
+            <input type="text" class="form-control" id="alert-type" value="{{alert.type}}" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="alert-id">Title</label>
+            <input type="text" class="form-control" id="alert-title" value="{{alert.title}}" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="alert-id">Date</label>
+            <input type="text" class="form-control" id="alert-date" value="{{alert.date}}" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="alert-id">Description</label>
+            <input type="text" class="form-control" id="alert-description" value="{{alert.description}}" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="alert-id">Read</label>
+            <input type="checkbox" class="form-control" id="alert-read" value="{{alert.read}}">
+        </div>
+    </form>
+    <button type="button" ng-click="deleteAlert($event)" class="btn btn-danger">{{resourceBundle.buttons.delete}}</button>
+    <div id ="alert-error" class="alert alert-danger hidden">
+        {{resourceBundle.alerts.messages.delete.fail}}
+    </div>
+    <div id ="alert-deleted" class="alert alert-success hidden">
+        {{resourceBundle.alerts.messages.delete.successOne}}
+    </div>
+</div>

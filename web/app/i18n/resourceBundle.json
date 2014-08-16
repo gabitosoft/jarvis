@@ -17,7 +17,8 @@
         "save": "Save",
         "signin": "Sign-In",
         "logout": "Logout",
-        "help": "Help"
+        "help": "Help",
+        "close": "Close"
     },
     "leftMenu": {
         "dashboard": "Dashboard",
@@ -32,7 +33,8 @@
             "unknow": "Unknow",
             "information": "Information",
             "warning": "Warning",
-            "danger": "Danger"
+            "danger": "Danger",
+            "all": "All"
         },
         "id": "Id",
         "source": "Source",
@@ -40,6 +42,7 @@
         "titleList": "Title",
         "date": "Date",
         "description": "Description",
+        "read": "Read",
         "messages": {
             "delete": {
                 "successOne": "The Alert was deleted successfully",

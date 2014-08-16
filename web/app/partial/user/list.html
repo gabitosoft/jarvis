@@ -1,6 +1,6 @@
 <h2>{{resourceBundle.user.title}}</h2>
 <div class="table-responsive" ng-controller="UserController">
-    <table class="table table-striped" ng-init="loadUsers()">
+    <table class="table table-striped" id="user-table" ng-init="loadUsers()">
         <thead>
             <tr>
               <th><input type="checkbox" name="selectall" ng-click="selectAll($event)"/></th>
@@ -21,8 +21,14 @@
               </td>
               <td> {{user.name}} </td>
               <td> {{user.email}} </td>
-              <td> {{user.admin}} </td>
-              <td> {{user.online}} </td>
+              <td>
+                  <div ng-if="!!user.admin" class="user-icon check-icon"></div>
+                  <div ng-if="!!user.admin === false" class="user-icon cancel-icon"></div>
+              </td>
+              <td> 
+                  <div ng-if="!!user.online" class="user-icon green-icon"></div>
+                  <div ng-if="!!user.online === false" class="user-icon red-icon"></div>
+              </td>
             </tr>
         </tbody>
     </table>

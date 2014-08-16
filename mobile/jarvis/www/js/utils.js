@@ -1,3 +1,16 @@
+/*
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.and open the template in the editor.
+ */
+/* 
+    Author     : Gabriel Edgar Delgado Rocha
+*/
+
 function login() {
   var port = $('#port').val();
 	var server = $('#server').val();
@@ -46,12 +59,20 @@ function fillSensors() {
       var listSensors = $('#list-sensors');
       listSensors.empty();
       $.each(data, function(key, value) {
-        listSensors.append('<li>' + 
-            '<label><input name="sensors[]" type="checkbox" checked="true" /> ' + 
-            value.name + ' ( ' + value.address + ')' +
-            ' </label>' +
-            '</li>');
+        listSensors.append(
+            '<div data-role="fieldcontain">' + 
+              '<label for="flip-2">' +
+              value.name + ' ( ' + value.address + ')' +
+              ' </label>' +
+              '<select name="flip-2" id="flip-2" data-role="slider">' +
+                '<option value="off">Off</option>' +
+                '<option selected value="on">On</option>' +
+              '</select>' +
+            '</div>').trigger('create');
       });
+    }).fail(function(error) {
+      alert( "Error on list sensors" + error);
+      console.log(error);
     });
 }
 
@@ -62,7 +83,7 @@ function saveSettings() {
     var minTemp = $('#min').val();
     var skyColor = $('#skyColor').val();
     var alertSwitch = $('#alertSwitch').val();
-    var serverUrl = 'http://' + $('#serverUrl').text() + '/api/user/settings'
+    var serverUrl = 'http://' + $('#serverUrl').text() + '/api/user/settings';
 
     $.ajax({
         url: serverUrl ,

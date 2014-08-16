@@ -114,3 +114,25 @@
   display: inline-block;
   border-radius: 50%;
 }
+
+
+/* Application Icons */
+.red-icon {
+    background-image: url('../img/icon-red-small.png');
+}
+
+.green-icon {
+    background-image: url('../img/icon-green-small.png');
+}
+
+.check-icon {
+    background-image: url('../img/icon-check-small.png');
+}
+
+.warning-icon {
+    background-image: url('../img/icon-warning-small.png');
+}
+
+.cancel-icon {
+    background-image: url('../img/icon-cancel-small.png');
+}

@@ -14,6 +14,12 @@
 
     <!-- Bootstrap -->
     <link href="js/bootstrap-3.1.1-dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- login -->
+    <link rel="stylesheet" type="text/css" href="css/login.css" />
+    
+    <!-- Settings -->
+    <link rel="stylesheet" type="text/css" href="css/settings.css" />
 
     <title>J.A.R.V.I.S.</title>
 </head>
@@ -25,23 +31,24 @@
         <h1>J.A.R.V.I.S.</h1>
     </header><!-- /header -->
     <article data-role="content">
-        <form id="check-user" class="ui-body ui-body-b ui-corner-all" data-ajax="false">
-            <fieldset>
-                <div class="ui-grid-a">
+        <form id="check-user" class="ui-body ui-body-b ui-corner-all container-form-login" data-ajax="false">
+            <fieldset class="fieldset-form-login">
+                <div class="ui-grid-a grid-form-login">
                     <div class="ui-block-a">
-                        <input type="text" id="server" placeholder="Server" value="10.0.0.15" />
-                        <input type="text" id="port" placeholder="Port" value="3000"/>
-                        <input type="email" id="username" placeholder="Username" value="gabitosoft@gmail.com"/>
-                        <input type="password" id="password" placeholder="Password" value="mirmidon"/>
-                        <a href="#" id="login" data-role="button" data-theme="a">Login</a>
+                        <img src="img/jarvis.png" alt="jarvis"/>
+                        <input type="text" id="server" class="text-field-form" placeholder="Server" value="192.168.150.1" />
+                        <input type="text" id="port" class="text-field-form" placeholder="Port" value="3000"/>
+                        <input type="email" id="username" class="text-field-form" placeholder="Username" value="gabitosoft@gmail.com"/>
+                        <input type="password" id="password" class="text-field-form" placeholder="Password" value="mirmidon"/>
+                        <a href="#" id="login" data-role="button" class="buttons-forms" data-theme="a">Login</a>
                     </div>
                 </div>
             </fieldset>
         </form>
     </article><!-- /content -->
     <footer data-role="footer" data-fullscreen="true" data-position="fixed">
-        <a href="#help" data-role="button" data-icon="info" data-inline="true">Help</a>
-        <a href="#about" data-role="button" data-icon="info" data-inline="true">About</a>
+        <a href="#help" data-role="button" data-icon="info" data-inline="true" class="buttons-forms">Help</a>
+        <a href="#about" data-role="button" data-icon="info" data-inline="true" class="buttons-forms">About</a>
     </footer><!-- /footer -->
 </div><!-- /page -->
 
@@ -49,14 +56,13 @@
 <div data-role="page" id="alerts" >
     <div data-role="header">
         <h1>Alerts</h1>
-        <a data-role="button" data-theme="b" class="ui-btn-right" data-icon="delete" >logout</a>
     </div>
     <article data-role="content">
         <div data-role="controlgroup" data-type="horizontal" class="btn-group">
-            <a data-role="button" data-theme="a" class="ui-btn-inline">Info</a>
-            <a data-role="button" data-theme="a" class="ui-btn-inline">Warning</a>
-            <a data-role="button" data-theme="a" class="ui-btn-inline">Danger</a>
-            <a data-role="button" data-theme="a" class="ui-btn-inline">Unknow</a>
+            <a data-role="button" data-theme="a" class="ui-btn-inline buttons-forms">Info</a>
+            <a data-role="button" data-theme="a" class="ui-btn-inline buttons-forms">Warning</a>
+            <a data-role="button" data-theme="a" class="ui-btn-inline buttons-forms">Danger</a>
+            <a data-role="button" data-theme="a" class="ui-btn-inline buttons-forms">Unknow</a>
         </div>
         <div class="panel-alerts">
             <ul data-role="listview" class="list-group" id="alertList">
@@ -68,9 +74,10 @@
     <footer data-role="footer" data-fullscreen="true" data-position="fixed">
         <div data-role="navbar" data-iconpos="top">
             <ul>
-                <li><a class="sensorsButton" href="#servers" data-icon="grid" >Servers</a></li>
-                <li><a href="#alerts" data-icon="alert" >Alerts</a></li>
-                <li><a href="#settings" data-icon="gear" >Settings</a></li>
+                <li><a class="buttons-forms" href="#charts" data-icon="grid" >Charts</a></li>
+                <li><a class="buttons-forms" href="#alerts" data-icon="alert" >Alerts</a></li>
+                <li><a class="buttons-forms" href="#settings" data-icon="gear" >Settings</a></li>
+                <li><a class="buttons-forms" data-role="button" data-theme="b" data-icon="delete" >Exit</a></li>
             </ul>
         </div><!-- /navbar -->
     </footer><!-- /footer -->
@@ -83,83 +90,60 @@
         <h1>Settings</h1>
     </div>
     <article data-role="content">
-        <div data-role="fieldcontain">
-            <label for="flip-2">Enable Alerts:</label>
-            <select name="flip-2" id="flip-2" data-role="slider">
-                <option value="off">Off</option>
-                <option selected value="on">On</option>
+        <div>
+            <div data-role="fieldcontain">
+                <label for="flip-2">Enable Alerts:</label>
+                <select name="flip-2" id="flip-2" data-role="slider">
+                    <option value="off">Off</option>
+                    <option selected value="on">On</option>
+                </select>
+            </div>
+            <div id="list-sensors" data-role="listview">
+                <!-- Sensors will be added here-->
+            </div>
+            <label for="select-choice-0" class="select">Language:</label>
+            <select name="select-choice-0" id="select-choice-0">
+               <option value="english">English</option>
+               <option value="Spanish">Spanish</option>
             </select>
+
+            <a href="#" id="saveSettings" data-role="button" class="buttons-forms" data-theme="b">Save Settings</a>
         </div>
-        <div data-role="fieldcontain">
-            <label for="flip-2">Information:</label>
-            <select name="flip-2" id="flip-2" data-role="slider">
-                <option value="off">Off</option>
-                <option selected value="on">On</option>
-            </select>
-        </div>
-        <div data-role="fieldcontain">
-            <label for="flip-2">Warning:</label>
-            <select name="flip-2" id="flip-2" data-role="slider">
-                <option value="off">Off</option>
-                <option selected value="on">On</option>
-            </select>
-        </div>
-        <div data-role="fieldcontain">
-            <label for="flip-2">Danger:</label>
-            <select name="flip-2" id="flip-2" data-role="slider">
-                <option value="off">Off</option>
-                <option selected value="on">On</option>
-            </select>
-        </div>
-        <div data-role="fieldcontain">
-            <label for="flip-2">Unknow:</label>
-            <select name="flip-2" id="flip-2" data-role="slider">
-                <option value="off">Off</option>
-                <option selected value="on">On</option>
-            </select>
-        </div>
-        <label for="select-choice-0" class="select">Language:</label>
-        <select name="select-choice-0" id="select-choice-0">
-           <option value="english">English</option>
-           <option value="Spanish">Spanish</option>
-        </select>
-        
-        <a href="#" id="saveSettings" data-role="button" data-theme="b">Save Settings</a>
 
     </article>
     <footer data-role="footer" data-fullscreen="true" data-position="fixed">
         <div data-role="navbar" data-iconpos="top">
             <ul>
-                <li><a class="sensorsButton" href="#servers" data-icon="grid" >Servers</a></li>
-                <li><a href="#alerts" data-icon="alert" >Alerts</a></li>
-                <li><a href="#settings" data-icon="gear" >Settings</a></li>
+                <li><a class="buttons-forms" href="#charts" data-icon="grid" >Charts</a></li>
+                <li><a class="buttons-forms" href="#alerts" data-icon="alert" >Alerts</a></li>
+                <li><a class="buttons-forms" href="#settings" data-icon="gear" >Settings</a></li>
+                <li><a class="buttons-forms" data-role="button" data-theme="b" data-icon="delete" >Exit</a></li>
             </ul>
         </div><!-- /navbar -->
     </footer><!-- /footer -->
 </div>
 <!-- /Settings -->
 
-<!-- Servers -->
-<div data-role="page" id="servers" data-title="Servers">
+<!-- Charts -->
+<div data-role="page" id="charts" data-title="Charts">
     <div data-role="header">
-        <h1>Sensors</h1>
+        <h1>Charts</h1>
     </div>
     <article data-role="content">
-        <ul id="list-sensors" data-role="listview">
-            <!-- Sensors will be added here-->
-        </ul>
+        <!-- SET CHARTS HERE -->
     </article>
     <footer data-role="footer" data-position="fixed">
         <div data-role="navbar" data-iconpos="top">
             <ul>
-                <li><a class="sensorsButton" href="#servers" data-icon="grid" >Servers</a></li>
-                <li><a href="#alerts" data-icon="alert" >Alerts</a></li>
-                <li><a href="#settings" data-icon="gear" >Settings</a></li>
+                <li><a class="buttons-forms" href="#charts" data-icon="grid" >Charts</a></li>
+                <li><a class="buttons-forms" href="#alerts" data-icon="alert" >Alerts</a></li>
+                <li><a class="buttons-forms" href="#settings" data-icon="gear" >Settings</a></li>
+                <li><a class="buttons-forms" data-role="button" data-theme="b" data-icon="delete" >Exit</a></li>
             </ul>
         </div><!-- /navbar -->
     </footer><!-- /footer -->
 </div>
-<!-- /Servers-->
+<!-- /Charts-->
 
 <!-- Cordova -->
 <script type="text/javascript" src="cordova.js"></script>
@@ -172,7 +156,7 @@
 <script>
 
     $('#login').on('click', login);
-    $('.sensorsButton').on('click', fillSensors);
+    $('a[href="#settings"]').on('click', fillSensors);;
     $('#saveSettings').on('click', saveSettings);
 </script>
 </body>

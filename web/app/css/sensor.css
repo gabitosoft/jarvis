@@ -8,43 +8,11 @@
  * THE SOFTWARE.and open the template in the editor.
  */
 /* 
+    Created on : 12-08-2014, 03:06:51 PM
     Author     : Gabriel Delgado
 */
-footer {
-    margin-top: 70px;
+
+#sensor-table tr {
+    cursor: pointer;
 }
 
-.container {
-    margin-top: 70px;
-}
-
-.button-newUser {
-
-    margin-top: 38px;
-}
-
-.button-newPlanet {
-
-    margin-top: 38px;
-}
-
-.button-newSensor {
-
-    margin-top: 38px;
-}
-
-.sign-in-form {
-    margin-top: 50px;
-}
-
-.btn-sign-in {
-    width: 140px;
-}
-
-.gridStyle {
-    border: 1px solid rgb(212, 212, 212);
-}
-
-.text-capitalize {
-    text-transform: capitalize;
-}
