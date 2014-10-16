@@ -13,7 +13,7 @@ java -jar test7.jar -p info -t "Memory" -d "The Memory is almost full"
 java -jar test7.jar -p warning -t "Database" -d "MySQL is not running"
 java -jar test7.jar -p danger -t "Processor" -d "The capacity of processor has exceeded the limit"
 
-Run hot-spot
+-- Run hot-spot
 sudo ap-hotspot configure
 sudo ap-hotspot start
 
@@ -37,3 +37,12 @@ node app.js
 
 -- Database
 sudo genghisapp
+
+
+-- Openshift
+rhc ssh --> connect to server via SSH
+rhc tail jarvis--> see log files
+
+http://jarvis-gabitosoft.rhcloud.com/
+
+curl -d '{"server":"http://jarvis-gabitosoft.rhcloud.com", "date":"04-03-2014", "message": "Alert from console", "read": false, "type": "list-group-item-danger"}' -H "Content-Type: application/json" http://jarvis-gabitosoft.rhcloud.com:8080/api/alert
