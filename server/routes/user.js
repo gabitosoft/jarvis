@@ -1,5 +1,6 @@
 
 var bcrypt = require('bcrypt');
+var crypto = require('crypto');
 
 // Paths to API
 module.exports = function (app) {
@@ -27,7 +28,7 @@ module.exports = function (app) {
 
     var userToken = 'default';
     try {
-      token = crypto.randomBytes(256);
+      token = crypto.randomBytes(16);
       console.log('Have %d bytes of random data: %s', token.length, token);
     } catch (ex) {
       res.send(500, ex);
@@ -177,6 +178,29 @@ module.exports = function (app) {
               res.send(200, 'session-deleted');
             });
           });
+      });
+    });
+  });
+    
+  // POST Token
+  app.post('/api/user/token', function (req, res) {        
+    
+    User.findOne({ email: req.body.username }, function(err, user) {
+      if (err) {
+
+        res.status(500).end( ' error-token-user ' + err);
+      }
+
+      crypto.randomBytes(16, function(ex, buf) {
+        var token = buf.toString('hex');
+        
+        User.update({ email: req.body.username }, { token: token }, function(err) {
+          if (err) {
+            res.json({'result': 500 + ' error-token-user ' + err});
+          }
+
+          res.status(200).end(token);
+        });
       });
     });
   });

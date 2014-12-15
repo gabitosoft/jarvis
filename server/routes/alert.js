@@ -128,7 +128,7 @@ module.exports = function (app) {
   });
 
   // POST alert
-  app.post('/api/alert', function(req, res) {
+  app.post('/api/alert/create', function(req, res) {
     
     // User.findOne({ email: req.body.email }, function(error, user) {
     //   if (user.token != req.body.token) {
