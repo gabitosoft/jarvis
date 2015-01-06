@@ -1,0 +1,52 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="921" measuredH="519" mockupW="740" mockupH="497">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="181" y="22" w="740" h="497" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>JARVIS%20Web%20Page%0Ahttp%3A//www.gabitosoft.com/jarvis</text>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::Canvas" x="181" y="93" w="740" h="44" measuredW="100" measuredH="70" zOrder="1" locked="false" isInGroup="-1"/>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::Label" x="190" y="105" w="-1" h="-1" measuredW="45" measuredH="21" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>JARVIS</text>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::Link" x="799" y="106" w="-1" h="-1" measuredW="27" measuredH="19" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Help</text>
+      </controlProperties>
+    </control>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::Button" x="841" y="102" w="-1" h="-1" measuredW="63" measuredH="27" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Logout</text>
+      </controlProperties>
+    </control>
+    <control controlID="8" controlTypeID="com.balsamiq.mockups::VerticalTabBar" x="190" y="141" w="722" h="347" measuredW="200" measuredH="212" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Dashboard%0AAlerts%0ASensors%0AUsers%0ASettings</text>
+      </controlProperties>
+    </control>
+    <control controlID="11" controlTypeID="com.balsamiq.mockups::Button" x="283" y="157" w="-1" h="-1" measuredW="80" measuredH="27" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>UNKNOW</text>
+      </controlProperties>
+    </control>
+    <control controlID="12" controlTypeID="com.balsamiq.mockups::Button" x="378" y="157" w="-1" h="-1" measuredW="110" measuredH="27" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>INFORMATION</text>
+      </controlProperties>
+    </control>
+    <control controlID="13" controlTypeID="com.balsamiq.mockups::Button" x="504" y="157" w="-1" h="-1" measuredW="82" measuredH="27" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>WARNING</text>
+      </controlProperties>
+    </control>
+    <control controlID="14" controlTypeID="com.balsamiq.mockups::Button" x="610" y="158" w="-1" h="-1" measuredW="75" measuredH="27" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>DANGER</text>
+      </controlProperties>
+    </control>
+    <control controlID="15" controlTypeID="com.balsamiq.mockups::BarChart" x="298" y="240" w="-1" h="-1" measuredW="187" measuredH="175" zOrder="10" locked="false" isInGroup="-1"/>
+    <control controlID="16" controlTypeID="com.balsamiq.mockups::PieChart" x="583" y="235" w="-1" h="-1" measuredW="180" measuredH="180" zOrder="11" locked="false" isInGroup="-1"/>
+  </controls>
+</mockup>
