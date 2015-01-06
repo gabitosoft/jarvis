@@ -40,9 +40,21 @@ sudo genghisapp
 
 
 -- Openshift
-rhc ssh --> connect to server via SSH
+rhc ssh jarvis --> connect to server via SSH
 rhc tail jarvis--> see log files
 
 http://jarvis-gabitosoft.rhcloud.com/
 
 curl -d '{"server":"http://jarvis-gabitosoft.rhcloud.com", "date":"04-03-2014", "message": "Alert from console", "read": false, "type": "list-group-item-danger"}' -H "Content-Type: application/json" http://jarvis-gabitosoft.rhcloud.com:8080/api/alert
+
+curl -d '{"server":"http://jarvis-gabitosoft.rhcloud.com", "date":"04-03-2014", "message": "Alert from console", "read": false, "type": "list-group-item-danger"}' -H "Content-Type: application/json" http://jarvis-gabitosoft.rhcloud.com/api/alert
+
+-- RockMongo
+http://jarvis-gabitosoft.rhcloud.com/rockmongo
+Database: jarvis 
+User: admin 
+Password: KeZybgrd1TKP
+
+Database: jarvis
+User: adminmongo
+Password: mirmidon
