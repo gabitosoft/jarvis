@@ -26,5 +26,25 @@
         <text>Dashboard%0AAlerts%0ASensors%0AUsers%0ASettings</text>
       </controlProperties>
     </control>
+    <control controlID="10" controlTypeID="com.balsamiq.mockups::DataGrid" x="285" y="207" w="-1" h="-1" measuredW="249" measuredH="201" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%5B%5D%2C%20Name%2C%20Address%2C%20Description%0A%5B%5D%2C%20DB1%2C%20127.0.0.1%2C%20Database%20server%0A%5B%5D%2C%20EM1%2C%20127.0.0.1%2C%20Email%20server%0A%5B%5D%2C%20W1%2C%20127.0.0.1%2C%20Web%20Server%0A%5B%5D%2C%20DB1%2C%20127.0.0.1%2C%20Database%20server%0A%5B%5D%2C%20EM1%2C%20127.0.0.1%2C%20Email%20server%0A%5B%5D%2C%20W1%2C%20127.0.0.1%2C%20Web%20Server</text>
+      </controlProperties>
+    </control>
+    <control controlID="11" controlTypeID="com.balsamiq.mockups::Button" x="285" y="434" w="-1" h="-1" measuredW="61" measuredH="27" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Delete</text>
+      </controlProperties>
+    </control>
+    <control controlID="12" controlTypeID="com.balsamiq.mockups::Button" x="361" y="434" w="-1" h="-1" measuredW="48" measuredH="27" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>New</text>
+      </controlProperties>
+    </control>
+    <control controlID="13" controlTypeID="com.balsamiq.mockups::Label" x="285" y="165" w="-1" h="-1" measuredW="49" measuredH="21" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Sensors</text>
+      </controlProperties>
+    </control>
   </controls>
 </mockup>

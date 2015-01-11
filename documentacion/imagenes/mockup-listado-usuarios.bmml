@@ -26,5 +26,26 @@
         <text>Dashboard%0AAlerts%0ASensors%0AUsers%0ASettings</text>
       </controlProperties>
     </control>
+    <control controlID="10" controlTypeID="com.balsamiq.mockups::Title" x="281" y="162" w="-1" h="-1" measuredW="108" measuredH="43" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Users</text>
+      </controlProperties>
+    </control>
+    <control controlID="11" controlTypeID="com.balsamiq.mockups::DataGrid" x="281" y="208" w="-1" h="-1" measuredW="375" measuredH="231" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%5B%5D%2C%20Name%2C%20Email%2C%20Admin%2C%20Online%0A%5B%5D%2C%20Gabriel%20Delgado%2C%20gabitosoft@gmail.com%2C%20true%2C%20true%0A%5B%5D%2C%20Gabriel%20Delgado%2C%20gabitosoft@gmail.com%2C%20true%2C%20true%0A%5B%5D%2C%20Gabriel%20Delgado%2C%20gabitosoft@gmail.com%2C%20true%2C%20true%0A%5B%5D%2C%20Gabriel%20Delgado%2C%20gabitosoft@gmail.com%2C%20true%2C%20true%0A%5B%5D%2C%20Gabriel%20Delgado%2C%20gabitosoft@gmail.com%2C%20true%2C%20true%0A%5B%5D%2C%20Gabriel%20Delgado%2C%20gabitosoft@gmail.com%2C%20true%2C%20true%0A%5B%5D%2C%20Gabriel%20Delgado%2C%20gabitosoft@gmail.com%2C%20true%2C%20true</text>
+      </controlProperties>
+    </control>
+    <control controlID="12" controlTypeID="com.balsamiq.mockups::Button" x="281" y="452" w="-1" h="-1" measuredW="61" measuredH="27" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Delete</text>
+      </controlProperties>
+    </control>
+    <control controlID="13" controlTypeID="com.balsamiq.mockups::Button" x="359" y="453" w="-1" h="-1" measuredW="48" measuredH="27" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <align>left</align>
+        <text>New</text>
+      </controlProperties>
+    </control>
   </controls>
 </mockup>
