@@ -1,0 +1,25 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="599" measuredH="595" mockupW="319" mockupH="573">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::iPhone" x="280" y="22" w="319" h="573" measuredW="282" measuredH="573" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <model>IPhone5</model>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::ButtonBar" x="332" y="136" w="207" h="30" measuredW="185" measuredH="22" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>8</size>
+        <text>INFO%2C%20WARNING%2C%20DANGER%2C%20UNKNOW</text>
+      </controlProperties>
+    </control>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::DataGrid" x="332" y="172" w="215" h="296" measuredW="243" measuredH="197" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Hard%20Disk%5CrThe%20capacity%20has%20been%20excedeed%5Cr03/12/2014%2021%3A05%3A37%0AProcessor%5CrThe%20CPU%27s%20temperature%5Cr03/11/2014%2022%3A06%3A38%0ADatabase%5CrThe%20port%203306%20has%20been%20locked%5Cr04/10/2014%2020%3A09%3A41%0AMemory%5CrThere%20is%20no%20space%20to%20continue%20working%5Cr03/09/2014%2022%3A06%3A38</text>
+      </controlProperties>
+    </control>
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::ButtonBar" x="348" y="475" w="-1" h="-1" measuredW="182" measuredH="27" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Alerts%2C%20Settings%2C%20Exit</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
