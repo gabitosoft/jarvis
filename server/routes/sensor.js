@@ -31,6 +31,25 @@ module.exports = function (app) {
     res.send(200);
   });
 
+//UPDATE Sensor
+  app.put('/api/sensor/:id', function(req, res) {
+    if (!req.body._id) {
+      res.send(500, 'error-update-sensor: key not found');
+    }
+    
+    Sensor.update({ _id: req.body._id }, {
+      name: req.body.source,
+      address: req.body.date,
+      description: req.body.type
+    },function (error) {
+      if (error) {
+        res.send(500, 'error-update-sensor' + error);
+      }
+      
+      res.send(200, 'sensor-updated');
+    });
+  });
+
   // DELETE a Sensor
   app.delete('/api/sensor/:id', function(req, res) {
     Sensor.remove({
