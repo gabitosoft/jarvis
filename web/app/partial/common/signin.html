@@ -1,55 +1,76 @@
-<div class="col-xs-12 col-md-8">
-    <h2>JARVIS</h2>
-    <div id ="login-failed" class="alert alert-warning hidden">
-        Invalid Username or password
-    </div>
-    <div id ="login-error" class="alert alert-danger hidden">
-        An error occurred while attempting connect to the server. 
-    </div>
-    <p>Just a Rather Very Intelligent System</p>
-    <img alt="jarvis-logo" src="img/jarvis.png"/>
-    <div>
-        <p>
-            JARVIS is advanced server monitoring software which lets you check both basic server uptime and detailed 
-            usage statistics on all types of servers, including:
-        </p>
-            <ul>
-                <li>Web Servers</li>
-                <li>Databases</li>
-                <li>Mail Servers</li>
-                <li>Hardware Resources</li>
-                <li>Application Status</li>
-            </ul>
-        <div class="row">
-            <div class="col-xs-6 col-md-4">
-            <h2> Benefits</h2>
+<div class="row">
+    <div class="col-xs-12 col-md-8 container">
+        <div>
+            <!-- Error messages -->
+            <div id ="login-failed" class="alert alert-warning hidden">
+                Invalid Username or password
+            </div>
+            <div id ="login-error" class="alert alert-danger hidden">
+                An error occurred while attempting connect to the server. 
+            </div>
+            <!-- Error messages -->
+
+            <h2>JARVIS Push Notification Service</h2>
             <p>
-                JARVIS Server monitoring software is designed to make sure that a server is active, 
+                JARVIS makes it easy to get real-time notifications on your 
+                Android devices. JARVIS as server monitoring software is designed to make sure that a server is active, 
                 healthy, and responding to requests appropriately.
+                Can be used as an advanced server monitoring software which lets you 
+                check both basic server uptime and detailed usage statistics on all types 
+                of servers, including: Web, Databases, Mail, Hardware Resources and Application Status.
             </p>
         </div>
+        <!--
         <div class="col-xs-6 col-md-4">
-            <h2> About</h2>
-            <p>text....</p>
-        </div>
-        <div class="col-xs-6 col-md-4">
-            <h2> Follow us</h2>
             <img alt="facebook-logo" src="img/facebook_logo_detail.gif" width="50" height="50"/>
             <img alt="twitter-logo" src="img/twitter-logo.png" width="50" height="50"/>
             <img alt="youtube-logo" src="img/youtube-logo.png" width="50" height="50"/>
         </div>
+        -->
+        <!-- CAROUSEL -->
+        <div id="carousel-main-page" ng-include src="'partial/common/carousel.html'" class="carousel slide" data-ride="carousel"></div>
+        <!-- /CAROUSEL -->
+    </div>
+    <div class="col-xs-6 col-md-4">
+        <div class="sign-in-form">
+            <!--<img alt="jarvis-logo" src="img/jarvis.png"/>-->
+            <p>
+                Create an account is fast, easy and free get started today!
+            </p>
+            <button type="button" ng-click="setRoute('alert', $event)" class="btn btn-primary btn-sign-in btn-lg btn-block">
+                SignUp
+            </button> 
         </div>
     </div>
 </div>
-<div class="col-xs-6 col-md-4">
-    <div class="sign-in-form">
-        <h3>Need an account?</h3>
+<div class="row">
+    <div class="col-xs-6 col-md-4">
+        <h3>REST API</h3>
         <p>
-            Create an account is fast, easy and free
+            If you want to implement your own sensor application or your own
+            client web application, review the API which allow you send messages, 
+            review the data generated and of course know how to extend the web services. 
+            The API is simple, it's documented with a focus on provide an easy integration 
+            with your web App. <a href="#">Read More</a>
         </p>
-        <button type="button" ng-click="setRoute('alert', $event)" class="btn btn-primary btn-sign-in">
-            Create an account
-        </button> 
+    </div>
+    <div class="col-xs-6 col-md-4">
+        <h3>Mobile Application</h3>
+        <p>
+            JARVIS mobile allow you to keep connected to JARVIS services, 
+            so you can receive all the alerts and notifications generated in 
+            real time, you can install the application on many mobile devices with 
+            Android platform. <a href="#">Read More</a>
+        </p>
+    </div>
+    <div class="col-xs-6 col-md-4">
+        <h3>Sensor Application</h3>
+        <p>
+            The Sensor application is build using the Java language programming, 
+            so can run on every kind of operative system that has support to Java,
+            just need to configure the basic parameters and start to generate data. 
+            <a href="#">Read More</a>
+        </p>
     </div>
 </div>
 

@@ -1,5 +1,6 @@
 var app = angular.module('webApp', ['ngRoute', 'ngI18n']);
-
+var SERVER_URL = 'http://localhost:3000';
+app.username = 'texto';
 app.config(function($routeProvider) {
     $routeProvider.
       when('/dashboard', { templateUrl:'../alert/summary.html' }).
@@ -22,7 +23,7 @@ app.value('ngI18nConfig', {
 });
 
 app.factory('socket', function () {
-  var socket = io.connect('http://localhost:3000');
+  var socket = io.connect(SERVER_URL);
   return socket;
 });
 
@@ -59,6 +60,15 @@ app.factory('ItemService', [
   }
 ]);
 
+app.service('userInformation', function (){
+  
+  var username = '';
+  return {
+    getUsername: function(){return username;},
+    setUsername: function(value){username = value;}
+  };
+});
+
 app.controller('MainController', ['$scope', 
   'ngI18nResourceBundle', '$location', '$http', function($scope, ngI18nResourceBundle, $location, $http) {
     $scope.setRoute = function(route, $event) {
@@ -68,6 +78,7 @@ app.controller('MainController', ['$scope',
         var item = $($event.target).closest('li');
         item.siblings().removeClass('active');
         item.addClass('active');
+        document.title = item.context.text;
       }
    };
 
@@ -94,7 +105,7 @@ app.controller('MainController', ['$scope',
    $scope.loadSummaryData = function(resourceBundle) {
 
     var alertsbySensor = [];
-    $http.get('http://localhost:3000/api/alert/querysensor')
+    $http.get(SERVER_URL + '/api/alert/querysensor')
         .then(function(result) {
           alertsbySensor = result.data;
 
@@ -117,7 +128,7 @@ app.controller('MainController', ['$scope',
           });
         });
 
-    $http.get('http://localhost:3000/api/alert')
+    $http.get(SERVER_URL + '/api/alert')
     .then(function(result) {
       var alerts = 0;
       alerts = result.data;
@@ -178,13 +189,13 @@ app.controller('MainController', ['$scope',
   };
 }]);
 
-app.controller('UserController', function($scope, $http, $window) {
+app.controller('UserController', function($scope, $http, $window, userInformation) {
 
   $scope.users = [];
   $scope.user = null;
 
   $scope.loadUsers = function() {
-    $http.get('http://localhost:3000/api/user')
+    $http.get(SERVER_URL + '/api/user')
      .then(function(result) {
        $scope.users = result.data;
     });
@@ -198,7 +209,7 @@ app.controller('UserController', function($scope, $http, $window) {
     
     $http({
     	method: 'POST',
-    	url: 'http://localhost:3000/api/user/login',
+    	url: SERVER_URL + '/api/user/login',
     	data: $scope.user
     }).
     success(function (data, status, headers, config) {
@@ -235,7 +246,7 @@ app.controller('UserController', function($scope, $http, $window) {
 
     $http({
       method: 'POST',
-      url: 'http://localhost:3000/api/user/logout',
+      url: SERVER_URL + '/api/user/logout',
       data: $scope.user
     }).
     success(function (data, status, headers, config) {
@@ -257,7 +268,7 @@ app.controller('UserController', function($scope, $http, $window) {
     
     $http({
       method: 'POST',
-      url: 'http://localhost:3000/api/user/create',
+      url: SERVER_URL + '/api/user/create',
       data: $scope.user
     }).
     success(function (data, status, headers, config) {
@@ -272,8 +283,8 @@ app.controller('UserController', function($scope, $http, $window) {
   };
 
   $scope.loadUserInformation = function() {
-    var email = $('#useremail').val();
-    $http.get('http://localhost:3000/api/user/'+email)
+    var email = app.username;
+    $http.get(SERVER_URL + '/api/user/' + email)
     .then(function(result) {
       $scope.user = result.data;
     });
@@ -322,7 +333,7 @@ app.controller('UserController', function($scope, $http, $window) {
 app.controller('AlertController', function($scope, $http, $location) {
 
   $scope.loadnoReadAlerts = function () {
-    $http.get('http://localhost:3000/api/alert/status/false')
+    $http.get(SERVER_URL + '/api/alert/status/false')
     .then(function(result) {
       var noReads = 0;
       noReads = result.data;
@@ -345,7 +356,7 @@ app.controller('AlertController', function($scope, $http, $location) {
   };  
 
   $scope.loadAlerts = function() {
-    $http.get('http://localhost:3000/api/alert')
+    $http.get(SERVER_URL + '/api/alert')
      .then(function(result) {
        $scope.alerts = result.data;
     });
@@ -364,7 +375,7 @@ app.controller('AlertController', function($scope, $http, $location) {
   $scope.deleteAlert = function() {
     var items = $('input:checked').not('#selectall');
     items.each(function (index, item){
-      $http.delete('http://localhost:3000/api/alert/' + item.id).
+      $http.delete(SERVER_URL + '/api/alert/' + item.id).
       success(function (data, status, headers, config) {
         if (status === 200) {
           $('#alert-deleted').addClass('show');
@@ -393,7 +404,7 @@ app.controller('AlertController', function($scope, $http, $location) {
 
     $http({
       method: 'PUT',
-      url: 'http://localhost:3000/api/alert/' + $scope.alert._id,
+      url: SERVER_URL + '/api/alert/' + $scope.alert._id,
       data: $scope.alert
     }).
     success(function (data, status, headers, config) {
@@ -439,7 +450,7 @@ app.controller('SensorController', function($scope, $http) {
     
     $http({
       method: 'POST',
-      url: 'http://localhost:3000/api/sensor/create',
+      url: SERVER_URL + '/api/sensor/create',
       data: $scope.sensor
     }).
     success(function (data, status, headers, config) {
@@ -511,7 +522,7 @@ app.controller('SensorController', function($scope, $http) {
 app.controller('SettingsController', function($scope, $http){
 
   $scope.loadUserSettings = function() {
-    $http.get('http://localhost:3000/api/user/gabitosoft@gmail.com')
+    $http.get(SERVER_URL + '/api/user/gabitosoft@gmail.com')
     .then(function(result) {
       $scope.settings = result.data.settings;
     });
@@ -532,7 +543,7 @@ app.controller('SettingsController', function($scope, $http){
 
     $http({
       method: 'POST',
-      url: 'http://localhost:3000/api/user/settings',
+      url: SERVER_URL + '/api/user/settings',
       data: settings
     }).
     success(function (data, status, headers, config) {
@@ -572,7 +583,7 @@ app.controller('PaginationController', ['$scope', 'ItemService', '$http', functi
     return _arr;
   },
   _updateItems = function () {
-    $http.get('http://localhost:3000/api/alert')
+    $http.get(SERVER_URL + '/api/alert')
      .then(function(result) {
         $scope.alerts = angular.copy(itemService.get($scope.current, _initalValues.limit, result.data).items);
     });
