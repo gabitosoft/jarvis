@@ -1,0 +1,25 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="599" measuredH="595" mockupW="319" mockupH="573">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::iPhone" x="280" y="22" w="319" h="573" measuredW="282" measuredH="573" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <model>IPhone5</model>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::ButtonBar" x="332" y="136" w="207" h="30" measuredW="193" measuredH="22" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>8</size>
+        <text>INFO%2C%20ADVERTENCIA%2C%20PELIGRO%2C%20DESC.</text>
+      </controlProperties>
+    </control>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::DataGrid" x="332" y="172" w="215" h="296" measuredW="279" measuredH="197" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Disco%20Duro%5CrLa%20capacidad%20ha%20sido%20excedida%5Cr03/12/2014%2021%3A05%3A37%0AProcesador%5CrLa%20temperatura%20del%20CPU%20es%20elevada%5Cr03/11/2014%2022%3A06%3A38%0ABase%20de%20datos%5CrEl%20puerto%203306%20ha%20sido%20cerrado%5Cr04/10/2014%2020%3A09%3A41%0AMemoria%5CrNo%20existe%20espacio%20para%20continuar%20trabajando%5Cr03/09/2014%2022%3A06%3A38</text>
+      </controlProperties>
+    </control>
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::ButtonBar" x="326" y="475" w="-1" h="-1" measuredW="225" measuredH="27" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Alertas%2C%20Configuracion%2C%20Salir</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

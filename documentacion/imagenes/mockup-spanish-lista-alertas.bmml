@@ -1,0 +1,50 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="921" measuredH="519" mockupW="740" mockupH="497">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="181" y="22" w="740" h="497" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>JARVIS%20Pag%EDna%20Web%0Ahttp%3A//www.gabitosoft.com/jarvis</text>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::Canvas" x="181" y="93" w="740" h="44" measuredW="100" measuredH="70" zOrder="1" locked="false" isInGroup="-1"/>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::Label" x="190" y="105" w="-1" h="-1" measuredW="45" measuredH="21" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>JARVIS</text>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::Link" x="799" y="106" w="-1" h="-1" measuredW="38" measuredH="19" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Ayuda</text>
+      </controlProperties>
+    </control>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::Button" x="841" y="102" w="-1" h="-1" measuredW="50" measuredH="27" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Salir</text>
+      </controlProperties>
+    </control>
+    <control controlID="8" controlTypeID="com.balsamiq.mockups::VerticalTabBar" x="190" y="141" w="722" h="347" measuredW="200" measuredH="212" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Tablero%0AAlertas%0ASensores%0AUsuarios%0AConfig.</text>
+      </controlProperties>
+    </control>
+    <control controlID="9" controlTypeID="com.balsamiq.mockups::Label" x="275" y="153" w="-1" h="-1" measuredW="43" measuredH="21" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Alertas</text>
+      </controlProperties>
+    </control>
+    <control controlID="10" controlTypeID="com.balsamiq.mockups::ComboBox" x="273" y="178" w="-1" h="-1" measuredW="66" measuredH="24" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Todos</text>
+      </controlProperties>
+    </control>
+    <control controlID="11" controlTypeID="com.balsamiq.mockups::DataGrid" x="271" y="212" w="633" h="231" measuredW="644" measuredH="231" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%5B%5D%2C%20Direcci%F3n%2C%20T%EDtulo%2C%20Tipo%2C%20Fecha%2C%20Le%EDdo%2C%20Descripci%F3n%0A%5B%5D%2C%20127.0.0.1%2C%20CPU%20Temp.%2C%20Peligro%2C%2027/12/2014%2C%20false%2C%20La%20temperatura%20del%20CPU%20ha%20excedido%20los%20limites%0A%5B%5D%2C%20127.0.0.1%2C%20CPU%20Temp.%2C%20Peligro%2C%2027/12/2014%2C%20false%2C%20La%20temperatura%20del%20CPU%20ha%20excedido%20los%20limites%0A%5B%5D%2C%20127.0.0.1%2C%20CPU%20Temp.%2C%20Peligro%2C%2027/12/2014%2C%20false%2C%20La%20temperatura%20del%20CPU%20ha%20excedido%20los%20limites%0A%5B%5D%2C%20127.0.0.1%2C%20CPU%20Temp.%2C%20Peligro%2C%2027/12/2014%2C%20false%2C%20La%20temperatura%20del%20CPU%20ha%20excedido%20los%20limites%0A%5B%5D%2C%20127.0.0.1%2C%20CPU%20Temp.%2C%20Peligro%2C%2027/12/2014%2C%20false%2C%20La%20temperatura%20del%20CPU%20ha%20excedido%20los%20limites%0A%5B%5D%2C%20127.0.0.1%2C%20CPU%20Temp.%2C%20Peligro%2C%2027/12/2014%2C%20false%2C%20La%20temperatura%20del%20CPU%20ha%20excedido%20los%20limites%0A%5B%5D%2C%20127.0.0.1%2C%20CPU%20Temp.%2C%20Peligro%2C%2027/12/2014%2C%20false%2C%20La%20temperatura%20del%20CPU%20ha%20excedido%20los%20limites</text>
+      </controlProperties>
+    </control>
+    <control controlID="13" controlTypeID="com.balsamiq.mockups::Button" x="278" y="453" w="-1" h="-1" measuredW="59" measuredH="27" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Borrar</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

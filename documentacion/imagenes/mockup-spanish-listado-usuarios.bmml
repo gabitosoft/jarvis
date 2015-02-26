@@ -1,0 +1,51 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="921" measuredH="519" mockupW="740" mockupH="497">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="181" y="22" w="740" h="497" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>JARVIS%20Pag%EDna%20Web%0Ahttp%3A//www.gabitosoft.com/jarvis</text>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::Canvas" x="181" y="93" w="740" h="44" measuredW="100" measuredH="70" zOrder="1" locked="false" isInGroup="-1"/>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::Label" x="190" y="105" w="-1" h="-1" measuredW="45" measuredH="21" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>JARVIS</text>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::Link" x="799" y="106" w="-1" h="-1" measuredW="38" measuredH="19" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Ayuda</text>
+      </controlProperties>
+    </control>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::Button" x="841" y="102" w="-1" h="-1" measuredW="50" measuredH="27" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Salir</text>
+      </controlProperties>
+    </control>
+    <control controlID="8" controlTypeID="com.balsamiq.mockups::VerticalTabBar" x="190" y="141" w="722" h="347" measuredW="200" measuredH="212" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Tablero%0AAlertas%0ASensores%0AUsuarios%0AConfig.</text>
+      </controlProperties>
+    </control>
+    <control controlID="10" controlTypeID="com.balsamiq.mockups::Title" x="281" y="162" w="-1" h="-1" measuredW="161" measuredH="43" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Usuarios</text>
+      </controlProperties>
+    </control>
+    <control controlID="11" controlTypeID="com.balsamiq.mockups::DataGrid" x="281" y="208" w="-1" h="-1" measuredW="402" measuredH="231" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%5B%5D%2C%20Nombre%2C%20Correo%20Electr%F3nico%2C%20Admin%2C%20Conectado%0A%5B%5D%2C%20Gabriel%20Delgado%2C%20gabitosoft@gmail.com%2C%20true%2C%20true%0A%5B%5D%2C%20Gabriel%20Delgado%2C%20gabitosoft@gmail.com%2C%20true%2C%20true%0A%5B%5D%2C%20Gabriel%20Delgado%2C%20gabitosoft@gmail.com%2C%20true%2C%20true%0A%5B%5D%2C%20Gabriel%20Delgado%2C%20gabitosoft@gmail.com%2C%20true%2C%20true%0A%5B%5D%2C%20Gabriel%20Delgado%2C%20gabitosoft@gmail.com%2C%20true%2C%20true%0A%5B%5D%2C%20Gabriel%20Delgado%2C%20gabitosoft@gmail.com%2C%20true%2C%20true%0A%5B%5D%2C%20Gabriel%20Delgado%2C%20gabitosoft@gmail.com%2C%20true%2C%20true</text>
+      </controlProperties>
+    </control>
+    <control controlID="12" controlTypeID="com.balsamiq.mockups::Button" x="281" y="452" w="-1" h="-1" measuredW="59" measuredH="27" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Borrar</text>
+      </controlProperties>
+    </control>
+    <control controlID="13" controlTypeID="com.balsamiq.mockups::Button" x="359" y="453" w="-1" h="-1" measuredW="59" measuredH="27" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <align>left</align>
+        <text>Nuevo</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
