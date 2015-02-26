@@ -40,11 +40,11 @@ function login() {
                 },
                 error: function (request, error) {
                     // This callback function will trigger on unsuccessful action
-                  alert('Network error has occurred please try again');
+                  alert('Ocurrio un error en la red por favor intentelo nuevamente');
                 }
             });                   
     } else {
-        alert('Please verify if all fields are fill');
+        alert('Por favor verifique que todos los campos sean completados');
     }
 }
 
@@ -76,23 +76,47 @@ function fillSensors() {
     });
 }
 
+function loadSettings() {
+
+    var email = $('#username').val();
+    var port = $('#port').val();
+    var server = $('#server').val();
+    var url = 'http://' + server + ':' + port + '/api/user/' + email;
+      console.log(url);      
+    $.getJSON(url, function(data) {
+
+      
+//      $('#flip-2').val('on').attr('selected', data.settings.allAlerts).siblings('option').removeAttr('selected');
+//      $('#flip-2').selectmenu();
+//      $('#flip-2').selectmenu('refresh', true);
+//      
+//      $('#flip-3').val('on').attr('selected', data.settings.informationAlerts).siblings('option').removeAttr('selected');
+//      $('#flip-4').val('on').attr('selected', data.settings.warningAlerts).siblings('option').removeAttr('selected');
+//      $('#flip-5').val('on').attr('selected', data.settings.dangerAlerts).siblings('option').removeAttr('selected');
+//      $('#flip-6').val('on').attr('selected', data.settings.unknowAlerts).siblings('option').removeAttr('selected');
+
+    }).fail(function(error) {
+      alert( "Error al cargar configuraciones" + error);
+      console.log(error);
+    });
+}
+
 function saveSettings() {
 
-    var usr = $('#userEmail').val();
-    var maxTemp = $('#max').val();
-    var minTemp = $('#min').val();
-    var skyColor = $('#skyColor').val();
-    var alertSwitch = $('#alertSwitch').val();
+    var settings = {
+      email: $('#userEmail').val(),
+      allAlerts: $('#flip-2').val(),
+      informationAlerts: $('#flip-3').val(),
+      warningAlerts: $('#flip-4').val(),
+      dangerAlerts: $('#flip-5').val(),
+      unknowAlerts: $('#flip-6').val()
+    };
+
     var serverUrl = 'http://' + $('#serverUrl').text() + '/api/user/settings';
 
     $.ajax({
         url: serverUrl ,
-        data: { 
-                email : usr, 
-                max: maxTemp,
-                min: minTemp,
-                sky: skyColor,
-                alert: alertSwitch },
+        data: settings,
         type: 'post',                   
         dataType: 'json',
         
@@ -107,19 +131,21 @@ function saveSettings() {
         success: function (result) {
             if(result.token) {
                 
-                alert('Settings changed successfully');
+                alert('Cambio realizado satisfactoriamente');
             } else {
-                alert('Settings changed unsuccessful!'); 
+                alert('Los cambios no se pudieron verificar'); 
             }
         },
         error: function (request, error) {
             // This callback function will trigger on unsuccessful action
-            alert('Network error has occurred please try again!');
+            alert('Ocurrio un problema en la red intentelo nuevamente');
         }
     });
 }
 
 function logout() {
+  console.log('salir');
     window.location.href = '#page-login';
     $('userEmail').val('');
+    navigator.app.exitApp();
 }

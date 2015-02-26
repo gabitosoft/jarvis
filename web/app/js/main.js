@@ -1,6 +1,7 @@
 var app = angular.module('webApp', ['ngRoute', 'ngI18n']);
 var SERVER_URL = 'http://localhost:3000';
-app.username = 'texto';
+var PAGE_URL = 'http://localhost/jarvis/web/app';
+
 app.config(function($routeProvider) {
     $routeProvider.
       when('/dashboard', { templateUrl:'../alert/summary.html' }).
@@ -18,7 +19,7 @@ app.config(function($routeProvider) {
 app.value('ngI18nConfig', {
   defaultLocale: 'english',
   supportedLocales: ['english', 'spanish'],
-  basePath: '../../i18n',
+  basePath: PAGE_URL + '/i18n',
   cache: true
 });
 
@@ -60,14 +61,24 @@ app.factory('ItemService', [
   }
 ]);
 
-app.service('userInformation', function (){
+app.factory('Session', function($http){
   
-  var username = '';
-  return {
-    getUsername: function(){return username;},
-    setUsername: function(value){username = value;}
+  var Session = {
+    
+    data: {},
+    updateSession: function(username) {
+      
+      Session.data = username;
+      console.log('username inside factory', username);
+    },
+    getSession: function() {
+      return Session.data;
+    }
   };
+  
+  return Session;
 });
+
 
 app.controller('MainController', ['$scope', 
   'ngI18nResourceBundle', '$location', '$http', function($scope, ngI18nResourceBundle, $location, $http) {
@@ -95,17 +106,47 @@ app.controller('MainController', ['$scope',
         });
     });
     
+    //Load Settings in order to apply on main page
+    $.urlParam = function(name) {
+      var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+      if (results === null) {
+         return null;
+      }
+      else {
+         return results[1] || 0;
+      }
+    };
+
+    var email = $.urlParam('user');
+    if (email !== '' && email !== undefined) {
+      
+      $http.get(SERVER_URL + '/api/user/' + email)
+      .then(function(result) {
+        var settings = result.data.settings;
+        $scope.setLanguage(settings.language);
+      });
+    }
+    //Load Settings to main configurations
+    
     $scope.switchLanguage = function(language) {
       ngI18nResourceBundle.get({ locale: language.currentTarget.innerText }).success(function (resourceBundle){
         $scope.resourceBundle = resourceBundle;
-        $('#language-setting-button').html(language.currentTarget.innerText);
+        var languageButton = $('#language-setting-button');
+        languageButton.val(language.currentTarget.innerText);
+        languageButton.html(language.currentTarget.innerText);
+        languageButton.trigger('input');
+      });
+    };
+    
+    $scope.setLanguage = function(language) {
+      ngI18nResourceBundle.get({ locale: language}).success(function (resourceBundle){
+        $scope.resourceBundle = resourceBundle;
       });
     };
 
-   $scope.loadSummaryData = function(resourceBundle) {
-
-    var alertsbySensor = [];
-    $http.get(SERVER_URL + '/api/alert/querysensor')
+   $scope.displayChartSensor = function(resourceBundle) {
+     var alertsbySensor = [];
+      $http.get(SERVER_URL + '/api/alert/querysensor')
         .then(function(result) {
           alertsbySensor = result.data;
 
@@ -114,22 +155,31 @@ app.controller('MainController', ['$scope',
                 type: 'bar'
               },
               title: {
-                text: 'Alerts by Sensor'
+                //text: 'Alerts by Sensor'
+                text: 'Alertas por Sensor'
+                //text: resourceBundle.alertsByType
               },
               xAxis: {
-                categories: ['Unknow','Information', 'Warning', 'Danger']
+                //categories: ['Unknow','Information', 'Warning', 'Danger']
+                categories: ['Desconocido','Informacion', 'Advertencia', 'Peligro']
+                //categories: [resourceBundle.categories.unknow, resourceBundle.categories.information, 
+                //  resourceBundle.categories.warning, resourceBundle.categories.danger]
               },
               yAxis: {
                 title: {
-                    text: 'Alerts'
+                    //text: 'Alerts'
+                    text: 'Alertas'
+                    //text: resourceBundle.alerts
                 }
               },
               series: alertsbySensor
           });
         });
-
-    $http.get(SERVER_URL + '/api/alert')
-    .then(function(result) {
+   };
+   
+   $scope.displayChartType = function() {
+     $http.get(SERVER_URL + '/api/alert')
+      .then(function(result) {
       var alerts = 0;
       alerts = result.data;
       var danger = 0;
@@ -155,7 +205,8 @@ app.controller('MainController', ['$scope',
               plotShadow: false
           },
           title: {
-              text: 'Alerts by type'
+              //text: 'Alerts by type'
+              text: 'Alertas por tipo'
           },
           tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -178,18 +229,52 @@ app.controller('MainController', ['$scope',
               type: 'pie',
               name: 'Alerts by Type',
               data: [
-                  ['Information', information],
-                  ['Unknow',   unknow],
-                  ['Warning', warning],
-                  ['Danger', danger]
+//                  ['Information', information],
+//                  ['Unknow',   unknow],
+//                  ['Warning', warning],
+//                  ['Danger', danger]
+                  ['Informacion', information],
+                  ['Desconocidos',   unknow],
+                  ['Advertencia', warning],
+                  ['Peligro', danger]
               ]
           }]
       });
-    });
+    });    
+   };
+
+   $scope.loadSummaryData = function(resourceBundle) {
+
+   $.urlParam = function(name) {
+      var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+      if (results === null) {
+         return null;
+      }
+      else {
+         return results[1] || 0;
+      }
+    };
+
+    var email = $.urlParam('user');
+    if (email !== '' && email !== undefined) {
+      
+      $http.get(SERVER_URL + '/api/user/' + email)
+      .then(function(result) {
+        var settings = result.data.settings;
+        if (settings.chartType) {
+          $scope.displayChartType(resourceBundle);
+        }
+
+        if (settings.chartSensor) {
+          $scope.displayChartSensor(resourceBundle);
+        }
+      });
+    }
   };
+
 }]);
 
-app.controller('UserController', function($scope, $http, $window, userInformation) {
+app.controller('UserController', function($scope, $http, $window, Session) {
 
   $scope.users = [];
   $scope.user = null;
@@ -213,9 +298,12 @@ app.controller('UserController', function($scope, $http, $window, userInformatio
     	data: $scope.user
     }).
     success(function (data, status, headers, config) {
-      $window.location.href = 'partial/user/index.html';
+      console.log('data-login', data);
+      Session.updateSession($scope.username);
+      $window.location.href = 'partial/user/index.html?user='+ $scope.username + '&token=' + data.token;
     }).
     error(function (data, status, headers, config) {
+      console.log(data);
       if (status === 500) {
 
         if (data === 'user-not-found' || data === 'username-password-mismatch') {
@@ -265,7 +353,7 @@ app.controller('UserController', function($scope, $http, $window, userInformatio
       password: $scope.password,
       confirmation: $scope.confirmation
     };
-    
+
     $http({
       method: 'POST',
       url: SERVER_URL + '/api/user/create',
@@ -283,7 +371,18 @@ app.controller('UserController', function($scope, $http, $window, userInformatio
   };
 
   $scope.loadUserInformation = function() {
-    var email = app.username;
+
+    $.urlParam = function(name) {
+      var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+      if (results === null) {
+         return null;
+      }
+      else {
+         return results[1] || 0;
+      }
+    };
+
+    var email = $.urlParam('user');
     $http.get(SERVER_URL + '/api/user/' + email)
     .then(function(result) {
       $scope.user = result.data;
@@ -328,7 +427,6 @@ app.controller('UserController', function($scope, $http, $window, userInformatio
     }); 
   };
 });
-
 
 app.controller('AlertController', function($scope, $http, $location) {
 
@@ -519,53 +617,61 @@ app.controller('SensorController', function($scope, $http) {
   };
 });
 
-app.controller('SettingsController', function($scope, $http){
+app.controller('SettingsController', function($scope, $http, Session) {
 
+  var email = $('input#emailUser').val();
   $scope.loadUserSettings = function() {
-    $http.get(SERVER_URL + '/api/user/gabitosoft@gmail.com')
-    .then(function(result) {
-      $scope.settings = result.data.settings;
-    });
+    
+    if (email !== '' && email !== undefined) {
+      
+      $http.get(SERVER_URL + '/api/user/' + email)
+      .then(function(result) {
+        $scope.settings = result.data.settings;
+      });
+    }
   };
 
   $scope.saveSettings = function() {
-    settings = {
-      email: 'gabitosoft@gmail.com',
-      allAlerts: $scope.settings.allAlerts,
-      unknowAlerts: $scope.settings.unknowAlerts,
-      informationAlerts: $scope.settings.informationAlerts,
-      warningAlerts: $scope.settings.warningAlerts,
-      dangerAlerts: $scope.settings.dangerAlerts,
-      chartSensor: $scope.settings.chartSensor,
-      chartType: $scope.settings.chartType,
-      language: $scope.settings.language
-    };
+    if (email !== '') {
 
-    $http({
-      method: 'POST',
-      url: SERVER_URL + '/api/user/settings',
-      data: settings
-    }).
-    success(function (data, status, headers, config) {
-      if (status === 200) {
-        $('#settings-saved').addClass('show');
-        $('#settings-saved').removeClass('hidden');
+      settings = {
+        email: email,
+        allAlerts: $scope.settings.allAlerts,
+        unknowAlerts: $scope.settings.unknowAlerts,
+        informationAlerts: $scope.settings.informationAlerts,
+        warningAlerts: $scope.settings.warningAlerts,
+        dangerAlerts: $scope.settings.dangerAlerts,
+        chartSensor: $scope.settings.chartSensor,
+        chartType: $scope.settings.chartType,
+        language: $('#language-setting-button').val()
+      };
 
-        $('#settings-error').addClass('hidden');
-        $('#settings-error').removeClass('show');
-        return;
-      }
-    }).
-    error(function (data, status, headers, config) {
-      if (status === 500) {
-          $('#settings-error').addClass('show');
-          $('#settings-error').removeClass('hidden');
+      $http({
+        method: 'POST',
+        url: SERVER_URL + '/api/user/settings',
+        data: settings
+      }).
+      success(function (data, status, headers, config) {
+        if (status === 200) {
+          $('#settings-saved').addClass('show');
+          $('#settings-saved').removeClass('hidden');
 
-          $('#settings-saved').addClass('hidden');
-          $('#settings-saved').removeClass('show');
+          $('#settings-error').addClass('hidden');
+          $('#settings-error').removeClass('show');
           return;
-      }
-    });
+        }
+      }).
+      error(function (data, status, headers, config) {
+        if (status === 500) {
+            $('#settings-error').addClass('show');
+            $('#settings-error').removeClass('hidden');
+
+            $('#settings-saved').addClass('hidden');
+            $('#settings-saved').removeClass('show');
+            return;
+        }
+      });
+    }
   };
 });
 
@@ -628,3 +734,31 @@ app.controller('PaginationController', ['$scope', 'ItemService', '$http', functi
   _updateNextPrev();
   _updateItems();  
 }]);
+
+app.controller('LoginPageController', ['$scope', 
+  'ngI18nResourceBundle', '$location', function($scope, ngI18nResourceBundle, $location) {
+    
+    $scope.languages = [
+        { locale: "english" },
+        { locale: "spanish" }
+    ];
+    
+    $scope.i18n = { language: $scope.languages[0] };
+    
+    $scope.$watch('i18n.language', function(language) {
+        ngI18nResourceBundle.get({locale: language.locale}).success(function (resourceBundle){
+            $scope.resourceBundle = resourceBundle;
+        });
+    });
+    
+    $scope.setLanguage = function(language) {
+      ngI18nResourceBundle.get({ locale: language}).success(function (resourceBundle){
+        $scope.resourceBundle = resourceBundle;
+      });
+    };   
+    
+    $scope.signup = function() {
+
+      $('#userModal').modal('show');
+    };
+  }]);

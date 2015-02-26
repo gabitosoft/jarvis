@@ -53,6 +53,7 @@ public class Interpreter {
                             case "-h":
                                 System.out.println("- Notifier v.0.2 -");
                                 System.out.println("-h Display this message");
+                                System.out.println("-i Display Window Configuration");
                                 System.out.println("-p Alert Type, just choose one of this [ alert, info, warning ]");
                                 System.out.println("-d Alert Description, if the description has more than one word please to use \"\" around the word");
                                 System.out.println("-t Alert Title, if the description has more than one word please to use \"\" around the word");

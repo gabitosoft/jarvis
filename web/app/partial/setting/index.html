@@ -65,7 +65,7 @@
       <div class="panel-body">
         <label>{{resourceBundle.settings.chooseLanguage}}</label>
         <div class="btn-group">
-            <button type="button" id="language-setting-button" class="btn btn-default">{{ settings.language }}</button>
+            <input type="button" id="language-setting-button" name="language-setting-button" value="{{settings.language}}" ng-model="settings.language" class="btn btn-default"/>
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
             <span class="caret"></span>
             <span class="sr-only">Toggle Dropdown</span>

@@ -18,7 +18,9 @@
         "signin": "Ingresar",
         "logout": "Salir",
         "help": "Ayuda",
-        "close": "Cerrar"
+        "close": "Cerrar",
+        "login": "Ingresar",
+        "signup": "Registrarse"
     },
     "leftMenu": {
         "dashboard": "Tablero",
@@ -81,6 +83,61 @@
         "messages": {
             "danger": "Ocurrio un error al guardar las configuraciones",
             "success": "Las configuraciones fueron guardadas satisfactoriamente"
+        }
+    },
+    "charts": {
+        
+        "alertsBySensor": "Alertas por Sensor",
+        "alertsByType": "Alertas por Tipo",
+        "alerts": "Alertas",
+        "categories" : {
+            "unknow": "Desconocido",
+            "information": "Informacion",
+            "warning": "Advertencia",
+            "danger": "Peligro"
+        }
+    },
+    "language": {
+
+        "spanish": "Español",
+        "english": "Ingles"
+    },
+    "loginPage": {
+        "description": 
+            "JARVIS hace facil conseguir notificaciones en tiempo real en sus dispositivos Android. JARVIS esta diseñado para notificar cuando los servidores se encuentran inactivos, permite configurarlo para conocer el estado del servidor. Puede ser utilizado como un software de monitoreo avanzado el cual le permita revisar las estadisticas y funcionamiento de sus servidores, incluyendo: Web, Base de datos, Correo, recursos de hardware y el estado de las aplicaciones.",
+        "messageSignup": "Crear una cuenta es rápido, facil y gratis comienza hoy!",
+        "error": {
+            "login": {
+                "failed": "Ocurrio un error mientras se intentaba conectar con el servidor.",
+                "invalid": "Nombre de usuario o contraseña invalida"
+            }
+        },
+        "footer": {
+            "left": {
+                "title": "REST API",
+                "description": "Si tu quieres implementar tu própia aplicación sensor o tu propia aplicación cliente web, revisa el API en el cual encontraras como enviar mensajes, revisar los datos generados y por supuesto como manejar los servicios web. El API es simple, esta documentado con un enfoque en proveer una fácil integración con su aplicación web."
+            },
+            "center": {
+                "title": "Aplicación Móvil",
+                "description": "La aplicación móvil de JARVIS permite establecer una conexión con el servidor, por lo cual podemos recibir alertas y notificaciones generadas en tiempo real, puedes instalar la aplicación en cualquier dispositivo móvil que cuente con la plataforma Android."
+            },
+            "right": {
+                "title": "Aplicación Sensor",
+                "description":"La aplicación sensor esta construido con el lenguaje de programación Java, por lo que puede correr en cualquier sistema operativo que cuente con esta plataforma, simplemente configure la aplicación y empiece a generar notificaciones."
+            }
+        },
+        "carousel": {
+            "item1": {
+                "title": "Interacción de tecnologías"
+            },
+            "item2": {
+                "title": "Página de inicio"
+            },
+            "item3": {
+                "title": "Página de información de alertas"
+            },
+            "next": "Siguiente",
+            "previous": "Atras"
         }
     }
 }

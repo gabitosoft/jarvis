@@ -13,6 +13,8 @@ java -jar test7.jar -p info -t "Memory" -d "The Memory is almost full"
 java -jar test7.jar -p warning -t "Database" -d "MySQL is not running"
 java -jar test7.jar -p danger -t "Processor" -d "The capacity of processor has exceeded the limit"
 
+java -jar Sensor.jar -p danger -t "Processor" -d "The processor is in critical state"
+
 -- Run hot-spot
 sudo ap-hotspot configure
 sudo ap-hotspot start
@@ -37,6 +39,7 @@ node app.js
 
 -- Database
 sudo genghisapp
+http://0.0.0.0:5678/
 
 
 -- Openshift

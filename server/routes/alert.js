@@ -153,8 +153,48 @@ module.exports = function (app) {
       }
 
       // Send the alert to the client
-      for (var username in app.connections) {
-        app.connections[username].emit('alert', alert);
+//      for (var username in app.connections) {
+//          app.connections[username].emit('alert', alert);
+//      }
+
+      var username = req.body.username;
+      if (username !== undefined && username !== '') {
+        
+        User.findOne({ email: username }, function(err, user) {
+          if (err) {
+
+            res.status(500).end( ' error-alert-settings-user ' + err);
+          }
+
+          if (user.settings.allAlerts) {
+            switch(alert.type) {
+              case 'info':
+                if (user.settings.informationAlerts) {
+
+                  app.connections[username].emit('alert', alert);
+                }
+              break;
+            case 'unknow': 
+                if (user.settings.unknowAlerts) {
+
+                  app.connections[username].emit('alert', alert);
+                }
+              break;
+            case 'warning':
+                if (user.settings.warningAlerts) {
+
+                  app.connections[username].emit('alert', alert);
+                }
+            break;
+            case 'danger':
+                if (user.settings.dangerAlerts) {
+
+                  app.connections[username].emit('alert', alert);
+                }
+              break;
+            }
+          }
+        });
       }
     });
 
