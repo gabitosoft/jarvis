@@ -5,87 +5,87 @@
         <text>JARVIS%20Web%20Page%0Ahttp%3A//www.gabitosoft.com/jarvis</text>
       </controlProperties>
     </control>
-    <control controlID="2" controlTypeID="com.balsamiq.mockups::VideoPlayer" x="215" y="146" w="407" h="144" measuredW="300" measuredH="200" zOrder="1" locked="false" isInGroup="-1"/>
-    <control controlID="3" controlTypeID="com.balsamiq.mockups::Canvas" x="188" y="91" w="763" h="40" measuredW="100" measuredH="70" zOrder="2" locked="false" isInGroup="-1"/>
-    <control controlID="4" controlTypeID="com.balsamiq.mockups::Label" x="208" y="102" w="-1" h="-1" measuredW="45" measuredH="21" zOrder="3" locked="false" isInGroup="-1">
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::Canvas" x="188" y="91" w="763" h="40" measuredW="100" measuredH="70" zOrder="1" locked="false" isInGroup="-1"/>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::Label" x="208" y="102" w="-1" h="-1" measuredW="45" measuredH="21" zOrder="2" locked="false" isInGroup="-1">
       <controlProperties>
         <text>JARVIS</text>
       </controlProperties>
     </control>
-    <control controlID="5" controlTypeID="com.balsamiq.mockups::TextInput" x="722" y="98" w="-1" h="-1" measuredW="46" measuredH="27" zOrder="4" locked="false" isInGroup="-1">
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::TextInput" x="722" y="98" w="-1" h="-1" measuredW="46" measuredH="27" zOrder="3" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Email</text>
       </controlProperties>
     </control>
-    <control controlID="6" controlTypeID="com.balsamiq.mockups::TextInput" x="774" y="98" w="-1" h="-1" measuredW="70" measuredH="27" zOrder="5" locked="false" isInGroup="-1">
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::TextInput" x="774" y="98" w="-1" h="-1" measuredW="70" measuredH="27" zOrder="4" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Password</text>
       </controlProperties>
     </control>
-    <control controlID="7" controlTypeID="com.balsamiq.mockups::Button" x="850" y="98" w="-1" h="-1" measuredW="54" measuredH="27" zOrder="6" locked="false" isInGroup="-1">
+    <control controlID="7" controlTypeID="com.balsamiq.mockups::Button" x="850" y="98" w="-1" h="-1" measuredW="54" measuredH="27" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Login</text>
       </controlProperties>
     </control>
-    <control controlID="8" controlTypeID="com.balsamiq.mockups::Label" x="707" y="138" w="-1" h="-1" measuredW="109" measuredH="21" zOrder="7" locked="false" isInGroup="-1">
+    <control controlID="8" controlTypeID="com.balsamiq.mockups::Label" x="707" y="138" w="-1" h="-1" measuredW="109" measuredH="21" zOrder="6" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Need%20an%20account%3F</text>
       </controlProperties>
     </control>
-    <control controlID="9" controlTypeID="com.balsamiq.mockups::Paragraph" x="707" y="167" w="226" h="78" measuredW="275" measuredH="80" zOrder="8" locked="false" isInGroup="-1">
+    <control controlID="9" controlTypeID="com.balsamiq.mockups::Paragraph" x="707" y="167" w="226" h="78" measuredW="275" measuredH="80" zOrder="7" locked="false" isInGroup="-1">
       <controlProperties>
         <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22684.9833984375%2C178.2%2C732.42041015625%2C191.2%22%20href%3D%22http%3A//support.balsamiq.com/customer/portal/articles/110121%23basicformatting%22%20alt%3D%22web%20link%22%20id%3D%229%22%20target%3D%22_blank%22/%3E</map>
         <text>A%20*paragraph*%20of%20%7Bcolor%3Ared%7Dtext%7Bcolor%7D%20with%20an%20%5Bunassigned%20link%5D.%0AA%20_second_%20%26row%26%20of%20%7Etext%7E%20with%20a%20%5Bweb%20link%5D%28http%3A//support.balsamiq.com/customer/portal/articles/110121%23basicformatting%29</text>
       </controlProperties>
     </control>
-    <control controlID="10" controlTypeID="com.balsamiq.mockups::Button" x="707" y="245" w="226" h="30" measuredW="70" measuredH="27" zOrder="9" locked="false" isInGroup="-1">
+    <control controlID="10" controlTypeID="com.balsamiq.mockups::Button" x="707" y="245" w="226" h="30" measuredW="70" measuredH="27" zOrder="8" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Sign%20Up</text>
       </controlProperties>
     </control>
-    <control controlID="11" controlTypeID="com.balsamiq.mockups::Label" x="707" y="290" w="-1" h="-1" measuredW="62" measuredH="21" zOrder="10" locked="false" isInGroup="-1">
+    <control controlID="11" controlTypeID="com.balsamiq.mockups::Label" x="707" y="290" w="-1" h="-1" measuredW="62" measuredH="21" zOrder="9" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Contribute</text>
       </controlProperties>
     </control>
-    <control controlID="12" controlTypeID="com.balsamiq.mockups::Paragraph" x="707" y="311" w="188" h="87" measuredW="275" measuredH="80" zOrder="11" locked="false" isInGroup="-1">
+    <control controlID="12" controlTypeID="com.balsamiq.mockups::Paragraph" x="707" y="311" w="188" h="87" measuredW="275" measuredH="80" zOrder="10" locked="false" isInGroup="-1">
       <controlProperties>
         <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22519%2C337.8%2C566.43701171875%2C350.8%22%20href%3D%22http%3A//support.balsamiq.com/customer/portal/articles/110121%23basicformatting%22%20alt%3D%22web%20link%22%20id%3D%2212%22%20target%3D%22_blank%22/%3E</map>
         <text>A%20*paragraph*%20of%20%7Bcolor%3Ared%7Dtext%7Bcolor%7D%20with%20an%20%5Bunassigned%20link%5D.%0AA%20_second_%20%26row%26%20of%20%7Etext%7E%20with%20a%20%5Bweb%20link%5D%28http%3A//support.balsamiq.com/customer/portal/articles/110121%23basicformatting%29</text>
       </controlProperties>
     </control>
-    <control controlID="13" controlTypeID="com.balsamiq.mockups::IconLabel" x="215" y="311" w="-1" h="-1" measuredW="52" measuredH="63" zOrder="12" locked="false" isInGroup="-1">
+    <control controlID="13" controlTypeID="com.balsamiq.mockups::IconLabel" x="215" y="311" w="-1" h="-1" measuredW="52" measuredH="63" zOrder="11" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Features</text>
       </controlProperties>
     </control>
-    <control controlID="14" controlTypeID="com.balsamiq.mockups::IconLabel" x="394" y="311" w="-1" h="-1" measuredW="48" measuredH="63" zOrder="13" locked="false" isInGroup="-1">
+    <control controlID="14" controlTypeID="com.balsamiq.mockups::IconLabel" x="394" y="311" w="-1" h="-1" measuredW="48" measuredH="63" zOrder="12" locked="false" isInGroup="-1">
       <controlProperties>
         <text>API</text>
       </controlProperties>
     </control>
-    <control controlID="15" controlTypeID="com.balsamiq.mockups::IconLabel" x="545" y="311" w="-1" h="-1" measuredW="48" measuredH="63" zOrder="14" locked="false" isInGroup="-1">
+    <control controlID="15" controlTypeID="com.balsamiq.mockups::IconLabel" x="545" y="311" w="-1" h="-1" measuredW="48" measuredH="63" zOrder="13" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Tutorial</text>
       </controlProperties>
     </control>
-    <control controlID="16" controlTypeID="com.balsamiq.mockups::Paragraph" x="206" y="410" w="86" h="80" measuredW="275" measuredH="80" zOrder="15" locked="false" isInGroup="-1">
+    <control controlID="16" controlTypeID="com.balsamiq.mockups::Paragraph" x="206" y="410" w="86" h="80" measuredW="275" measuredH="80" zOrder="14" locked="false" isInGroup="-1">
       <controlProperties>
         <map>%3Carea%20shape%3D%22rect%22%20coords%3D%2218%2C483.6%2C65.43701171875%2C496.6%22%20href%3D%22http%3A//support.balsamiq.com/customer/portal/articles/110121%23basicformatting%22%20alt%3D%22web%20link%22%20id%3D%2216%22%20target%3D%22_blank%22/%3E</map>
         <text>A%20*paragraph*%20of%20%7Bcolor%3Ared%7Dtext%7Bcolor%7D%20with%20an%20%5Bunassigned%20link%5D.%0AA%20_second_%20%26row%26%20of%20%7Etext%7E%20with%20a%20%5Bweb%20link%5D%28http%3A//support.balsamiq.com/customer/portal/articles/110121%23basicformatting%29</text>
       </controlProperties>
     </control>
-    <control controlID="17" controlTypeID="com.balsamiq.mockups::Paragraph" x="380" y="404" w="96" h="86" measuredW="275" measuredH="80" zOrder="16" locked="false" isInGroup="-1">
+    <control controlID="17" controlTypeID="com.balsamiq.mockups::Paragraph" x="380" y="404" w="96" h="86" measuredW="275" measuredH="80" zOrder="15" locked="false" isInGroup="-1">
       <controlProperties>
         <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22258.26123046875%2C446.4%2C286.1591796875%2C459.4%22%20href%3D%22http%3A//support.balsamiq.com/customer/portal/articles/110121%23basicformatting%22%20alt%3D%22web%20link%22%20id%3D%2217%22%20target%3D%22_blank%22/%3E%3Carea%20shape%3D%22rect%22%20coords%3D%22192%2C462%2C211.5390625%2C475%22%20href%3D%22http%3A//support.balsamiq.com/customer/portal/articles/110121%23basicformatting%22%20alt%3D%22web%20link%22%20id%3D%2217%22%20target%3D%22_blank%22/%3E</map>
         <text>A%20*paragraph*%20of%20%7Bcolor%3Ared%7Dtext%7Bcolor%7D%20with%20an%20%5Bunassigned%20link%5D.%0AA%20_second_%20%26row%26%20of%20%7Etext%7E%20with%20a%20%5Bweb%20link%5D%28http%3A//support.balsamiq.com/customer/portal/articles/110121%23basicformatting%29</text>
       </controlProperties>
     </control>
-    <control controlID="18" controlTypeID="com.balsamiq.mockups::Paragraph" x="530" y="404" w="92" h="86" measuredW="275" measuredH="80" zOrder="17" locked="false" isInGroup="-1">
+    <control controlID="18" controlTypeID="com.balsamiq.mockups::Paragraph" x="530" y="404" w="92" h="86" measuredW="275" measuredH="80" zOrder="16" locked="false" isInGroup="-1">
       <controlProperties>
         <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22342%2C477.6%2C389.43701171875%2C490.6%22%20href%3D%22http%3A//support.balsamiq.com/customer/portal/articles/110121%23basicformatting%22%20alt%3D%22web%20link%22%20id%3D%2218%22%20target%3D%22_blank%22/%3E</map>
         <text>A%20*paragraph*%20of%20%7Bcolor%3Ared%7Dtext%7Bcolor%7D%20with%20an%20%5Bunassigned%20link%5D.%0AA%20_second_%20%26row%26%20of%20%7Etext%7E%20with%20a%20%5Bweb%20link%5D%28http%3A//support.balsamiq.com/customer/portal/articles/110121%23basicformatting%29</text>
       </controlProperties>
     </control>
+    <control controlID="19" controlTypeID="com.balsamiq.mockups::CoverFlow" x="236" y="159" w="364" h="134" measuredW="493" measuredH="198" zOrder="17" locked="false" isInGroup="-1"/>
   </controls>
 </mockup>
