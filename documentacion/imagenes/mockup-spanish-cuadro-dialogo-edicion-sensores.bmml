@@ -88,9 +88,9 @@
         <text>127.0.0.1</text>
       </controlProperties>
     </control>
-    <control controlID="22" controlTypeID="com.balsamiq.mockups::TextInput" x="361" y="321" w="231" h="-1" measuredW="143" measuredH="27" zOrder="18" locked="false" isInGroup="-1">
+    <control controlID="22" controlTypeID="com.balsamiq.mockups::TextInput" x="361" y="321" w="231" h="-1" measuredW="154" measuredH="27" zOrder="18" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Server%20base%20de%20datos</text>
+        <text>Servidor%20base%20de%20datos</text>
       </controlProperties>
     </control>
   </controls>
