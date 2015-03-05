@@ -14,6 +14,7 @@ java -jar test7.jar -p warning -t "Database" -d "MySQL is not running"
 java -jar test7.jar -p danger -t "Processor" -d "The capacity of processor has exceeded the limit"
 
 java -jar Sensor.jar -p danger -t "Processor" -d "The processor is in critical state"
+java -jar Sensor.jar -p danger -t "Procesador" -d "La temperatura a sobrepasado los limites"
 
 -- Run hot-spot
 sudo ap-hotspot configure
@@ -61,3 +62,13 @@ Password: KeZybgrd1TKP
 Database: jarvis
 User: adminmongo
 Password: mirmidon
+
+Monit
+#Start Monitor
+monit
+
+#Exit Monitor
+monit quit
+
+#Configuration
+/etc/
