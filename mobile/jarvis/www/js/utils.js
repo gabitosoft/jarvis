@@ -82,18 +82,32 @@ function loadSettings() {
     var port = $('#port').val();
     var server = $('#server').val();
     var url = 'http://' + server + ':' + port + '/api/user/' + email;
-      console.log(url);      
-    $.getJSON(url, function(data) {
 
+    $.getJSON(url, function(data) {
       
-//      $('#flip-2').val('on').attr('selected', data.settings.allAlerts).siblings('option').removeAttr('selected');
-//      $('#flip-2').selectmenu();
-//      $('#flip-2').selectmenu('refresh', true);
-//      
-//      $('#flip-3').val('on').attr('selected', data.settings.informationAlerts).siblings('option').removeAttr('selected');
-//      $('#flip-4').val('on').attr('selected', data.settings.warningAlerts).siblings('option').removeAttr('selected');
-//      $('#flip-5').val('on').attr('selected', data.settings.dangerAlerts).siblings('option').removeAttr('selected');
-//      $('#flip-6').val('on').attr('selected', data.settings.unknowAlerts).siblings('option').removeAttr('selected');
+      if (data.settings.allAlerts) {
+        $('#flip-2').val('on').slider("refresh");
+      }
+      
+      if (data.settings.informationAlerts) {
+        $('#flip-3').val('on').slider("refresh");
+      }
+      
+      if (data.settings.warningAlerts) {
+        $('#flip-4').val('on').slider("refresh");
+      }
+      
+      if (data.settings.dangerAlerts) {
+        $('#flip-5').val('on').slider("refresh");
+      }
+      
+      if (data.settings.unknowAlerts) {
+        $('#flip-6').val('on').slider("refresh");
+      }
+      
+      $('#chartSensor').val(data.settings.chartType);
+      $('#chartType').val(data.settings.chartSensor);
+      $('#language').val(data.settings.language);
 
     }).fail(function(error) {
       alert( "Error al cargar configuraciones" + error);
@@ -101,21 +115,31 @@ function loadSettings() {
     });
 }
 
+function convertToBool(text) {
+
+  return (text === 'on') ? true : false;
+}
+
 function saveSettings() {
 
+    var port = $('#port').val();
+    var server = $('#server').val();
+    var url = 'http://' + server + ':' + port + '/api/user/settings';
+  
     var settings = {
-      email: $('#userEmail').val(),
-      allAlerts: $('#flip-2').val(),
-      informationAlerts: $('#flip-3').val(),
-      warningAlerts: $('#flip-4').val(),
-      dangerAlerts: $('#flip-5').val(),
-      unknowAlerts: $('#flip-6').val()
+      email: $('#username').val(),
+      allAlerts: convertToBool($('#flip-2').val()),
+      informationAlerts: convertToBool($('#flip-3').val()),
+      warningAlerts: convertToBool($('#flip-4').val()),
+      dangerAlerts: convertToBool($('#flip-5').val()),
+      unknowAlerts: convertToBool($('#flip-6').val()),
+      chartSensor: $('#chartSensor').val(),
+      chartType: $('#chartType').val(),
+      language: $('#language').val()
     };
 
-    var serverUrl = 'http://' + $('#serverUrl').text() + '/api/user/settings';
-
     $.ajax({
-        url: serverUrl ,
+        url: url,
         data: settings,
         type: 'post',                   
         dataType: 'json',
@@ -128,16 +152,12 @@ function saveSettings() {
             // This callback function will trigger on data sent/received complete
             $.mobile.loading( 'hide');
         },
-        success: function (result) {
-            if(result.token) {
-                
-                alert('Cambio realizado satisfactoriamente');
-            } else {
-                alert('Los cambios no se pudieron verificar'); 
-            }
+        success: function (request, result) {
+            alert('Cambio realizado satisfactoriamente');
         },
         error: function (request, error) {
             // This callback function will trigger on unsuccessful action
+            console.log(error);
             alert('Ocurrio un problema en la red intentelo nuevamente');
         }
     });

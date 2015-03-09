@@ -221,7 +221,7 @@ module.exports = function (app) {
 
       var data = req.body;
       var email = req.body.email;
-
+    
       if (!data && !email) {
         res.send(500, 'user-settings-failed');
       }
@@ -243,7 +243,7 @@ module.exports = function (app) {
           if (err) {
             res.send(500, 'user-settings-failed');
           }
-          res.send(200);
+          res.send(200, {message: 'settings-updated'});
         }
       );
   });
