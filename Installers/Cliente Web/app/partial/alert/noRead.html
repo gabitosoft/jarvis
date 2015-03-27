@@ -1,0 +1,9 @@
+<div ng-controller="AlertController" ng-init="loadnoReadAlerts()">
+    <button type="button" ng-click="setRoute('alert', $event)" class="btn btn-default new-alert"> {{resourceBundle.alerts.type.unknow}} ({{ unknow }})</button>
+
+    <button type="button" ng-click="setRoute('alert', $event)" class="btn btn-primary new-alert">{{resourceBundle.alerts.type.information}} ({{ information }})</button>
+
+    <button type="button" ng-click="setRoute('alert', $event)" class="btn btn-warning new-alert">{{resourceBundle.alerts.type.warning}} ({{ warning }})</button>
+
+    <button type="button" ng-click="setRoute('alert', $event)" class="btn btn-danger new-alert">{{resourceBundle.alerts.type.danger}} ({{ danger }})</button>
+</div>

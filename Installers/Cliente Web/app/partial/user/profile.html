@@ -1,0 +1,12 @@
+<form  class="form-signin" ng-init="loadUserInformation()" ng-controller="UserController" ng-submit="updateUser()">
+    <h1>{{user.name}}</h1>
+    <label>{{resourceBundle.user.name}}:</label>            
+    <input type="text" ng-model="user.name" required class="form-control"/>
+    <label>{{resourceBundle.user.email}}:</label>            
+    <input type="text" ng-model="user.email" required class="form-control"/>
+    <label>{{resourceBundle.user.password}}:</label>
+    <input type="password" ng-model="user.encryptedPassword" min="6" max="14" class="form-control"/>
+    <label>{{resourceBundle.user.confirmation}}:</label>
+    <input type="password" ng-model="user.encryptedPassword" min="6" max="14" class="form-control" />
+    <input class="btn btn-lg btn-primary btn-block button-newUser" type="submit" value="Save" />
+</form>
