@@ -1,0 +1,52 @@
+<h2>{{resourceBundle.user.title}}</h2>
+<div class="table-responsive" ng-controller="UserController">
+    <table class="table table-striped" id="user-table" ng-init="loadUsers()">
+        <thead>
+            <tr>
+              <th><input type="checkbox" name="selectall" ng-click="selectAll($event)"/></th>
+              <th>{{resourceBundle.user.name}}</th>
+              <th>{{resourceBundle.user.email}}</th>
+              <th>{{resourceBundle.user.admin}}</th>
+              <th>{{resourceBundle.user.online}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="user in users" >
+              <td>
+                <div class="checkbox">
+                  <label>
+                    <input id="{{user._id}}" type="checkbox"/>
+                  </label>
+                </div>
+              </td>
+              <td> {{user.name}} </td>
+              <td> {{user.email}} </td>
+              <td>
+                  <div ng-if="!!user.admin" class="user-icon check-icon"></div>
+                  <div ng-if="!!user.admin === false" class="user-icon cancel-icon"></div>
+              </td>
+              <td> 
+                  <div ng-if="!!user.online" class="user-icon green-icon"></div>
+                  <div ng-if="!!user.online === false" class="user-icon red-icon"></div>
+              </td>
+            </tr>
+        </tbody>
+    </table>
+    <ul class="pagination">
+      <li><a href="#">&laquo;</a></li>
+      <li><a href="#">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">4</a></li>
+      <li><a href="#">5</a></li>
+      <li><a href="#">&raquo;</a></li>
+    </ul>
+    <button type="button" ng-click="deleteUser($event)" class="btn btn-danger">{{resourceBundle.buttons.delete}}</button>
+    <button type="button" ng-click="setRoute('newUser', $event)" class="btn btn-primary">{{resourceBundle.buttons.new}}</button>
+    <div id ="user-error" class="alert alert-danger hidden">
+            {{resourceBundle.users.messages.delete.fail}}
+    </div>
+    <div id ="user-deleted" class="alert alert-success hidden">
+        {{resourceBundle.users.messages.delete.successOne}}
+    </div>
+</div>

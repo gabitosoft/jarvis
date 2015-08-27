@@ -1,0 +1,77 @@
+<h2>{{resourceBundle.sensors.title}}</h2>
+<div ng-controller="SensorController">
+    <div ng-controller="PaginationController">
+        <!-- Table -->
+        <table class="table table-striped" id="sensor-table" ng-init="loadSensors()">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" name="selectall" ng-click="selectAll($event)"/></th>
+                    <th>{{resourceBundle.sensors.name}}</th>
+                    <th>{{resourceBundle.sensors.address}}</th>
+                    <th>{{resourceBundle.sensors.description}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="sensor in sensors" ng-click="displaySensor($event, sensor)">
+                    <td>
+                        <div class="checkbox">
+                            <label>
+                                <input id="{{sensor._id}}" type="checkbox"/>
+                            </label>
+                        </div>
+                    </td>
+                    <td> {{sensor.name}} </td>
+                    <td> {{sensor.address}} </td>
+                    <td> {{sensor.description}} </td>
+                </tr> 
+            </tbody>
+        </table>
+        <ul class="pagination">
+            <li data-ng-class="{disabled: isPrevDisabled}">
+                <a data-ng-click="prev()">&laquo;</a>
+            </li>
+            <li data-ng-repeat="page in pages" ng-class="{active: current===page}">
+                <a data-ng-click="goto(page)">{{page}}</a>
+            </li>
+            <li data-ng-class="{disabled: isNextDisabled}">
+                <a data-ng-click="next()">&raquo;</a>
+            </li>
+        </ul>
+    </div>
+    <button type="button" ng-click="deleteSensor($event)" class="btn btn-danger">{{resourceBundle.buttons.delete}}</button>
+    <button type="button" ng-click="setRoute('newSensor', $event)" class="btn btn-primary">{{resourceBundle.buttons.new}}</button>
+    <div id ="sensor-error" class="alert alert-danger hidden">
+            {{resourceBundle.sensors.messages.delete.fail}}
+    </div>
+    <div id ="sensor-deleted" class="alert alert-success hidden">
+        {{resourceBundle.sensors.messages.delete.successOne}}
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="sensorModal" tabindex="-1" role="dialog" aria-labelledby="sensorModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">{{resourceBundle.buttons.close}}</span></button>
+            <h4 class="modal-title" id="sensorModalLabel">{{resourceBundle.sensors.id}}: [{{sensor._id}}]</h4>
+          </div>
+            <form role="form" ng-submit="updateSensor()">
+                <div class="modal-body">
+                      <div class="form-group">
+                          <label for="sensor-name">{{resourceBundle.sensors.name}}</label>
+                          <input type="text" class="form-control" id="sensor-name" value="{{sensor.name}}" >
+                      </div>
+                      <div class="form-group">
+                          <label for="sensor-description">{{resourceBundle.sensors.description}}</label>
+                          <input type="text" class="form-control" id="sensor-description" value="{{sensor.description}}" >
+                      </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">{{resourceBundle.buttons.close}}</button>
+                  <button type="submit" class="btn btn-info">{{resourceBundle.buttons.save}}</button>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+    <!-- End Modal -->
+</div>

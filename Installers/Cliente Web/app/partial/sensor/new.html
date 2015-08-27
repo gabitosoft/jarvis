@@ -1,0 +1,11 @@
+
+<form class="form-signin" ng-controller="SensorController" ng-submit="newSensor()">
+    <label>{{resourceBundle.sensors.name}}:</label>            
+    <input type="text" ng-model="name" required class="form-control" />
+    <label>{{resourceBundle.sensors.address}}:</label>
+    <input type="text" ng-model="address" required class="form-control" />
+    <label>{{resourceBundle.sensors.description}}:</label>
+    <textarea ng-model="description" class="form-control" />
+    
+    <input class="btn btn-lg btn-primary btn-block button-newSensor" type="submit" value="{{resourceBundle.buttons.save}}" />
+</form>

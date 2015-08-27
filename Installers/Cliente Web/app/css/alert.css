@@ -1,0 +1,26 @@
+/*
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.and open the template in the editor.
+ */
+/* 
+    Created on : 06-08-2014, 11:56:21 AM
+    Author     : Gabriel Delgado
+*/
+
+#alert-table tr {
+    cursor: pointer;
+}
+
+#alert-table tr td {
+    vertical-align: middle;
+}
+
+.alert-icon {
+    background-repeat: no-repeat;
+    height: 34px;
+}

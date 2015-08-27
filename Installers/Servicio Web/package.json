@@ -1,0 +1,17 @@
+{
+  "name": "Server",
+  "version": "0.1.0",
+  "description": "Web Applicaction",
+  "main": "app.js",
+  "dependencies": {
+    "socket.io": "latest",
+    "express": "latest",
+    "body-parser": "*",
+    "cookie-parser": "*",
+    "express-session": "*",
+    "mongoose": "latest",
+    "bcrypt": "latest",
+    "async": "latest"
+  },
+  "author": "Gabriel Edgar Delgado Rocha"
+}
