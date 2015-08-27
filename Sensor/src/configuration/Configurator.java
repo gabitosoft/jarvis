@@ -22,7 +22,7 @@ import utils.FileManager;
 public class Configurator {
     
     private JSONObject settings;
-    private final String CONFIG_PATH = "config.txt";
+    private final String CONFIG_PATH = "/etc/sensor/config.txt";
     private final String KEY_URL = "url";
     private final String KEY_USERNAME = "username";
     private final String KEY_PASSWORD = "password";

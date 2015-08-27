@@ -1,0 +1,4 @@
+
+#Check http
+check host mylocalhost with address 127.0.0.1
+if failed port 80 protocol http then exec "/bin/bash -c '/usr/bin/sensor -p danger -t HTTP -d NO_HTTP_RUNNING_ON_PORT_80' "

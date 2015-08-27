@@ -30,12 +30,21 @@ function init() {
             //var socket = io.connect("http://10.31.48.50:3000");
 
             socket.on('alert', function (data) {
-                $('#alertList').append('<li class="alert-item list-group-item-'+ data.type +'" ><a href="#description">' +
-                        '<h3 class="list-group-item-heading">' + data.title + '</h3>' +
+//                $('#alertList').append('<li class="alert-item list-group-item-'+ 
+//                        data.type + '" ><a href="#description">' +
+//                        '<h3 class="list-group-item-heading">' + data.title + '</h3>' +
+//                        '<p class="list-group-item-text">' + data.description + '</p>' +
+//                        '<p class="list-group-item-text">' + data.date + '</p>' +
+//                        '</a></li>'
+//                );
+
+                $('<li class="alert-item list-group-item-'+ 
+                        data.type + '" ><a href="#description">' +
+                        '<h3 class="list-group-item-heading">' + data.title + ' - ' + data.source +'</h3>' +
                         '<p class="list-group-item-text">' + data.description + '</p>' +
                         '<p class="list-group-item-text">' + data.date + '</p>' +
-                        '</a></li>'
-                );
+                        '</a></li>').prependTo($('#alertList'));
+                
                 socket.emit('message', { message: 'Client was notified' });
 
                 window.plugin.notification.local.add({

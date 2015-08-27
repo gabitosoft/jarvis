@@ -166,7 +166,8 @@ module.exports = function (app) {
             res.status(500).end( ' error-alert-settings-user ' + err);
           }
 
-          if (user.settings.allAlerts) {
+          if (user.settings.allAlerts && app.connections[username] !== undefined) {
+
             switch(alert.type) {
               case 'info':
                 if (user.settings.informationAlerts) {
@@ -174,19 +175,19 @@ module.exports = function (app) {
                   app.connections[username].emit('alert', alert);
                 }
               break;
-            case 'unknow': 
+              case 'unknow': 
                 if (user.settings.unknowAlerts) {
 
                   app.connections[username].emit('alert', alert);
                 }
               break;
-            case 'warning':
+              case 'warning':
                 if (user.settings.warningAlerts) {
 
                   app.connections[username].emit('alert', alert);
                 }
-            break;
-            case 'danger':
+              break;
+              case 'danger':
                 if (user.settings.dangerAlerts) {
 
                   app.connections[username].emit('alert', alert);

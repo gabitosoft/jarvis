@@ -14,27 +14,27 @@
       <div class="panel-body">
         <div class="checkbox-inline">
             <label>
-                <input ng-model="settings.allAlerts" type="checkbox" /> {{resourceBundle.settings.enableAlerts}}
+                <input id="checkAllAlerts" ng-model="settings.allAlerts" type="checkbox" /> {{resourceBundle.settings.enableAlerts}}
             </label>
         </div>
         <div class="checkbox">
             <label>
-                <input type="checkbox" ng-model="settings.unknowAlerts" name="alerts-unknow" /> {{resourceBundle.settings.unknowAlerts}}
+                <input id="checkUnknowAlerts" type="checkbox" ng-model="settings.unknowAlerts" name="alerts-unknow" /> {{resourceBundle.settings.unknowAlerts}}
             </label>
         </div>
         <div class="checkbox bg-info" >
             <label>
-                <input type="checkbox" ng-model="settings.informationAlerts" name="alerts-information" /> {{resourceBundle.settings.informationAlerts}}
+                <input id="checkInfoAlerts" type="checkbox" ng-model="settings.informationAlerts" name="alerts-information" /> {{resourceBundle.settings.informationAlerts}}
             </label>
         </div>
         <div class="checkbox bg-warning">
             <label>
-                <input type="checkbox" ng-model="settings.warningAlerts" name="alerts-warning" /> {{resourceBundle.settings.warningAlerts}}
+                <input id="checkWarningAlerts" type="checkbox" ng-model="settings.warningAlerts" name="alerts-warning" /> {{resourceBundle.settings.warningAlerts}}
             </label>
         </div>
         <div class="checkbox bg-danger">
             <label>
-                <input type="checkbox" ng-model="settings.dangerAlerts" name="alerts-danger" /> {{resourceBundle.settings.dangerAlerts}}
+                <input id="checkDangerAlerts" type="checkbox" ng-model="settings.dangerAlerts" name="alerts-danger" /> {{resourceBundle.settings.dangerAlerts}}
             </label>
         </div>
       </div>

@@ -1,0 +1,4 @@
+#Verificar memoria y procesador
+check system localhost
+	if memory usage > 50% then  exec "/bin/bash -c '/usr/bin/sensor -p warning -t Memory -d 50%_USED' "
+	if cpu usage (system) > 30% then  exec "/bin/bash -c '/usr/bin/sensor -p warning -t Processor -d JUST_50%_FREE' "

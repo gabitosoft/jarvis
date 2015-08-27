@@ -82,11 +82,28 @@ function loadSettings() {
     var port = $('#port').val();
     var server = $('#server').val();
     var url = 'http://' + server + ':' + port + '/api/user/' + email;
+    
+    $('#flip-2').on('change', function(event) {
+      
+      event.stopPropagation();
+      
+      if($('#flip-2').val() === 'on') {
+        
+        enableFlips();
+      } else {
+        
+        disableFlips();
+      }
+    });
 
     $.getJSON(url, function(data) {
       
       if (data.settings.allAlerts) {
         $('#flip-2').val('on').slider("refresh");
+        enableFlips();
+      } else {
+        
+        disableFlips();
       }
       
       if (data.settings.informationAlerts) {
@@ -161,6 +178,22 @@ function saveSettings() {
             alert('Ocurrio un problema en la red intentelo nuevamente');
         }
     });
+}
+
+function disableFlips() {
+
+  $('#flip-3').slider('disable');
+  $('#flip-4').slider('disable');
+  $('#flip-5').slider('disable');
+  $('#flip-6').slider('disable');
+}
+
+function enableFlips() {
+  
+  $('#flip-3').slider('enable');
+  $('#flip-4').slider('enable');
+  $('#flip-5').slider('enable');
+  $('#flip-6').slider('enable');
 }
 
 function logout() {

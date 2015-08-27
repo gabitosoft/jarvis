@@ -53,7 +53,7 @@ app.factory('ItemService', [
         
         return {
           start: 1,
-          limit: 5,
+          limit: 7,
           total: _total
         };
       }
@@ -78,7 +78,6 @@ app.factory('Session', function($http){
   
   return Session;
 });
-
 
 app.controller('MainController', ['$scope', 
   'ngI18nResourceBundle', '$location', '$http', function($scope, ngI18nResourceBundle, $location, $http) {
@@ -627,8 +626,45 @@ app.controller('SettingsController', function($scope, $http, Session) {
       $http.get(SERVER_URL + '/api/user/' + email)
       .then(function(result) {
         $scope.settings = result.data.settings;
+      
+          if($scope.settings.allAlerts) {
+        
+            $scope.enableCheckboxes();
+          } else {
+
+            $scope.disableCheckboxes();
+          }
+      
+        $('#checkAllAlerts').on('click', function(event){
+          event.stopPropagation();
+          
+          if($scope.settings.allAlerts) {
+        
+            $scope.enableCheckboxes();
+          } else {
+
+            $scope.disableCheckboxes();
+          }
+        });
+      
       });
     }
+  };
+  
+  $scope.enableCheckboxes = function() {
+    
+    $('#checkUnknowAlerts').prop('disabled', false);
+    $('#checkInfoAlerts').prop('disabled', false);
+    $('#checkWarningAlerts').prop('disabled', false);
+    $('#checkDangerAlerts').prop('disabled', false);
+  };
+  
+  $scope.disableCheckboxes = function() {
+
+    $('#checkUnknowAlerts').prop('disabled', true);
+    $('#checkInfoAlerts').prop('disabled', true);
+    $('#checkWarningAlerts').prop('disabled', true);
+    $('#checkDangerAlerts').prop('disabled', true);
   };
 
   $scope.saveSettings = function() {
@@ -691,7 +727,8 @@ app.controller('PaginationController', ['$scope', 'ItemService', '$http', functi
   _updateItems = function () {
     $http.get(SERVER_URL + '/api/alert')
      .then(function(result) {
-        $scope.alerts = angular.copy(itemService.get($scope.current, _initalValues.limit, result.data).items);
+         var data = result.data.reverse();
+        $scope.alerts = angular.copy(itemService.get($scope.current, _initalValues.limit, data).items);
     });
   },
 
