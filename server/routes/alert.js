@@ -43,7 +43,7 @@ module.exports = function (app) {
   // GET alerts based on types
   app.get('/api/alert/types', function(req, res) {
     User.findOne({ email : req.body.email }, function(err, user){
-      
+
       if (err) {
         
         res.send(500, 'error-get-alert-types' + err);
@@ -89,10 +89,12 @@ module.exports = function (app) {
 
       sensors.forEach(function (item, index) {
         asyncTask.push(function (callback){
-            Alert.find({ source: item.address }, function(err, alerts) {
+          console.log('[SENSOR:' +item.name+ ','+item.address+']');
+            Alert.find({ source: item.name }, function(err, alerts) {
               if (err) {
                 res.send(err);
               }
+              console.log('Num alerts: ', alerts.length);
               var unknow = 0;
               var information = 0;
               var warning = 0;
@@ -129,7 +131,7 @@ module.exports = function (app) {
 
   // POST alert
   app.post('/api/alert/create', function(req, res) {
-    
+
     // User.findOne({ email: req.body.email }, function(error, user) {
     //   if (user.token != req.body.token) {
     //     console.log('Invalid Token');
@@ -199,6 +201,7 @@ module.exports = function (app) {
       }
     });
 
+    console.log('Alert created');
     res.send(200);
   });
 

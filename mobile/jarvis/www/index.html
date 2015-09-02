@@ -36,7 +36,8 @@
                 <div class="ui-grid-a grid-form-login">
                     <div class="ui-block-a">
                         <img src="img/jarvis.png" alt="jarvis"/>
-                        <input type="text" id="server" class="text-field-form" placeholder="Server" value="192.168.150.1" />
+<!--                        <input type="text" id="server" class="text-field-form" placeholder="Server" value="192.168.150.1" />-->
+                        <input type="text" id="server" class="text-field-form" placeholder="Server" value="172.22.19.176" />
                         <input type="text" id="port" class="text-field-form" placeholder="Port" value="3000"/>
                         <input type="email" id="username" class="text-field-form" placeholder="Username" value="gabitosoft@gmail.com"/>
                         <input type="password" id="password" class="text-field-form" placeholder="Password" value="mirmidon"/>
@@ -59,10 +60,12 @@
     </div>
     <article data-role="content">
         <div data-role="controlgroup" data-type="horizontal" class="btn-group">
-            <a data-role="button" data-mini="true" data-theme="a" class="ui-btn-inline buttons-forms">Info</a>
+<!--            <a data-role="button" data-mini="true" data-theme="a" class="ui-btn-inline buttons-forms">Info</a>
             <a data-role="button" data-mini="true" data-theme="a" class="ui-btn-inline buttons-forms">Advertencia</a>
             <a data-role="button" data-mini="true" data-theme="a" class="ui-btn-inline buttons-forms">Peligro</a>
-            <a data-role="button" data-mini="true" data-theme="a" class="ui-btn-inline buttons-forms">Desc.</a>
+            <a data-role="button" data-mini="true" data-theme="a" class="ui-btn-inline buttons-forms">Desc.</a>-->
+
+            <a id="status" data-role="button" data-mini="true" data-theme="a" class="ui-btn-inline buttons-forms"></a>
         </div>
         <div class="panel-alerts">
             <ul data-role="listview" class="list-group" id="alertList">

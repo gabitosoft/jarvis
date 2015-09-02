@@ -27,7 +27,6 @@ function init() {
         loadScript('js/socket.io.js', function () {
 
             var socket = io.connect($('#server').val() + ':' + $('#port').val());
-            //var socket = io.connect("http://10.31.48.50:3000");
 
             socket.on('alert', function (data) {
 //                $('#alertList').append('<li class="alert-item list-group-item-'+ 
@@ -76,7 +75,95 @@ function init() {
             socket.on('error', function () {
                 $('#status').html('Error');
             });
+            
+            loadUnReadAlerts();
+            
+            $("#alertList").on("click", ".alert-item", function(event){
+                var item = $(this);
+                var id = item.attr('data-id');
+                var date = item.attr('data-date');
+                var source = item.attr('data-source');
+                var type = item.attr('data-type');
+                var title = item.attr('data-title');
+                var desc = item.attr('data-des');
+              
+                //updateAlert(id, source, date, type, title, desc);
+            });
         });
 
         $.mobile.loading( 'hide');
+    }
+    
+    function loadUnReadAlerts() {
+
+      var port = $('#port').val();
+      var server = $('#server').val();
+      var url = 'http://' + server + ':' + port + '/api/alert/status/false';
+
+      $.getJSON(url, function(data) {
+
+        var listAlerts = $('#alertList');
+        listAlerts.empty();
+        $.each(data, function(key, value) {
+
+          $('<li data-id="' + value._id + '"' +
+                'data-type="' + value.type + '"' +
+                'data-title="' + value.title + '"' +
+                'data-des="' + value.description + '"' +
+                'data-source="' + value.source + '"' +
+                'data-date="' + value.date + '"' +
+            'class="alert-item list-group-item-'+ 
+                        value.type + '" ><a href="#description">' +
+                        '<h3 class="list-group-item-heading">' + value.title + ' - ' + value.source +'</h3>' +
+                        '<p class="list-group-item-text">' + value.description + '</p>' +
+                        '<p class="list-group-item-text">' + value.date + '</p>' +
+                        '</a></li>').prependTo(listAlerts);
+        });
+      }).fail(function(error) {
+        alert( "Error on alert list" + error);
+        console.log(error);
+      });
+    }
+    
+    function updateAlert(id, source, date, type, title, desc) {
+      
+      var port = $('#port').val();
+      var server = $('#server').val();
+      var url = 'http://' + server + ':' + port + '/api/alert/' + id;
+
+      var alertUpdated = {
+        _id: id,
+        source: source,
+        date: date,
+        type: type,
+        title: title,
+        description: desc,
+        read: 'true'
+      };
+      
+      console.log(alertUpdated);
+
+      $.ajax({
+          url: url,
+          data: alertUpdated,
+          type: 'put',                   
+          dataType: 'json',
+
+          beforeSend: function() {
+              // This callback function will trigger before data is sent
+              $.mobile.loading( 'show');
+          },
+          complete: function() {
+              // This callback function will trigger on data sent/received complete
+              $.mobile.loading( 'hide');
+          },
+          success: function (request, result) {
+              //alert('Cambio realizado satisfactoriamente');
+          },
+          error: function (request, error) {
+              // This callback function will trigger on unsuccessful action
+              console.log(error);
+              alert('Ocurrio un problema en la red intentelo nuevamente');
+          }
+      });
     }

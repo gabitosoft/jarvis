@@ -22,7 +22,7 @@ import utils.FileManager;
 public class Configurator {
     
     private JSONObject settings;
-    private final String CONFIG_PATH = "/etc/sensor/config.txt";
+    private final String CONFIG_PATH = "/opt/sensor/config.txt";
     private final String KEY_URL = "url";
     private final String KEY_USERNAME = "username";
     private final String KEY_PASSWORD = "password";
@@ -87,7 +87,7 @@ public class Configurator {
     
         settings.clear();
         FileManager fmanager = new FileManager();
-        for (String text : fmanager.readFile("conf.txt") ) {
+        for (String text : fmanager.readFile("config.txt") ) {
         
             String[] data = text.split(",");
             settings.put(data[0], data[1]);

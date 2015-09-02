@@ -1,0 +1,26 @@
+E: jarvissensor: changelog-file-missing-in-native-package
+E: jarvissensor: no-copyright-file
+E: jarvissensor: description-synopsis-is-duplicated
+W: jarvissensor: bad-homepage www.gabitosoft.com/jarvis
+E: jarvissensor: dir-or-file-in-opt opt/sensor/
+E: jarvissensor: dir-or-file-in-opt opt/sensor/README.TXT
+E: jarvissensor: dir-or-file-in-opt opt/sensor/Sensor.jar
+E: jarvissensor: dir-or-file-in-opt opt/sensor/config.txt
+E: jarvissensor: dir-or-file-in-opt opt/sensor/lib/
+E: jarvissensor: dir-or-file-in-opt opt/sensor/lib/commons-beanutils-1.7.jar
+E: jarvissensor: dir-or-file-in-opt opt/sensor/lib/commons-codec-1.9.jar
+E: jarvissensor: dir-or-file-in-opt opt/sensor/lib/commons-collections.jar
+E: jarvissensor: dir-or-file-in-opt opt/sensor/lib/commons-lang.jar
+E: jarvissensor: dir-or-file-in-opt opt/sensor/lib/commons-logging-1.1.1.jar
+E: jarvissensor: dir-or-file-in-opt opt/sensor/lib/ezmorph.jar
+E: jarvissensor: dir-or-file-in-opt opt/sensor/lib/json-lib-2.2.2-jdk15.jar
+E: jarvissensor: dir-or-file-in-opt opt/sensor/sensor
+W: jarvissensor: jar-not-in-usr-share opt/sensor/lib/commons-beanutils-1.7.jar
+W: jarvissensor: jar-not-in-usr-share opt/sensor/lib/commons-codec-1.9.jar
+W: jarvissensor: jar-not-in-usr-share opt/sensor/lib/commons-collections.jar
+W: jarvissensor: jar-not-in-usr-share opt/sensor/lib/commons-lang.jar
+W: jarvissensor: jar-not-in-usr-share opt/sensor/lib/commons-logging-1.1.1.jar
+W: jarvissensor: jar-not-in-usr-share opt/sensor/lib/ezmorph.jar
+W: jarvissensor: jar-not-in-usr-share opt/sensor/lib/json-lib-2.2.2-jdk15.jar
+E: jarvissensor: missing-dep-on-jarwrapper
+W: jarvissensor: maintainer-script-ignores-errors postinst

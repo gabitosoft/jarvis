@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# Jarvis Sensor call script
+JAVA_BIN=`which java`
+
+while getopts d:p:t:i: option
+do
+case "${option}"
+in
+d) DESCRIPTION=${OPTARG};;
+p) TYPE=${OPTARG};;
+t) TITLE=${OPTARG};;
+i) UI=${OPTARG};;
+esac
+done
+
+if [ -z $JAVA_BIN ]
+then
+    echo 'JAVA is not detected please try to install using:'
+    echo 'sudo add-apt-repository ppa:webupd8team/java'
+    echo 'sudo apt-get update'
+    echo 'sudo apt-get install oracle-java8-installer'
+    echo 'sudo apt-get install oracle-java8-set-default'
+else
+    if [ -z $UI ]
+    then
+        # if paremeters are empty, display error message
+        if [ -z $TYPE ] && [ -z $TITLE ] && [ -z $DESCRIPTION ]
+        then
+            echo 'You must enter: sensor -p [info|warning|danger] -d [description] and -t [title]'
+            echo 'If you want to configure the application type: sensor -i'
+        else
+            `$JAVA_BIN -jar /opt/sensor/Sensor.jar -d "$DESCRIPTION" -p $TYPE -t "$TITLE"` > /opt/sensor/logger.txt
+        fi
+    else
+        $JAVA_BIN -jar /opt/sensor/Sensor.jar -i
+    fi
+fi
+
+#End Script

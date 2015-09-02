@@ -78,7 +78,8 @@ public class Interpreter {
 
                 settings.put("date", dateFormat.format(currentDate));
                 settings.put("read", "false");
-                settings.put("source", address.getHostAddress());
+                //settings.put("source", address.getHostAddress()); //IP
+                settings.put("source", address.getHostName());      //Name
                 
             } else {
             

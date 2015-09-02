@@ -30,7 +30,7 @@ app.factory('socket', function () {
 
 app.factory('ItemService', [
   function () {
-    var _total = 15;
+    var _total = 50;
     return {
       get: function (start, limit, data) {
         var _i, _items = new Array();

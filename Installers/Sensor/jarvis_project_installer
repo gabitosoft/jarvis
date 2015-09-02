@@ -1,0 +1,10 @@
+Package: jarvissensor
+Version: 0.1.1
+Section: net
+Maintainer: Gabriel E. Delgado Rocha <gabitosoft@gmail.com>
+Homepage: www.gabitosoft.com/jarvis
+Priority: optional
+Architecture: amd64
+Description: Jarvis Sensor application allow us to send POST message to Jarvis Service
+ Jarvis Sensor application allow us to send POST message to Jarvis Service
+

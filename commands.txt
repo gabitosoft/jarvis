@@ -72,3 +72,7 @@ monit quit
 
 #Configuration
 /etc/
+
+Copy files
+scp JarvisSensor.deb gabriel@10.0.0.10:/home/gabriel
+scp JarvisSensor_1.1.0-ubuntu_amd64.deb gabriel@10.0.0.7:/home/gabriel
