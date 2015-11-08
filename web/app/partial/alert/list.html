@@ -30,7 +30,7 @@
         </thead>
         <tbody>
             <tr ng-repeat="alert in alerts | filter:typeAlert:type" ng-click="displayAlert($event, alert)">
-              <td>
+              <td ng-click="checkAlert($event)">
                 <div class="checkbox">
                   <label>
                     <input id="{{alert._id}}" type="checkbox"/>

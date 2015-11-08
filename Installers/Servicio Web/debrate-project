@@ -1,0 +1,11 @@
+Package: JARVIS-Service
+Version: 0.1.0
+Section: misc
+Maintainer: Gabriel Delgado <gabitosoft@gmail.com>
+Homepage: www.gabitosoft.com/jarvis
+Priority: optional
+Architecture: all
+Depends: nodejs
+Description: JARVIS System notification service on real time
+ JARVIS System notification on real time is a NodeJS application integrated with Websockets and REST call API
+

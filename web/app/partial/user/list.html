@@ -12,7 +12,7 @@
         </thead>
         <tbody>
             <tr ng-repeat="user in users" >
-              <td>
+                <td ng-click="checkUser($event)">
                 <div class="checkbox">
                   <label>
                     <input id="{{user._id}}" type="checkbox"/>

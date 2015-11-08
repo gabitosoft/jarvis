@@ -13,7 +13,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat="sensor in sensors" ng-click="displaySensor($event, sensor)">
-                    <td>
+                    <td ng-click="checkSensor($event)">
                         <div class="checkbox">
                             <label>
                                 <input id="{{sensor._id}}" type="checkbox"/>

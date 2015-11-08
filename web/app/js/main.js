@@ -425,6 +425,10 @@ app.controller('UserController', function($scope, $http, $window, Session) {
       });
     }); 
   };
+  
+  $scope.checkUser = function(event) {
+    event.stopPropagation();
+  };
 });
 
 app.controller('AlertController', function($scope, $http, $location) {
@@ -480,6 +484,7 @@ app.controller('AlertController', function($scope, $http, $location) {
 
           $('#alert-error').addClass('hidden');
           $('#alert-error').removeClass('show');
+          window.location.reload(true);
 
           return;
         }
@@ -524,6 +529,10 @@ app.controller('AlertController', function($scope, $http, $location) {
     }
 
     $('#alertModal').modal('show');
+  };
+
+  $scope.checkAlert = function(event) {
+    event.stopPropagation();
   };
   
   $scope.filterAlerts = function(event) {
@@ -613,6 +622,10 @@ app.controller('SensorController', function($scope, $http) {
     $scope.sensor = sensor;
 
     $('#sensorModal').modal('show');
+  };
+  
+  $scope.checkSensor = function(event) {
+    event.stopPropagation();
   };
 });
 
