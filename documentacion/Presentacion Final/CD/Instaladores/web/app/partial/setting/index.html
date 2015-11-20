@@ -1,0 +1,81 @@
+<form class="form-signin" ng-init="loadUserSettings()" ng-controller="SettingsController" ng-submit="saveSettings()">
+    <h1>{{resourceBundle.settings.title}}</h1>
+    <div id ="settings-error" class="alert alert-danger hidden">
+        {{resourceBundle.settings.messages.danger}}
+    </div>
+    <div id ="settings-saved" class="alert alert-success hidden">
+        {{resourceBundle.settings.messages.success}}
+    </div>
+    <!-- Alerts -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{resourceBundle.alerts.title}}</h3>
+      </div>
+      <div class="panel-body">
+        <div class="checkbox-inline">
+            <label>
+                <input ng-model="settings.allAlerts" type="checkbox" /> {{resourceBundle.settings.enableAlerts}}
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" ng-model="settings.unknowAlerts" name="alerts-unknow" /> {{resourceBundle.settings.unknowAlerts}}
+            </label>
+        </div>
+        <div class="checkbox bg-info" >
+            <label>
+                <input type="checkbox" ng-model="settings.informationAlerts" name="alerts-information" /> {{resourceBundle.settings.informationAlerts}}
+            </label>
+        </div>
+        <div class="checkbox bg-warning">
+            <label>
+                <input type="checkbox" ng-model="settings.warningAlerts" name="alerts-warning" /> {{resourceBundle.settings.warningAlerts}}
+            </label>
+        </div>
+        <div class="checkbox bg-danger">
+            <label>
+                <input type="checkbox" ng-model="settings.dangerAlerts" name="alerts-danger" /> {{resourceBundle.settings.dangerAlerts}}
+            </label>
+        </div>
+      </div>
+    </div>
+    <!-- Charts -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{resourceBundle.settings.charts}}</h3>
+      </div>
+      <div class="panel-body">
+        <div class="checkbox-inline">
+            <label>
+                <input type="checkbox" ng-model="settings.chartSensor" name="alerts-by-sensor"/> {{resourceBundle.settings.alertsBySensor}}
+            </label>
+        </div>
+        <div class="checkbox-inline">
+            <label>
+                <input type="checkbox" ng-model="settings.chartType" name="alerts-by-type"/> {{resourceBundle.settings.alertsByType}}
+            </label>
+        </div>
+      </div>
+    </div>
+    <!-- Language -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{resourceBundle.settings.language}}</h3>
+      </div>
+      <div class="panel-body">
+        <label>{{resourceBundle.settings.chooseLanguage}}</label>
+        <div class="btn-group">
+            <input type="button" id="language-setting-button" name="language-setting-button" value="{{settings.language}}" ng-model="settings.language" class="btn btn-default"/>
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            <span class="caret"></span>
+            <span class="sr-only">Toggle Dropdown</span>
+          </button>
+          <ul class="dropdown-menu" role="menu" ng-model="i18n.language" id="switchLanguage">
+              <li class="text-capitalize" ng-click="switchLanguage($event)" ng-repeat="language in languages">{{language.locale}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <button type="reset" class="btn btn-lg btn-danger">{{resourceBundle.buttons.cancel}}</button>
+    <button type="submit" class="btn btn-lg btn-primary">{{resourceBundle.buttons.save}}</button>
+</form>

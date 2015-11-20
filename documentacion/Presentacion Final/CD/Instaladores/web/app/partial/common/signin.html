@@ -1,0 +1,61 @@
+<div class="row">
+    <div class="col-xs-12 col-md-8 container">
+        <div>
+            <!-- Error messages -->
+            <div id ="login-failed" class="alert alert-warning hidden">
+                {{resourceBundle.loginPage.error.login.invalid}}
+            </div>
+            <div id ="login-error" class="alert alert-danger hidden">
+                {{resourceBundle.loginPage.error.login.failed}}
+            </div>
+            <!-- Error messages -->
+
+            <h2>{{resourceBundle.title}}</h2>
+            <p>
+                {{resourceBundle.loginPage.description}}
+            </p>
+        </div>
+        <!--
+        <div class="col-xs-6 col-md-4">
+            <img alt="facebook-logo" src="img/facebook_logo_detail.gif" width="50" height="50"/>
+            <img alt="twitter-logo" src="img/twitter-logo.png" width="50" height="50"/>
+            <img alt="youtube-logo" src="img/youtube-logo.png" width="50" height="50"/>
+        </div>
+        -->
+        <!-- CAROUSEL -->
+        <div id="carousel-main-page" ng-include src="'partial/common/carousel.html'" class="carousel slide" data-ride="carousel"></div>
+        <!-- /CAROUSEL -->
+    </div>
+    <div class="col-xs-6 col-md-4">
+        <div class="sign-in-form">
+            <button type="button" ng-click="signup()" class="btn btn-primary btn-sign-in btn-lg btn-block">
+                {{resourceBundle.buttons.signup}}
+            </button> 
+            <!--<img alt="jarvis-logo" src="img/jarvis.png"/>-->
+            <p>
+                {{resourceBundle.loginPage.messageSignup}}
+            </p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-6 col-md-4">
+        <h3>{{resourceBundle.loginPage.footer.left.title}}</h3>
+        <p>
+            {{resourceBundle.loginPage.footer.left.description}}
+        </p>
+    </div>
+    <div class="col-xs-6 col-md-4">
+        <h3>{{resourceBundle.loginPage.footer.center.title}}</h3>
+        <p>
+            {{resourceBundle.loginPage.footer.center.description}}
+        </p>
+    </div>
+    <div class="col-xs-6 col-md-4">
+        <h3>{{resourceBundle.loginPage.footer.right.title}}</h3>
+        <p>
+            {{resourceBundle.loginPage.footer.right.description}}
+        </p>
+    </div>
+</div>
+

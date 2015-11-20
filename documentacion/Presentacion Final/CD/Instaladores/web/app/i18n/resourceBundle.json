@@ -1,0 +1,144 @@
+{
+    "projectName": "J.A.R.V.I.S.",
+    "title": "JARVIS Push Notification Service",
+    "user": {
+        "title": "Users",
+        "name": "Name",
+        "email": "Email",
+        "password": "Password",
+        "confirmation": "Confirmation",
+        "admin": "Admin",
+        "online": "Online"
+    },
+    "buttons": {
+        "new": "New",
+        "delete": "Delete",
+        "cancel": "Cancel",
+        "save": "Save",
+        "signin": "Sign-In",
+        "logout": "Logout",
+        "help": "Help",
+        "close": "Close",
+        "login": "Login",
+        "signup": "Sign Up"
+    },
+    "leftMenu": {
+        "dashboard": "Dashboard",
+        "alerts": "Alerts",
+        "sensors": "Sensors",
+        "users": "Users",
+        "settings": "Settings"
+    },
+    "alerts": {
+        "title": "Alerts",
+        "type": {
+            "unknow": "Unknow",
+            "information": "Information",
+            "warning": "Warning",
+            "danger": "Danger",
+            "all": "All"
+        },
+        "id": "Id",
+        "source": "Source",
+        "typeList": "Type",
+        "titleList": "Title",
+        "date": "Date",
+        "description": "Description",
+        "read": "Read",
+        "messages": {
+            "delete": {
+                "successOne": "The Alert was deleted successfully",
+                "successMany": "The Alerts were deleted successfully",
+                "fail": "Was not possible to delete the Alert, please try again or consult to your administrator"
+            }
+        }
+    },
+    "sensors": {
+        "title": "Sensors",
+        "name": "Name",
+        "address": "Address",
+        "description": "Description",
+        "messages": {
+            "delete": {
+                "successOne": "The Sensor was deleted successfully",
+                "successMany": "The Sensors were deleted successfully",
+                "fail": "Was not possible to delete the sensor, please try again or consult to your administrator"
+            }
+        }
+    },
+    "settings": {
+        "title": "Settings",
+        "enableAlerts": "Enable Alerts",
+        "unknowAlerts": "Receive Unknow alerts",
+        "informationAlerts": "Receive Information alerts",
+        "warningAlerts": "Receive Warning alerts",
+        "dangerAlerts": "Receive Danger alerts",
+        "charts": "Charts",
+        "alertsBySensor": "Display Alerts by Sensor",
+        "alertsByType": "Display Alerts by Type",
+        "language": "Language",
+        "chooseLanguage": "Choose Language",
+        "spanish": "Spanish",
+        "english": "English",
+        "messages": {
+            "danger": "There was an error when save settings",
+            "success": "Settings were changed successfully"
+        }
+    },
+    "charts": {
+        
+        "alertsBySensor": "Alerts By Sensor",
+        "alertsByType": "Alerts By Type",
+        "alerts": "Alerts",
+        "categories" : {
+            "unknow": "Unknow",
+            "information": "Information",
+            "warning": "Warning",
+            "danger": "Danger"
+        }
+    },
+    "language": {
+
+        "english": "English",
+        "spanish": "Spanish"
+    },
+    "loginPage": {
+        "description": 
+            "JARVIS makes it easy to get real-time notifications on your Android devices. JARVIS as server monitoring software is designed to make sure that a server is active,  healthy, and responding to requests appropriately. Can be used as an advanced server monitoring software which lets you check both basic server uptime and detailed usage statistics on all types of servers, including: Web, Databases, Mail, Hardware Resources and Application Status.",
+        "messageSignup": "Create an account is fast, easy and free get started today!",
+        "error": {
+            "login": {
+                "failed": "An error occurred while attempting connect to the server.",
+                "invalid": "Invalid Username or password"
+            }
+        },
+        "footer": {
+            "left": {
+                "title": "REST API",
+                "description": "If you want to implement your own sensor application or your own client web application, review the API which allow you send messages, review the data generated and of course know how to extend the web services. The API is simple, it's documented with a focus on provide an easy integration with your web App."
+            },
+            "center": {
+                "title": "Mobile Application",
+                "description": "JARVIS mobile allow you to keep connected to JARVIS services, so you can receive all the alerts and notifications generated in real time, you can install the application on many mobile devices with Android platform."
+            },
+            "right": {
+                "title": "Sensor Application",
+                "description":"The Sensor application is build using the Java language programming, so can run on every kind of operative system that has support to Java, just need to configure the basic parameters and start to generate data."
+            }
+        },
+        "carousel": {
+            "item1": {
+                "title": "Interaction Technologies"
+            },
+            "item2": {
+                "title": "Home Page Web Client"
+            },
+            "item3": {
+                "title": "Information Alert Page"
+            },
+            "next": "Next",
+            "previous": "Previous"
+        }
+    }
+}
+
